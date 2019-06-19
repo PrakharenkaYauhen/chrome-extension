@@ -1,5 +1,8 @@
+/* global chrome */
+
 import React from 'react';
-import logo from './logo.svg';
+import { UserAgent } from '@quentin-sommer/react-useragent';
+import logo from './Penguin_2.ico';
 import './App.css';
 
 function App() {
@@ -7,18 +10,38 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Chrome extension</p>
+        <UserAgent chrome>
+          <button 
+          type="button"
+          onClick={() => {
+            chrome.tabs.getCurrent(tab => {
+              chrome.tabs.update(tab.id, {
+                url: 'chrome-search://local-ntp/local-ntp.html',
+              });
+            });
+          }}
+          >
+            Toggle button
+          </button>
+          {/* <Button
+            appearance="subtle"
+            onClick={() => {
+              chrome.tabs.getCurrent(tab => {
+                chrome.tabs.update(tab.id, {
+                  url: 'chrome-search://local-ntp/local-ntp.html',
+                });
+              });
+            }}
+            iconBefore={
+              <ChromeIcon height={20} width={20} fill="currentColor" />
+            }
+          >
+            Chrome Tab
+          </Button> */}
+        </UserAgent>
       </header>
+
     </div>
   );
 }
