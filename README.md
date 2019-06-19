@@ -1,1 +1,1 @@
-Chrome extension replacing a new tab of a screen in Crome Browser with weather vidget etc.
+Chrome extension replacing a new tab of a screen in Chrome Browser with weather vidget etc.
