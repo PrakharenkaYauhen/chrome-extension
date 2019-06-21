@@ -1,0 +1,13 @@
+$black-color: #282c34;
+$black-color1: #1b202a;
+$black-color2: #0f1218;
+
+:root {
+  --main-color: #282c34;
+}
+
+@import '_App';
+
+body {
+  margin: 0;
+}

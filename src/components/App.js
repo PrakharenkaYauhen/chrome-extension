@@ -2,27 +2,11 @@
 
 import React from 'react';
 import { UserAgent } from '@quentin-sommer/react-useragent';
-import logo from './Penguin_2.ico';
-import './App.css';
+import logo from '../images/Penguin_2.ico';
+import penguinBack from '../images/penguin-back.png';
+import TableOfVisitedSitesCNT from '../containers/TableOfVisitedSites';
 
 function App() {
-  let visitedSitesList;
-
-  let getVisitedSitesList = () => {
-    chrome.history.search({
-      'text': '',
-      'maxResults': 10,
-    }, (array) => {
-      console.log(array);
-      visitedSitesList = array.map(item => `<td>${item.url}</td>`);
-      console.log(visitedSitesList);
-    });
-  }
-
-  getVisitedSitesList();
-
-  console.log(visitedSitesList);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -30,6 +14,7 @@ function App() {
         <p>Chrome extension</p>
         <UserAgent chrome>
           <button
+            className="button-default-new-tab-chrome"
             type="button"
             onClick={() => {
               chrome.tabs.getCurrent(tab => {
@@ -40,9 +25,10 @@ function App() {
               });
             }}
           >
-            Toggle button
+            <img src={penguinBack} alt="" width="20px" />
+            Default new tab
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={() => {
               chrome.history.search({
@@ -54,23 +40,20 @@ function App() {
             }}
           >
             History list
-          </button>
+          </button> */}
         </UserAgent>
 
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <input
+          type="color"
+          name=""
+          onChange={e => {
+            let root = document.querySelector(':root');
+            root.style.setProperty('--main-color', e.target.value)
+          }}
+        />
+
+        <TableOfVisitedSitesCNT />
+
       </header>
 
     </div>
