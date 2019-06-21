@@ -1,8 +1,8 @@
 // Component tableOfVisitedSites
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import gifPreloader from '../images/free-loader-gif-3.gif';
+// import PropTypes from 'prop-types';
+// import gifPreloader from '../images/free-loader-gif-3.gif';
 
 class TableOfVisitedSites extends React.Component {
   componentDidMount() {

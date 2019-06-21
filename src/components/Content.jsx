@@ -2,15 +2,22 @@
 
 import React from 'react';
 import logo from '../images/Penguin_2.ico';
+import plus from '../images/plus.png';
 // import PropTypes from 'prop-types';
-// import HeaderIcon from './HeaderIcon'
+import ContentLink from './ContentLink'
 
 function Content() {
   return (
-    <div>
+    <div className="content">
       <div>
-        <img src={logo} alt="logo" width="100px" />
-        <p>Some text</p>
+        <ContentLink image={logo}/>
+        <ContentLink image={logo}/>
+        <ContentLink image={logo}/>
+        <ContentLink image={logo}/>
+        <ContentLink image={logo}/>
+        <ContentLink image={logo}/>
+        <ContentLink image={logo}/>
+        <ContentLink image={plus}/>
       </div>
     </div>
   )

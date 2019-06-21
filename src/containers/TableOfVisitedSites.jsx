@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch) => {
               <td>{i + 1}</td>
               <td>{item.title}</td>
               <td>
-                <a href={item.url} target="_blank">
+                <a href={item.url} target="_blank" rel="noopener noreferrer">
                   {item.url.length > 50
                     ? item.url.substr(0, 50) + '...'
                     : item.url}
