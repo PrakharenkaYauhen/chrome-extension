@@ -4,11 +4,22 @@ import React from 'react';
 import { UserAgent } from '@quentin-sommer/react-useragent';
 import logo from '../images/Penguin_2.ico';
 import penguinBack from '../images/penguin-back.png';
+
+import HeaderCNT from '../containers/HeaderCNT';
+import ContentCNT from '../containers/ContentCNT';
 import TableOfVisitedSitesCNT from '../containers/TableOfVisitedSites';
 
 function App() {
   return (
     <div className="App">
+      <HeaderCNT />
+      <ContentCNT />
+      {/* <div>
+        <div>
+          <img src={logo} alt="logo" width="100px" />
+          <p>Some text</p>
+        </div>
+      </div> */}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Chrome extension</p>
@@ -28,19 +39,6 @@ function App() {
             <img src={penguinBack} alt="" width="20px" />
             Default new tab
           </button>
-          {/* <button
-            type="button"
-            onClick={() => {
-              chrome.history.search({
-                'text': '',
-                'maxResults': 10,
-              }, (array) => {
-                console.log(array);
-              });
-            }}
-          >
-            History list
-          </button> */}
         </UserAgent>
 
         <input
