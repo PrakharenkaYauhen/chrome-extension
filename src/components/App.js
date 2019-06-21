@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from '../images/Penguin_2.ico';
+// import logo from '../images/Penguin_2.ico';
 
 import HeaderCNT from '../containers/HeaderCNT';
 import ContentCNT from '../containers/ContentCNT';
+import FootballCNT from '../containers/FootballCNT';
 import CustomizationCNT from '../containers/CustomizationCNT';
 // import TableOfVisitedSitesCNT from '../containers/TableOfVisitedSites';
 
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <HeaderCNT />
       <ContentCNT />
+      <FootballCNT />
       <CustomizationCNT />
 
       {/* <header className="App-header">

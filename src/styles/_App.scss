@@ -206,3 +206,49 @@
     };
   }
 }
+
+.football {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--main-color);
+  color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+
+  &>div {
+    width: 40%;
+    margin: 5%;
+
+    h2 {
+      background: red;
+      text-align: left;
+      padding: 10px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.last-game {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px {
+    top: 20px;
+  };
+  border: 1px solid #ffffff;
+
+  div {
+    display: inline-block;
+    vertical-align: top;
+    
+    p {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  img {
+    width: 25%;
+  }
+}

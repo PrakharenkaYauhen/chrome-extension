@@ -6,15 +6,10 @@ import { toggleAsideCustomiztion } from '../actions';
 
 const mapStateToProps = (state, props) => {
   const {
-    customizationAside,
-  } = state;
-
-  const {
     image,
   } = props;
 
   return {
-    customizationAside,
     image,
   }
 }

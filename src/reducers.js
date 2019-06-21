@@ -3,12 +3,16 @@
 import {
   CUSTOMIZATION_ASIDE_TOGGLE,
   FILL_TABLE_OF_VISITED_SITES,
+  FILL_JUVENTUS,
   FILL_WEATHER,
 } from './actions'
 
 let initialState = {
   arrayOfVisitedSites: [],
   customizationAside: false,
+  juventusStuffObject: null,
+  juventusStuffIsLoaded: false,
+  juventusStuffError: null,
   weatherObject: null,
   weatherIsLoaded: false,
   weatherError: null,
@@ -24,6 +28,12 @@ export default function reducerCalendar(state = initialState, action) {
     case FILL_TABLE_OF_VISITED_SITES:
       return Object.assign({}, state, {
         arrayOfVisitedSites: action.action.arrayOfVisitedSites,
+      })
+    case FILL_JUVENTUS:
+      return Object.assign({}, state, {
+        juventusObject: action.action.juventusObject,
+        juventusIsLoaded: action.action.juventusIsLoaded,
+        juventusError: action.action.juventusError,
       })
     case FILL_WEATHER:
       return Object.assign({}, state, {
