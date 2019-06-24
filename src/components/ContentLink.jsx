@@ -1,14 +1,18 @@
-// Component ContentLink
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
 function ContentLink(props) {
+  // console.log(props)
   return (
-    <a href="http://" className="content-link">
+    <a
+      href={props.link}
+      className="content-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <div>
         <img src={props.image} alt="logo" />
-        <p>Some text</p>
+        <p>{props.text || 'add a new link'}</p>
       </div>
     </a>
   )

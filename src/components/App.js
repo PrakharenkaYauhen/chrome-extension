@@ -3,8 +3,9 @@ import React from 'react';
 
 import HeaderCNT from '../containers/HeaderCNT';
 import ContentCNT from '../containers/ContentCNT';
-import FootballCNT from '../containers/FootballCNT';
+// import FootballCNT from '../containers/FootballCNT';
 import CustomizationCNT from '../containers/CustomizationCNT';
+import SlidingWindowForIconsCNT from '../containers/SlidingWindowForIconsCNT';
 // import TableOfVisitedSitesCNT from '../containers/TableOfVisitedSites';
 
 function App() {
@@ -12,8 +13,9 @@ function App() {
     <div className="App">
       <HeaderCNT />
       <ContentCNT />
-      <FootballCNT />
+      {/* <FootballCNT /> */}
       <CustomizationCNT />
+      {/* <SlidingWindowForIconsCNT /> */}
 
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

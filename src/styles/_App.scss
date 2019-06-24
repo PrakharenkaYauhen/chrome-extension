@@ -154,6 +154,7 @@
 
 .content-link {
   margin: 10px auto;
+  text-decoration: none;
 
   div {
     width: 150px;
@@ -209,20 +210,20 @@
 }
 
 .football {
-  position: absolute;
-  top: 38px;
-  left: 0;
-  background: var(--main-color);
-  color: #ffffff;
-  width: 100%;
-  min-height: calc(100vh - 38px);
-  text-align: center;
-  transition: transform 1.5s;
-  transform: translateY(-100%) translateZ(0);
+  // position: absolute;
+  // top: 38px;
+  // left: 0;
+  // background: var(--main-color);
+  // color: #ffffff;
+  // width: 100%;
+  // min-height: calc(100vh - 38px);
+  // text-align: center;
+  // transition: transform 1.5s;
+  // transform: translateY(-100%) translateZ(0);
 
-  &-hide {
-    transform: translateX(0);
-  }
+  // &-hide {
+  //   transform: translateX(0);
+  // }
 
   h1 {
     margin: 0;
@@ -273,5 +274,65 @@
 
   h3 {
     margin: 10px auto 0;
+  }
+}
+
+
+
+
+.sliding-window {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background: var(--main-color);
+  color: #ffffff;
+  width: 100%;
+  min-height: calc(100vh - 38px);
+  text-align: center;
+  transition: transform 1.5s;
+  transform: translateY(-100%) translateZ(0);
+
+  &-hide {
+    transform: translateX(0);
+  }
+}
+
+
+
+
+.weather {
+  // div {
+  //   position: relative;
+  //   img {
+  //     background-image: url(../images/surfing.jpg);
+  //     background-size: cover;
+  //     background-repeat: no-repeat;
+      // width: 60%;
+      // border:  {
+      //   radius: 5px;
+      // }
+  //   }
+  //   div {
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //   }
+  // }
+}
+
+.weather-image {
+  position: absolute;
+  // width: 500px;
+  // height: 300px;
+  left: 15%;
+  top: 25%;
+  bottom: 25%;
+  right: 15%;
+  background-image: url(../images/surfing.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: {
+    radius: 5px;
+    top: 1px solid #ffffff;
   }
 }

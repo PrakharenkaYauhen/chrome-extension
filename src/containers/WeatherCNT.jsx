@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import Content from '../components/Content'
+import Weather from '../components/Weather'
 
 // const HeaderCNT = connect(mapStateToProps, mapDispatchToProps)(Header);
-const ContentCNT = connect()(Content);
+const WeatherCNT = connect()(Weather);
 
-export default ContentCNT;
+export default WeatherCNT;
