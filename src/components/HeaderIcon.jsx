@@ -4,12 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function HeaderIcon(props) {
-  console.log(props);
+  // console.log(props);
   return (
     <img
       src={props.image}
       alt={props.image}
-      onClick={props.wrench ? props.toggleCustomization : null}
+      onClick={props.icon === "wrench"
+        ? props.toggleCustomization
+        : () => props.toggleIcons(props.iconsActions)}
     />
   )
 }

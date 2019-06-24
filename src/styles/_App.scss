@@ -118,6 +118,7 @@
 .header {
   position: relative;
   background: var(--main-color);
+  z-index: 1;
 
   img {
     height: 30px;
@@ -208,18 +209,34 @@
 }
 
 .football {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 38px;
   left: 0;
   background: var(--main-color);
   color: #ffffff;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: calc(100vh - 38px);
   text-align: center;
+  transition: transform 1.5s;
+  transform: translateY(-100%) translateZ(0);
 
-  &>div {
-    width: 40%;
-    margin: 5%;
+  &-hide {
+    transform: translateX(0);
+  }
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.last-games,
+.next-games {
+  display: inline-block;
+  width: 35%;
+  margin: 5% {
+    top: 0;
+    bottom: 20px;
+  };
 
     h2 {
       background: red;
@@ -227,16 +244,17 @@
       padding: 10px;
       margin-bottom: 0;
     }
-  }
 }
 
-.last-game {
+.game {
   box-sizing: border-box;
   width: 100%;
   padding: 10px {
     top: 20px;
   };
-  border: 1px solid #ffffff;
+  border: 1px solid #ffffff {
+    top: none;
+  };  
 
   div {
     display: inline-block;
@@ -244,11 +262,16 @@
     
     p {
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
   }
 
   img {
     width: 25%;
+    margin: 0 10px;
+  }
+
+  h3 {
+    margin: 10px auto 0;
   }
 }

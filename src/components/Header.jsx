@@ -10,9 +10,9 @@ import HeaderIconCNT from '../containers/HeaderIconCNT'
 function Header() {
   return (
     <div className="header">
-      <HeaderIconCNT image={cup}/>
-      <HeaderIconCNT image={weather}/>
-      <HeaderIconCNT image={wrench} wrench={true}/>
+      <HeaderIconCNT image={cup} icon="cup"/>
+      <HeaderIconCNT image={weather} icon="weather"/>
+      <HeaderIconCNT image={wrench} icon="wrench"/>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 // reducers
 
 import {
+  ICONS_ACTIONS_TOGGLE,
   CUSTOMIZATION_ASIDE_TOGGLE,
   FILL_TABLE_OF_VISITED_SITES,
   FILL_JUVENTUS,
@@ -9,6 +10,7 @@ import {
 
 let initialState = {
   arrayOfVisitedSites: [],
+  iconsActions: false,
   customizationAside: false,
   juventusStuffObject: null,
   juventusStuffIsLoaded: false,
@@ -21,6 +23,10 @@ let initialState = {
 export default function reducerCalendar(state = initialState, action) {
   // console.log(action);
   switch (action.type) {
+    case ICONS_ACTIONS_TOGGLE:
+      return Object.assign({}, state, {
+        iconsActions: action.action.iconsActions,
+      })
     case CUSTOMIZATION_ASIDE_TOGGLE:
       return Object.assign({}, state, {
         customizationAside: action.action.customizationAside,
