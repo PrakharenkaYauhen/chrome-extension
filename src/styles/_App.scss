@@ -334,7 +334,7 @@
 }
 
 .weather-fog {
-  background: #ffffff;
+  background: #3496c5;
   position: absolute;
   left: 0%;
   top: 0%;
@@ -344,7 +344,7 @@
     top-right-radius: 5px;
     top-left-radius: 5px;
   }
-  opacity: .3;
+  opacity: .4;
 }
 
 .weather-fog-bottom {
@@ -359,7 +359,7 @@
     bottom-left-radius: 5px;
     top: 1px solid #ffffff;
   }
-  opacity: .3;
+  opacity: .4;
 }
 
 .weather-current-day {
@@ -423,6 +423,28 @@
   }
 }
 
+.weather-parametres {
+  position: absolute;
+  top: 97px;
+  right: 0;
+  font-family: 'Montserrat';
+  margin-right: 20px;
+  width: 200px;
+  text-align: right;
+
+  p {
+    font-size: 12px;
+    margin: 1.5px 0;
+    letter-spacing: .4px;
+    font-weight: 200;
+    // word-spacing: 2px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
 .weather-week {
   width: 560px;
   height: 70px;
@@ -433,7 +455,7 @@
 
   .weather-one-day {
     // position: relative;
-    width: calc(560px / 7);
+    width: calc(560px / 5);
 
     h4 {
       font-size: 12px;
@@ -443,7 +465,7 @@
     .weather-icon {
       position: relative;
       transform: scale(.2);
-      left: -35px;
+      left: -18px;
       top: -65px;
     }
 
@@ -463,12 +485,9 @@
   background-repeat: no-repeat;
   width: 148px;
   height: 148px;
-  // position: absolute;
-  // left: 5px;
-  // top: -5px;
 }
 
-.aaa1 {
+.big-cloudly {
   background-position: 0 0;
 }
 
@@ -480,10 +499,6 @@
   background-position: -296px 0;
 }
 
-.aaa4 {
-  background-position: -444px 0;
-}
-
 .snow {
   background-position: 0 -148px;
 }
@@ -492,20 +507,12 @@
   background-position: -148px -148px;
 }
 
-.clear-snow {
-  background-position: -296px -148px;
-}
-
-.big-snow {
-  background-position: -444px -148px;
-}
-
-.clody {
+.cloudly {
   background-position: 0 -444px;
 }
 
-.aaa10 {
-  background-position: -148px -444px;
+.mist {
+  background-position: -148px -296px;
 }
 
 .sun {
