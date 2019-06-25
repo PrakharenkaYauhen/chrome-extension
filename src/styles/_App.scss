@@ -1,6 +1,3 @@
-.App {
-  // text-align: center;
-}
 
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
@@ -300,7 +297,7 @@
 
 
 
-.weather {
+// .weather {
   // div {
   //   position: relative;
   //   img {
@@ -318,21 +315,203 @@
   //     left: 0;
   //   }
   // }
-}
+// }
 
 .weather-image {
-  position: absolute;
-  // width: 500px;
-  // height: 300px;
-  left: 15%;
-  top: 25%;
-  bottom: 25%;
-  right: 15%;
-  background-image: url(../images/surfing.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  position: relative;
+  width: 560px;
+  height: 295px;
+  margin: 107px auto;
+  background: {
+    image: url(../images/surfing.jpg);
+    size: cover;
+    repeat: no-repeat;
+  }
   border: {
     radius: 5px;
+    top: 0.5px solid #ffffff;
+  }
+}
+
+.weather-fog {
+  background: #ffffff;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  bottom: 23.7%;
+  right: 0%;
+  border: {
+    top-right-radius: 5px;
+    top-left-radius: 5px;
+  }
+  opacity: .3;
+}
+
+.weather-fog-bottom {
+  background: #64767d;
+  position: absolute;
+  left: 0%;
+  top: 76%;
+  bottom: 0%;
+  right: 0%;
+  border: {
+    bottom-right-radius: 5px;
+    bottom-left-radius: 5px;
     top: 1px solid #ffffff;
   }
+  opacity: .3;
+}
+
+.weather-current-day {
+  position: relative;
+  width: 150px;
+  height: 225px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+
+  .weather-icon {
+    position: relative;
+    top: -5px;
+  }
+
+  p {
+    font-size: 104px;
+    position: relative;
+    bottom: 45px;
+    margin: 0;
+
+    span {
+      position: absolute;
+      right: -16px;
+      top: 2px;
+      font-size: 70px;
+      font-weight: 300;
+    }
+  }
+}
+
+.weather-adress {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: 'Montserrat';
+  margin-right: 15px;
+  width: 280px;
+  text-align: right;
+  letter-spacing: .9px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 200;
+    margin: 14px 0 0;
+  }
+
+  p {
+    margin: 5px 0;
+    letter-spacing: normal;
+    font-weight: 200;
+    word-spacing: 2px;
+
+    span {
+      font-size: 10px;
+
+      &:last-child {
+        font-style: italic;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.weather-week {
+  width: 560px;
+  height: 70px;
+  font-family: 'Montserrat';
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  .weather-one-day {
+    // position: relative;
+    width: calc(560px / 7);
+
+    h4 {
+      font-size: 12px;
+      margin: 6px;
+    }
+
+    .weather-icon {
+      position: relative;
+      transform: scale(.2);
+      left: -35px;
+      top: -65px;
+    }
+
+    p {
+      position: relative;
+      top: -132px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+  }
+}
+
+
+
+.weather-icon {
+  background-image: url(../images/weather_icons.png);
+  background-repeat: no-repeat;
+  width: 148px;
+  height: 148px;
+  // position: absolute;
+  // left: 5px;
+  // top: -5px;
+}
+
+.aaa1 {
+  background-position: 0 0;
+}
+
+.lightning {
+  background-position: -148px 0;
+}
+
+.rain {
+  background-position: -296px 0;
+}
+
+.aaa4 {
+  background-position: -444px 0;
+}
+
+.snow {
+  background-position: 0 -148px;
+}
+
+.big-rain {
+  background-position: -148px -148px;
+}
+
+.clear-snow {
+  background-position: -296px -148px;
+}
+
+.big-snow {
+  background-position: -444px -148px;
+}
+
+.clody {
+  background-position: 0 -444px;
+}
+
+.aaa10 {
+  background-position: -148px -444px;
+}
+
+.sun {
+  background-position: -296px -444px;
+}
+
+.clear {
+  background-position: -444px -444px;
 }
