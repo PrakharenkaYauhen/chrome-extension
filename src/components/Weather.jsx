@@ -1,15 +1,10 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import WeatherDayOfTheWeek from './WeatherDayOfTheWeek';
-// import WeatherCNT from '../containers/WeatherCNT';
-// import surfing from '../images/surfing.jpg';
 
 class Weather extends React.Component {
   componentDidMount() {
-    const {
-      fetchData,
-    } = this.props;
-    fetchData();
+    this.props.fetchData();
   }
 
   render() {
@@ -41,9 +36,9 @@ class Weather extends React.Component {
         </div>);
     }
 
-    let currentDayWeatherData = weatherObject[0];
-    let currentDay = new Date().getDay();
-    let daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
+    const currentDayWeatherData = weatherObject[0];
+    const currentDay = new Date().getDay();
+    const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
     let eachDayOfWeekWeather = [];
     for (let i = 0; i < 5; i++) {
       eachDayOfWeekWeather.push((
@@ -59,7 +54,7 @@ class Weather extends React.Component {
         />)
       )
     }
-    let compareIcons = {
+    const compareIcons = {
       '01d': 'sun',
       '02d': 'clear',
       '03d': 'cloudly',
@@ -70,7 +65,7 @@ class Weather extends React.Component {
       '13d': 'snow',
       '50d': 'mist',
     }
-    let getTimeInString = (time) => {
+    const getTimeInString = (time) => {
       let stringOption = {
         hour: 'numeric',
         minute: 'numeric',
@@ -90,7 +85,7 @@ class Weather extends React.Component {
           </div>
           <div className="weather-adress">
             <h2>{`${currentDayWeatherData.name}, ${currentDayWeatherData.sys.country}`}</h2>
-            <p>{currentDayWeatherData.weather[0].description.toUpperCase()} <span>{currentDayWeatherData.main.temp_max} HIGH/{currentDayWeatherData.main.temp_min} LOW</span> <span>}{getTimeInString(new Date())} PST</span></p>
+            <p>{currentDayWeatherData.weather[0].description.toUpperCase()} <span>{currentDayWeatherData.main.temp_max} HIGH/{currentDayWeatherData.main.temp_min} LOW</span> <span>{getTimeInString(new Date())} PST</span></p>
           </div>
           <div className="weather-parametres">
             <p>HUMIDITY <span>{`${currentDayWeatherData.main.humidity}%`}</span></p>

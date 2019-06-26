@@ -4,10 +4,12 @@ import SlidingWindowForIcons from '../components/SlidingWindowForIcons'
 const mapStateToProps = (state) => {
   const { 
     iconsActions,
+    pageForTheSlideWindow,
   } = state;
 
   return {
     iconsActions,
+    pageForTheSlideWindow,
   }
 }
 

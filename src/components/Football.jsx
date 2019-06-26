@@ -1,5 +1,3 @@
-// Component Football
-
 import React from 'react';
 // import PropTypes from 'prop-types';
 import FootballGameCNT from '../containers/FootballGameCNT';
@@ -12,7 +10,6 @@ class Football extends React.Component {
   render() {
     const {
       iconsActions,
-      juventusObject,
       juventusIsLoaded,
       juventusError,
     } = this.props;
