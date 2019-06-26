@@ -137,7 +137,7 @@
 
 .content {
   min-height: calc(100vh - 38px);
-  // background: var(--main-color);
+  background: var(--main-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -152,6 +152,7 @@
 .content-link {
   margin: 10px auto;
   text-decoration: none;
+  background: #dddddd;
 
   div {
     width: 150px;
@@ -521,4 +522,70 @@
 
 .clear {
   background-position: -444px -444px;
+}
+
+
+
+
+
+
+
+.modal__cover {
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  max-height: 100vh;
+  z-index: 2;
+
+  .modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #000000 {
+      radius: 10px;
+    };
+    background: #ffffff;
+    width: 500px;
+    height: 250px;
+    z-index: 1;
+    text-align: center;
+
+    div {
+      margin: 10px;
+
+      label {
+        text-align: left;
+        display: inline-block;
+        width: 150px;
+      }
+
+      input {
+        width: calc(100% - 156px);
+      }      
+    }
+
+    p {
+      color: red;
+    }
+
+    .modal__button_enter {
+      width: 120px;
+      text-align: center;
+      margin: 10px auto;
+    }
+
+    .modal__button_exit {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+  }
 }

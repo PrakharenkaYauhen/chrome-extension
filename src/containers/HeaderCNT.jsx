@@ -1,8 +1,5 @@
-// Container HeaderCNT
-
-import { connect } from 'react-redux'
-import Header from '../components/Header'
-// import { toggleAsideCustomiztion } from '../actions'
+import { connect } from 'react-redux';
+import Header from '../components/Header';
 
 const mapStateToProps = (state) => {
   const { 
@@ -16,7 +13,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const HeaderCNT = connect(mapStateToProps, mapDispatchToProps)(Header);
 const HeaderCNT = connect(mapStateToProps)(Header);
 
 export default HeaderCNT;

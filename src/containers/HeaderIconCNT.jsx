@@ -28,9 +28,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     toggleIcons: (iconsActions, icon, pageForTheSlideWindow) => {
       if(iconsActions && icon !== 'cross') return;
-      // if(icon === 'cross') {
-      //   icon = pageForTheSlideWindow;
-      // }
       let action = {
         iconsActions: !iconsActions,
         pageForTheSlideWindow: icon,

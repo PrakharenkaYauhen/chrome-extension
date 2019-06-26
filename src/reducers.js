@@ -1,4 +1,14 @@
-// reducers
+/* global chrome */
+
+// import github from './images/github.png';
+// import gmailLogo from './images/gmail-logo.png';
+// import leverx from './images/leverx.webp';
+// import googleCalendar from './images/google-calendar.png';
+// import googleDocs from './images/google-docs.png';
+// import youtube from './images/youtube.png';
+// import javascript from './images/javascript.png';
+// import react from './images/react.png';
+// import redux from './images/redux.png';
 
 import {
   ICONS_ACTIONS_TOGGLE,
@@ -6,9 +16,72 @@ import {
   FILL_TABLE_OF_VISITED_SITES,
   FILL_JUVENTUS,
   FILL_WEATHER,
+  MODAL_WINDOW,
+  FORM_NEW_LINK,
+  ADD_NEW_LINK,
 } from './actions'
 
+let linksArray;
+
+if (chrome.storage) {
+  linksArray = chrome.storage.local.get('linksArray', value => value);
+} else {
+  linksArray = localStorage.getItem('linksArray');
+}
+
+console.log(linksArray);
+
 let initialState = {
+  // linksArray: [
+  //   {
+  //     image: gmailLogo,
+  //     text: 'Google mail',
+  //     link: 'https://mail.google.com/mail',
+  //   },
+  //   {
+  //     image: leverx,
+  //     text: 'Leverxeu dashboard',
+  //     link: 'https://leverxeu.atlassian.net/secure/Dashboard.jspa',
+  //   },
+  //   {
+  //     image: googleCalendar,
+  //     text: 'Google calendar',
+  //     link: 'https://calendar.google.com/calendar/r',
+  //   },
+  //   {
+  //     image: googleDocs,
+  //     text: 'Google docs',
+  //     link: 'https://docs.google.com/document/u/0/?tgif=d',
+  //   },
+  //   {
+  //     image: youtube,
+  //     text: 'Youtube',
+  //     link: 'https://www.youtube.com/',
+  //   },
+  //   {
+  //     image: javascript,
+  //     text: 'Учебник Javascript',
+  //     link: 'https://learn.javascript.ru/',
+  //   },
+  //   {
+  //     image: github,
+  //     text: 'Github',
+  //     link: 'https://github.com/',
+  //   },
+  //   {
+  //     image: react,
+  //     text: 'React',
+  //     link: 'https://reactjs.org/',
+  //   },
+  //   {
+  //     image: redux,
+  //     text: 'Redux',
+  //     link: 'https://redux.js.org/',
+  //   },
+  // ],
+  // linksArray: JSON.parse(localStorage.getItem('linksArray')) || chrome.storage.sync.get(['linksArray']),
+  linksArray: linksArray ? JSON.parse(linksArray) : [],
+  newLink: {},
   arrayOfVisitedSites: [],
   iconsActions: false,
   pageForTheSlideWindow: null,
@@ -19,7 +92,10 @@ let initialState = {
   weatherObject: null,
   weatherIsLoaded: false,
   weatherError: null,
+  modalWindowVision: false,
 }
+
+// localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
 
 export default function reducerCalendar(state = initialState, action) {
   // console.log(action);
@@ -48,6 +124,20 @@ export default function reducerCalendar(state = initialState, action) {
         weatherObject: action.action.weatherObject,
         weatherIsLoaded: action.action.weatherIsLoaded,
         weatherError: action.action.weatherError,
+      })
+    case MODAL_WINDOW:
+      return Object.assign({}, state, {
+        modalWindowVision: action.action.modalWindowVision,
+      })
+    case FORM_NEW_LINK:
+      return Object.assign({}, state, {
+        newLink: action.action.newLink,
+      })
+    case ADD_NEW_LINK:
+      return Object.assign({}, state, {
+        // linksArray: action.action.linksArray,
+        modalWindowVision: action.action.modalWindowVision,
+        newLink: action.action.newLink,
       })
     default:
       return state
