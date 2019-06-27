@@ -1,26 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ContentLink(props) {
-  // console.log(props)
-  console.log(2)
+function ContentLink({
+  link,
+  image,
+  text,
+  onClickOpenModal,
+}) {
   return (
-    <a
-      href={props.link}
-      className="content-link"
-      // target="_blank"
-      // rel="noopener noreferrer"
-    >
-      <div onClick={props.onClickOpenModal}>
-        <img src={props.image} alt="logo" />
-        <p>{props.text || 'add a new link'}</p>
+    <a href={link} className="content-link" onClick={e => onClickOpenModal(e)}>
+      <div>
+        <img src={image} alt="logo" />
+        <p>{text || 'add a new link'}</p>
       </div>
     </a>
-  )
+  );
 }
 
+ContentLink.defaultProps = {
+  link: '',
+  text: '',
+  onClickOpenModal: null,
+};
+
 ContentLink.propTypes = {
+  link: PropTypes.string,
   image: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  onClickOpenModal: PropTypes.func,
 };
 
 export default ContentLink;

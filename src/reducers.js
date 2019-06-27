@@ -1,5 +1,3 @@
-/* global chrome */
-
 // import github from './images/github.png';
 // import gmailLogo from './images/gmail-logo.png';
 // import leverx from './images/leverx.webp';
@@ -19,17 +17,8 @@ import {
   MODAL_WINDOW,
   FORM_NEW_LINK,
   ADD_NEW_LINK,
+  GET_CHROME_LOCAL_STORAGE,
 } from './actions'
-
-let linksArray;
-
-if (chrome.storage) {
-  linksArray = chrome.storage.local.get('linksArray', value => value);
-} else {
-  linksArray = localStorage.getItem('linksArray');
-}
-
-console.log(linksArray);
 
 let initialState = {
   // linksArray: [
@@ -79,8 +68,7 @@ let initialState = {
   //     link: 'https://redux.js.org/',
   //   },
   // ],
-  // linksArray: JSON.parse(localStorage.getItem('linksArray')) || chrome.storage.sync.get(['linksArray']),
-  linksArray: linksArray ? JSON.parse(linksArray) : [],
+  linksArray: JSON.parse(localStorage.getItem('linksArray')) || [],
   newLink: {},
   arrayOfVisitedSites: [],
   iconsActions: false,
@@ -94,11 +82,9 @@ let initialState = {
   weatherError: null,
   modalWindowVision: false,
 }
-
 // localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
 
 export default function reducerCalendar(state = initialState, action) {
-  // console.log(action);
   switch (action.type) {
     case ICONS_ACTIONS_TOGGLE:
       return Object.assign({}, state, {
@@ -138,6 +124,10 @@ export default function reducerCalendar(state = initialState, action) {
         // linksArray: action.action.linksArray,
         modalWindowVision: action.action.modalWindowVision,
         newLink: action.action.newLink,
+      })
+    case GET_CHROME_LOCAL_STORAGE:
+      return Object.assign({}, state, {
+        linksArray: action.action.linksArray,
       })
     default:
       return state

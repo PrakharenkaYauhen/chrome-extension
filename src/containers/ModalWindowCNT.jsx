@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
         link: tabAdressInputValue
       };
 
-      console.log(newLink);
+      // console.log(newLink);
 
       let action = {
         newLink: newLink,
@@ -66,24 +66,54 @@ const mapDispatchToProps = (dispatch) => {
       if (linksArray.length >= 11) {
         return;
       } else {
+        console.log('one');
         linksArray.push(newLink);
         if (chrome.storage) {
-          // chrome.storage.local.set({'linksArray': JSON.stringify(linksArray)});
+          // chrome.storage.local.set({'linksArray': JSON.stringify(linksArray)})
           let obj = {};
           obj['linksArray'] = JSON.stringify(linksArray);
-          chrome.storage.local.set(obj, function() {});
+          console.log('two');
+          
+          chrome.storage.local.set(obj, result => {
+            console.log('three');
+            console.log(obj);
+            console.log(result);
+            let action = {
+              linksArray: obj,
+              modalWindowVision: false,
+              newLink: {},
+            }
+            console.log('four');
+            dispatch(actionAddNewLink(action))
+          })
+            // .then(obj => {
+            //   let action = {
+            //     linksArray: obj,
+            //     modalWindowVision: false,
+            //     newLink: {},
+            //   }
+            //   dispatch(actionAddNewLink(action))
+            // });
+
         } else {
           localStorage.setItem('linksArray', JSON.stringify(linksArray));
+
+          let action = {
+            // linksArray: linksArray,
+            modalWindowVision: false,
+            newLink: {},
+          }
+          dispatch(actionAddNewLink(action))
         }
       }
       // console.log(linksArray.length);
       // console.log(newLink);
-      let action = {
-        // linksArray: linksArray,
-        modalWindowVision: false,
-        newLink: {},
-      }
-      dispatch(actionAddNewLink(action))
+      // let action = {
+      //   // linksArray: linksArray,
+      //   modalWindowVision: false,
+      //   newLink: {},
+      // }
+      // dispatch(actionAddNewLink(action))
     },
   }
 }

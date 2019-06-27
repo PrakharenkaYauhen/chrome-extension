@@ -1,7 +1,5 @@
 /* global chrome */
 
-// Component Customization
-
 import React from 'react';
 import penguinBack from '../images/penguin-back.png';
 import cross from '../images/cross.png';
