@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import FootballCNT from '../containers/FootballCNT';
 import WeatherCNT from '../containers/WeatherCNT';
 
@@ -13,26 +13,30 @@ function SlidingWindowForIcons(props) {
 
   let content;
 
-  if(pageForTheSlideWindow === "cup") {
+  if (pageForTheSlideWindow === 'cup') {
     content = <FootballCNT />;
-  } else if (pageForTheSlideWindow === "weather") {
+  } else if (pageForTheSlideWindow === 'weather') {
     content = <WeatherCNT />;
-  } else if (pageForTheSlideWindow === "cross") {
+  } else if (pageForTheSlideWindow === 'cross') {
     content = previousContent;
   }
 
   previousContent = content;
 
   return (
-    <div className={!iconsActions ? "sliding-window" : "sliding-window sliding-window-hide"}>
-    {/* <div className="sliding-window sliding-window-hide"> */}
+    <div className={!iconsActions ? 'sliding-window' : 'sliding-window sliding-window-hide'}>
       {content}
     </div>
-  )
+  );
 }
 
-// ContentLink.propTypes = {
-//   image: PropTypes.string.isRequired,
-// };
+SlidingWindowForIcons.defaultProps = {
+  pageForTheSlideWindow: null,
+};
+
+SlidingWindowForIcons.propTypes = {
+  iconsActions: PropTypes.bool.isRequired,
+  pageForTheSlideWindow: PropTypes.string,
+};
 
 export default SlidingWindowForIcons;

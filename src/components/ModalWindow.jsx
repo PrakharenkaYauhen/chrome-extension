@@ -5,13 +5,11 @@ function ModalWindow({
   linksArray,
   modalWindowVision,
   newLink,
-  // modalTextariaValue,
-  // currentLocalStorageKey,
   onClickExit,
   onChange,
   onClickAddLink,
 }) {
-  let textariaInput = React.createRef();
+  const textariaInput = React.createRef();
   const keyButtonEnterNumber = 9;
 
   function handleClick(e) {
@@ -24,18 +22,38 @@ function ModalWindow({
   return modalWindowVision && (
     <div className="modal__cover">
       <div className="modal">
-        <h2 className="modal__header">A new tab</h2>
+        <h2>A new tab</h2>
         <div>
           <label htmlFor="tabName">The tabs name:</label>
-          <input type="text" name="tabName" id="tabName" tabIndex="41" onChange={onChange} autoFocus ref={textariaInput} />
+          <input
+            type="text"
+            name="tabName"
+            id="tabName"
+            tabIndex="41"
+            onChange={onChange}
+            autoFocus
+            ref={textariaInput}
+          />
         </div>
         <div>
           <label htmlFor="tabAdress">The tabs adress:</label>
-          <input type="text" name="tabAdress" id="tabAdress" tabIndex="42" onChange={onChange} />
+          <input
+            type="text"
+            name="tabAdress"
+            id="tabAdress"
+            tabIndex="42"
+            onChange={onChange}
+          />
         </div>
         <div>
           <label htmlFor="tabPicture">The tabs icon:</label>
-          <input type="text" name="tabPicture" id="tabPicture" tabIndex="43" onChange={onChange} />
+          <input
+            type="text"
+            name="tabPicture"
+            id="tabPicture"
+            tabIndex="43"
+            onChange={onChange}
+          />
         </div>
         <p>*if amount of links are more then 11 it will replace the 1-st one in your list</p>
 
@@ -61,12 +79,12 @@ function ModalWindow({
 }
 
 ModalWindow.propTypes = {
-  // modalTextariaValue: PropTypes.string,
+  linksArray: PropTypes.instanceOf(Array).isRequired,
   modalWindowVision: PropTypes.bool,
-  // currentLocalStorageKey: PropTypes.string,
-  onClickExit: PropTypes.func,
-  // onChange: PropTypes.func,
-  // addTask: PropTypes.func,
+  newLink: PropTypes.instanceOf(Object).isRequired,
+  onClickExit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onClickAddLink: PropTypes.func.isRequired,
 };
 
 export default ModalWindow;

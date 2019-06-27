@@ -1,22 +1,42 @@
-// Component HeaderIcon
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function HeaderIcon(props) {
+function HeaderIcon({
+  image,
+  icon,
+  toggleCustomization,
+  toggleIcons,
+  iconsActions,
+  pageForTheSlideWindow,
+}) {
   return (
-    <img
-      src={props.image}
-      alt={props.image}
-      onClick={props.icon === "wrench"
-        ? props.toggleCustomization
-        : () => props.toggleIcons(props.iconsActions, props.icon, props.pageForTheSlideWindow)}
-    />
-  )
+    <button
+      type="button"
+      onClick={
+        icon === 'wrench'
+          ? toggleCustomization
+          : () => toggleIcons(iconsActions, icon, pageForTheSlideWindow)
+      }
+    >
+      <img
+        src={image}
+        alt={image}
+      />
+    </button>
+  );
 }
+
+HeaderIcon.defaultProps = {
+  pageForTheSlideWindow: null,
+};
 
 HeaderIcon.propTypes = {
   image: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  toggleCustomization: PropTypes.func.isRequired,
+  toggleIcons: PropTypes.func.isRequired,
+  iconsActions: PropTypes.bool.isRequired,
+  pageForTheSlideWindow: PropTypes.string,
 };
 
 export default HeaderIcon;

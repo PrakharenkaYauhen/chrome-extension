@@ -1,77 +1,99 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-function FootballGame({ 
-  juventusObject, 
-  gamesObject, 
-  juventuslogo, 
-  game, 
-  numberOfObject, 
-  gameNumber }) {
+function FootballGame({
+  juventusObject,
+  gamesObject,
+  juventuslogo,
+  nextGame,
+  numberOfObject,
+  gameNumber,
+}) {
+  const juventusIdNumberInObjectAPI = '133676';
+  const gameObject = gamesObject[gameNumber];
+  const opposingTeamObject = juventusObject[numberOfObject][gameNumber].teams[0];
 
   function getCorrectDate(dateOfTheGame, timeOfTheGame) {
-    let timeOfTheDate = Date.parse(dateOfTheGame);
-    let hours = timeOfTheGame.split(':')[0];
-    let minutes = timeOfTheGame.split(':')[1];
-    let addingMilliseconds = Date.parse(new Date(1970, 0, 1, hours, minutes));
+    const dateOfTheGameMilliseconds = Date.parse(dateOfTheGame);
+    const hours = timeOfTheGame.split(':')[0];
+    const minutes = timeOfTheGame.split(':')[1];
+    const timeOfTheGameMilliseconds = Date.parse(new Date(1970, 0, 1, hours, minutes));
 
-    return timeOfTheDate + addingMilliseconds;
+    return dateOfTheGameMilliseconds + timeOfTheGameMilliseconds;
   }
 
   function getDateString(dateOfTheGame, timeOfTheGame) {
-
-    let exactTime = getCorrectDate(dateOfTheGame, timeOfTheGame);
-    let stringOption = {
+    const exactTime = getCorrectDate(dateOfTheGame, timeOfTheGame);
+    const stringOption = {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-    }
-    return new Date(exactTime).toLocaleString("en-US", stringOption)
+    };
+    return new Date(exactTime).toLocaleString('en-US', stringOption);
   }
 
   function getTimeString(dateOfTheGame, timeOfTheGame) {
-
-    let exactTime = getCorrectDate(dateOfTheGame, timeOfTheGame);
-    let stringOption = {
+    const exactTime = getCorrectDate(dateOfTheGame, timeOfTheGame);
+    const stringOption = {
       hour: 'numeric',
       minute: 'numeric',
-    }
-    return new Date(exactTime).toLocaleString("en-US", stringOption)
+    };
+    return new Date(exactTime).toLocaleString('en-US', stringOption);
   }
 
   return (
     <div className="game">
       <div>
         <img
-          alt={gamesObject[gameNumber].idHomeTeam === '133676'
-            ? 'juventus logo'
-            : `${juventusObject[numberOfObject][gameNumber].teams[0].strTeam} logo`}
-          src={gamesObject[gameNumber].idHomeTeam === '133676'
-            ? juventuslogo
-            : juventusObject[numberOfObject][gameNumber].teams[0].strTeamBadge}
+          alt={
+            gameObject.idHomeTeam === juventusIdNumberInObjectAPI
+              ? 'juventus logo'
+              : `${opposingTeamObject.strTeam} logo`
+          }
+          src={
+            gameObject.idHomeTeam === juventusIdNumberInObjectAPI
+              ? juventuslogo
+              : opposingTeamObject.strTeamBadge
+          }
         />
         <div>
-          <p>{getDateString(gamesObject[gameNumber].dateEvent, gamesObject[gameNumber].strTime)}</p>
-          <h3>{game
-            ? getTimeString(gamesObject[gameNumber].dateEvent, gamesObject[gameNumber].strTime)
-            : `${gamesObject[gameNumber].intHomeScore} : ${gamesObject[gameNumber].intAwayScore}`}</h3>
+          <p>{getDateString(gameObject.dateEvent, gameObject.strTime)}</p>
+          <h3>
+            {nextGame
+              ? getTimeString(gameObject.dateEvent, gameObject.strTime)
+              : `${gameObject.intHomeScore} : ${gameObject.intAwayScore}`
+            }
+          </h3>
         </div>
         <img
-          alt={gamesObject[gameNumber].idAwayTeam === '133676'
-            ? 'juventus logo'
-            : `${juventusObject[numberOfObject][gameNumber].teams[0].strTeam} logo`}
-          src={gamesObject[gameNumber].idAwayTeam === '133676'
-            ? juventuslogo
-            : juventusObject[numberOfObject][gameNumber].teams[0].strTeamBadge}
+          alt={
+            gameObject.idAwayTeam === juventusIdNumberInObjectAPI
+              ? 'juventus logo'
+              : `${opposingTeamObject.strTeam} logo`
+          }
+          src={
+            gameObject.idAwayTeam === juventusIdNumberInObjectAPI
+              ? juventuslogo
+              : opposingTeamObject.strTeamBadge
+          }
         />
       </div>
-      <h3>{gamesObject[gameNumber].strEvent.toUpperCase()}</h3>
+      <h3>{gameObject.strEvent.toUpperCase()}</h3>
     </div>
-  )
+  );
 }
 
-// FootballGame.propTypes = {
-//   image: PropTypes.string.isRequired,
-// };
+FootballGame.defaultProps = {
+  nextGame: null,
+};
+
+FootballGame.propTypes = {
+  juventusObject: PropTypes.instanceOf(Object).isRequired,
+  gamesObject: PropTypes.instanceOf(Object).isRequired,
+  juventuslogo: PropTypes.string.isRequired,
+  nextGame: PropTypes.bool,
+  numberOfObject: PropTypes.number.isRequired,
+  gameNumber: PropTypes.number.isRequired,
+};
 
 export default FootballGame;

@@ -17,6 +17,14 @@ class Football extends React.Component {
       juventusError,
     } = this.props;
 
+    const numberOfGames = Array.from(new Array(3), (x, i) => i);
+    const nextGamesArray = numberOfGames.map(item => (
+      <FootballGameCNT nextGame numberOfObject={4} key={item} gameNumber={item} />
+    ));
+    const lastGamesArray = numberOfGames.map(item => (
+      <FootballGameCNT numberOfObject={3} key={item} gameNumber={item} />
+    ));
+
     if (juventusError) {
       return (
         <div className="football">
@@ -40,15 +48,11 @@ class Football extends React.Component {
         <h1>Juventus&apos;s games.</h1>
         <div className="next-games">
           <h2>NEXT GAMES</h2>
-          <FootballGameCNT game="nextGame" numberOfObject={4} gameNumber={0} />
-          <FootballGameCNT game="nextGame" numberOfObject={4} gameNumber={1} />
-          <FootballGameCNT game="nextGame" numberOfObject={4} gameNumber={2} />
+          {nextGamesArray}
         </div>
         <div className="last-games">
           <h2>LAST GAMES</h2>
-          <FootballGameCNT numberOfObject={3} gameNumber={0} />
-          <FootballGameCNT numberOfObject={3} gameNumber={1} />
-          <FootballGameCNT numberOfObject={3} gameNumber={2} />
+          {lastGamesArray}
         </div>
       </div>
     );

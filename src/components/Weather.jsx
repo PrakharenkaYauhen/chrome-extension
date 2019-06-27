@@ -1,10 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import WeatherDayOfTheWeek from './WeatherDayOfTheWeek';
 
 class Weather extends React.Component {
   componentDidMount() {
-    this.props.fetchData();
+    const {
+      fetchData,
+    } = this.props;
+    fetchData();
   }
 
   render() {
@@ -29,7 +32,7 @@ class Weather extends React.Component {
         </div>);
     }
 
-    if (weatherObject[0].cod === "500") {
+    if (weatherObject[0].cod === '500') {
       return (
         <div className="weather">
           <p>{weatherObject[0].message}</p>
@@ -39,21 +42,18 @@ class Weather extends React.Component {
     const currentDayWeatherData = weatherObject[0];
     const currentDay = new Date().getDay();
     const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
-    let eachDayOfWeekWeather = [];
-    for (let i = 0; i < 5; i++) {
-      eachDayOfWeekWeather.push((
-        <WeatherDayOfTheWeek
-          key={i + currentDay < 7
-            ? daysOfWeek[i + currentDay]
-            : daysOfWeek[i + currentDay - 7]}
-          dayName={i + currentDay < 7
-            ? daysOfWeek[i + currentDay]
-            : daysOfWeek[i + currentDay - 7]}
-          degree={weatherObject[1].list[i * 8].main.temp}
-          icon={weatherObject[1].list[i * 8].weather[0].icon}
-        />)
-      )
-    }
+    const quantityDaysForForecast = Array.from(new Array(5), (x, i) => i);
+    const arrayOfDaysForForecast = quantityDaysForForecast.map((item, i) => (
+      <WeatherDayOfTheWeek
+        key={i + currentDay < 7
+          ? daysOfWeek[i + currentDay]
+          : daysOfWeek[i + currentDay - 7]}
+        dayName={i + currentDay < 7
+          ? daysOfWeek[i + currentDay]
+          : daysOfWeek[i + currentDay - 7]}
+        degree={weatherObject[1].list[i * 8].main.temp}
+        icon={weatherObject[1].list[i * 8].weather[0].icon}
+      />));
     const compareIcons = {
       '01d': 'sun',
       '02d': 'clear',
@@ -64,48 +64,80 @@ class Weather extends React.Component {
       '11d': 'lightning',
       '13d': 'snow',
       '50d': 'mist',
-    }
+    };
     const getTimeInString = (time) => {
-      let stringOption = {
+      const stringOption = {
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
-      }
-      return new Date(time).toLocaleString("en-US", stringOption)
-    }
+      };
+      return new Date(time).toLocaleString('en-US', stringOption);
+    };
 
     return (
       <div className="weather">
         <div className="weather-image">
-          <div className="weather-fog"></div>
-          <div className="weather-fog-bottom"></div>
+          <div className="weather-fog" />
+          <div className="weather-fog-bottom" />
           <div className="weather-current-day">
-            <div className={`weather-icon ${compareIcons[currentDayWeatherData.weather[0].icon]}`}></div>
-            <p>{currentDayWeatherData.main.temp}<span>&deg;</span></p>
+            <div className={`weather-icon ${compareIcons[currentDayWeatherData.weather[0].icon]}`} />
+            <p>
+              {currentDayWeatherData.main.temp}
+              <span>&deg;</span>
+            </p>
           </div>
           <div className="weather-adress">
             <h2>{`${currentDayWeatherData.name}, ${currentDayWeatherData.sys.country}`}</h2>
-            <p>{currentDayWeatherData.weather[0].description.toUpperCase()} <span>{currentDayWeatherData.main.temp_max} HIGH/{currentDayWeatherData.main.temp_min} LOW</span> <span>{getTimeInString(new Date())} PST</span></p>
+            <p>
+              {currentDayWeatherData.weather[0].description.toUpperCase()}
+              <span>
+                {`${currentDayWeatherData.main.temp_max} HIGH/${currentDayWeatherData.main.temp_min} LOW`}
+              </span>
+              <span>{`${getTimeInString(new Date())} PST`}</span>
+            </p>
           </div>
           <div className="weather-parametres">
-            <p>HUMIDITY <span>{`${currentDayWeatherData.main.humidity}%`}</span></p>
-            <p>BAROMETER <span>{`${currentDayWeatherData.main.pressure}hPa [mm]`}</span></p>
-            <p>WIND <span>{`${currentDayWeatherData.wind.speed}m/s`}</span></p>
-            <p>SUNRISE <span>{getTimeInString(currentDayWeatherData.sys.sunrise)}</span></p>
-            <p>SUNSET <span>{getTimeInString(currentDayWeatherData.sys.sunset)}</span></p>
+            <p>
+              {'HUMIDITY'}
+              <span>{`${currentDayWeatherData.main.humidity}%`}</span>
+            </p>
+            <p>
+              {'BAROMETER'}
+              <span>{`${currentDayWeatherData.main.pressure}hPa [mm]`}</span>
+            </p>
+            <p>
+              {'WIND'}
+              <span>{`${currentDayWeatherData.wind.speed}m/s`}</span>
+            </p>
+            <p>
+              {'SUNRISE'}
+              <span>{getTimeInString(currentDayWeatherData.sys.sunrise)}</span>
+            </p>
+            <p>
+              {'SUNSET'}
+              <span>{getTimeInString(currentDayWeatherData.sys.sunset)}</span>
+            </p>
           </div>
 
           <div className="weather-week">
-            {eachDayOfWeekWeather}
+            {arrayOfDaysForForecast}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-// ContentLink.propTypes = {
-//   image: PropTypes.string.isRequired,
-// };
+Weather.defaultProps = {
+  weatherObject: [],
+  weatherError: null,
+};
+
+Weather.propTypes = {
+  fetchData: PropTypes.func.isRequired,
+  weatherError: PropTypes.instanceOf(Object),
+  weatherIsLoaded: PropTypes.bool.isRequired,
+  weatherObject: PropTypes.instanceOf(Object),
+};
 
 export default Weather;

@@ -1,5 +1,3 @@
-// Container HeaderIconCNT
-
 import { connect } from 'react-redux';
 import HeaderIcon from '../components/HeaderIcon';
 import { toggleIconsActions } from '../actions';

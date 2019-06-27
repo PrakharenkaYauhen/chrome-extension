@@ -31,14 +31,11 @@ const mapDispatchToProps = (dispatch) => {
       let action = {
         modalWindowVision: false,
         newLink: [],
-        // modalTextariaValue: '',
       }
       dispatch(actionModalWindow(action))
     },
 
     onChange: e => {
-      // console.log(e.target);
-
       if (e.target.name === "tabName") {
         tabNameInputValue = e.target.value;
       } else if (e.target.name === "tabAdress") {
@@ -52,9 +49,6 @@ const mapDispatchToProps = (dispatch) => {
         text: tabNameInputValue,
         link: tabAdressInputValue
       };
-
-      // console.log(newLink);
-
       let action = {
         newLink: newLink,
       }
@@ -66,54 +60,28 @@ const mapDispatchToProps = (dispatch) => {
       if (linksArray.length >= 11) {
         return;
       } else {
-        console.log('one');
         linksArray.push(newLink);
         if (chrome.storage) {
-          // chrome.storage.local.set({'linksArray': JSON.stringify(linksArray)})
-          let obj = {};
-          obj['linksArray'] = JSON.stringify(linksArray);
-          console.log('two');
+          let linksObject = {};
+          linksObject['linksArray'] = JSON.stringify(linksArray);
           
-          chrome.storage.local.set(obj, result => {
-            console.log('three');
-            console.log(obj);
-            console.log(result);
+          chrome.storage.local.set(linksObject, result => {
             let action = {
-              linksArray: obj,
+              linksArray: linksObject,
               modalWindowVision: false,
               newLink: {},
             }
-            console.log('four');
             dispatch(actionAddNewLink(action))
           })
-            // .then(obj => {
-            //   let action = {
-            //     linksArray: obj,
-            //     modalWindowVision: false,
-            //     newLink: {},
-            //   }
-            //   dispatch(actionAddNewLink(action))
-            // });
-
         } else {
           localStorage.setItem('linksArray', JSON.stringify(linksArray));
-
           let action = {
-            // linksArray: linksArray,
             modalWindowVision: false,
             newLink: {},
           }
           dispatch(actionAddNewLink(action))
         }
       }
-      // console.log(linksArray.length);
-      // console.log(newLink);
-      // let action = {
-      //   // linksArray: linksArray,
-      //   modalWindowVision: false,
-      //   newLink: {},
-      // }
-      // dispatch(actionAddNewLink(action))
     },
   }
 }
