@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FootballGameCNT from '../containers/FootballGameCNT';
+// import styles from '../styles/Football.scss';
+import '../styles/Football.scss';
 
 class Football extends React.Component {
   componentDidMount() {

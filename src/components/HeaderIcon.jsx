@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import styles from '../styles/HeaderIcon.scss';
+import '../styles/HeaderIcon.scss';
 
 function HeaderIcon({
   image,
@@ -7,15 +9,15 @@ function HeaderIcon({
   toggleCustomization,
   toggleIcons,
   iconsActions,
-  pageForTheSlideWindow,
 }) {
   return (
     <button
+      className="header-icon"
       type="button"
       onClick={
         icon === 'wrench'
           ? toggleCustomization
-          : () => toggleIcons(iconsActions, icon, pageForTheSlideWindow)
+          : () => toggleIcons(iconsActions, icon)
       }
     >
       <img
@@ -26,17 +28,12 @@ function HeaderIcon({
   );
 }
 
-HeaderIcon.defaultProps = {
-  pageForTheSlideWindow: null,
-};
-
 HeaderIcon.propTypes = {
   image: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   toggleCustomization: PropTypes.func.isRequired,
   toggleIcons: PropTypes.func.isRequired,
   iconsActions: PropTypes.bool.isRequired,
-  pageForTheSlideWindow: PropTypes.string,
 };
 
 export default HeaderIcon;

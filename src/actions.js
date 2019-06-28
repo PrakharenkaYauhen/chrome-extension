@@ -7,6 +7,7 @@ export const MODAL_WINDOW = 'MODAL_WINDOW'
 export const FORM_NEW_LINK = 'FORM_NEW_LINK'
 export const ADD_NEW_LINK = 'ADD_NEW_LINK'
 export const GET_CHROME_LOCAL_STORAGE = 'GET_CHROME_LOCAL_STORAGE'
+export const SET_CUSTOMIZATION = 'SET_CUSTOMIZATION'
 
 export function toggleIconsActions(action) {
   return { type: ICONS_ACTIONS_TOGGLE, action }
@@ -47,4 +48,9 @@ export function actionAddNewLink(action) {
 export function actionGetChromeLocalStorage(action) {
   // console.log(action);
   return { type: GET_CHROME_LOCAL_STORAGE, action }
+}
+
+export function actionSetCustomization(action) {
+  // console.log(action);
+  return { type: SET_CUSTOMIZATION, action }
 }

@@ -1,0 +1,29 @@
+.game {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px {
+    top: 20px;
+  };
+  border: 1px solid #ffffff {
+    top: none;
+  };  
+
+  div {
+    display: inline-block;
+    vertical-align: top;
+    
+    p {
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+  }
+
+  img {
+    width: 25%;
+    margin: 0 10px;
+  }
+
+  h3 {
+    margin: 10px auto 0;
+  }
+}

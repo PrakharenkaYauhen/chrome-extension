@@ -1,0 +1,21 @@
+a {
+  margin: 10px auto;
+  text-decoration: none;
+  background: #dddddd;
+
+  div {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    border: 1px solid #c0c0c0;
+
+    img {
+      margin: 10px;
+      width: 60%
+    }
+
+    p {
+      margin: 5px;
+    }
+  }    
+}

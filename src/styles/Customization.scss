@@ -1,0 +1,101 @@
+.customization {
+  position: fixed;
+  box-sizing: border-box;
+  padding: 20px;
+  background: var(--main-color);
+  color: #ffffff;
+  border-left: 2px double #c0c0c0;
+  width: 260px;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  transition: transform .7s;
+  transform: translateX(290px) translateZ(0);
+
+  &-hide {
+    transform: translateX(0);
+
+    .button-customization-exit {
+
+      animation: border 1s;
+  
+      img {
+        animation-name: example;
+        animation-duration: 1.5s;
+      }
+
+      svg {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: transparent;
+
+        circle {
+          stroke-dasharray: 274;
+          stroke-dashoffset: 135;
+          animation: stroke 2s;
+        }
+
+        circle:last-child {
+          stroke-dasharray: 252;
+          stroke-dashoffset: 126;
+          animation: stroke1 2s;
+        }
+
+        @keyframes stroke {
+          0% {stroke-dasharray: 135;}
+          30% {stroke-dasharray: 135;}
+          100% {stroke-dasharray: 274;}
+        }
+
+        @keyframes stroke1 {
+          0% {stroke-dasharray: 126;}
+          30% {stroke-dasharray: 126;}
+          100% {stroke-dasharray: 252;}
+        }
+      }
+
+      @keyframes example {
+        0% {transform: scale(0);}
+        30% {transform: scale(0);}
+        100% {transform: scale(1);}
+      }
+    }
+  }
+
+  input[type=color] {
+    color: var(--main-color);
+    width: 30px;
+    height: 18px;
+    padding: 0;
+  }
+
+  .button-default-new-tab-chrome {
+    padding: 0 5px;
+    height: 24px;
+    line-height: 20px;
+
+    img {
+      width: 20px;
+      padding: 0 5px 0 0;
+      vertical-align: middle;
+      z-index: 1;
+    }
+  }
+
+  .button-customization-exit {
+    position: absolute;
+    padding: 0;
+    top: 68px;
+    left: -22px;
+    background: #ffffff;
+    border: none {
+      radius: 50%;
+    };
+
+    img {
+      width: 44px;
+      vertical-align: top;
+    }
+  }
+}

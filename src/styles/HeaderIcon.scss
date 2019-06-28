@@ -1,0 +1,23 @@
+.header-icon {
+  padding: 2px;
+  margin: 2px;
+  vertical-align: top;
+  border: {
+    right: 0.5px solid #c0c0c0;
+    left: 0.5px solid #c0c0c0;
+    top: 0;
+    bottom: 0;
+    radius: 5px;
+  };
+  background: var(--main-color);
+
+  &:last-child {
+    position: absolute;
+    right: 0;
+  }
+
+  img {
+    height: 30px;
+    vertical-align: top;
+  }
+}

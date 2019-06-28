@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FootballCNT from '../containers/FootballCNT';
 import WeatherCNT from '../containers/WeatherCNT';
+// import styles from '../styles/SlidingWindowForIcons.scss';
+import '../styles/SlidingWindowForIcons.scss';
 
 let previousContent;
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../styles/ContentLink.scss';
+// import '../styles/ContentLink.scss';
 
 function ContentLink({
   link,
@@ -8,7 +10,7 @@ function ContentLink({
   onClickOpenModal,
 }) {
   return (
-    <a href={link} className="content-link" onClick={e => onClickOpenModal(e)}>
+    <a href={link} className={styles.a} onClick={e => onClickOpenModal(e)}>
       <div>
         <img src={image} alt="logo" />
         <p>{text || 'add a new link'}</p>

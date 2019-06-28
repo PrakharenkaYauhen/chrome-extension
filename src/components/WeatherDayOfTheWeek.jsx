@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import styles from '../styles/WeatherDayOfTheWeek.scss';
+import '../styles/WeatherDayOfTheWeek.scss';
+
 
 function WeatherDayOfTheWeek({
   dayName,

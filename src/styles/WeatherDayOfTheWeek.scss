@@ -1,0 +1,22 @@
+.weather-one-day {
+  width: calc(560px / 5);
+
+  h4 {
+    font-size: 12px;
+    margin: 6px;
+  }
+
+  .weather-icon {
+    position: relative;
+    transform: scale(.2);
+    left: -18px;
+    top: -65px;
+  }
+
+  p {
+    position: relative;
+    top: -132px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+}

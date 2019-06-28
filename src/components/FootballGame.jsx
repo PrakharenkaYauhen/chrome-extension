@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import styles from '../styles/FootballGame.scss';
+import '../styles/FootballGame.scss';
 
 function FootballGame({
   juventusObject,

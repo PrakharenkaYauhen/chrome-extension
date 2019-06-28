@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WeatherDayOfTheWeek from './WeatherDayOfTheWeek';
+// import styles from '../styles/Weather.scss';
+import '../styles/Weather.scss';
 
 class Weather extends React.Component {
   componentDidMount() {
@@ -91,30 +93,30 @@ class Weather extends React.Component {
             <p>
               {currentDayWeatherData.weather[0].description.toUpperCase()}
               <span>
-                {`${currentDayWeatherData.main.temp_max} HIGH/${currentDayWeatherData.main.temp_min} LOW`}
+                {` ${currentDayWeatherData.main.temp_max} HIGH/${currentDayWeatherData.main.temp_min} LOW `}
               </span>
               <span>{`${getTimeInString(new Date())} PST`}</span>
             </p>
           </div>
           <div className="weather-parametres">
             <p>
-              {'HUMIDITY'}
+              {'HUMIDITY '}
               <span>{`${currentDayWeatherData.main.humidity}%`}</span>
             </p>
             <p>
-              {'BAROMETER'}
+              {'BAROMETER '}
               <span>{`${currentDayWeatherData.main.pressure}hPa [mm]`}</span>
             </p>
             <p>
-              {'WIND'}
+              {'WIND '}
               <span>{`${currentDayWeatherData.wind.speed}m/s`}</span>
             </p>
             <p>
-              {'SUNRISE'}
+              {'SUNRISE '}
               <span>{getTimeInString(currentDayWeatherData.sys.sunrise)}</span>
             </p>
             <p>
-              {'SUNSET'}
+              {'SUNSET '}
               <span>{getTimeInString(currentDayWeatherData.sys.sunset)}</span>
             </p>
           </div>

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 const mapStateToProps = (state) => {
-  const { 
+  const {
     iconsActions,
     pageForTheSlideWindow,
   } = state;
@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
   return {
     iconsActions,
     pageForTheSlideWindow,
-  }
-}
+  };
+};
 
 const HeaderCNT = connect(mapStateToProps)(Header);
 

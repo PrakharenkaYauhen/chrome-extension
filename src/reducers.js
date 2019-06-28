@@ -18,6 +18,7 @@ import {
   FORM_NEW_LINK,
   ADD_NEW_LINK,
   GET_CHROME_LOCAL_STORAGE,
+  SET_CUSTOMIZATION,
 } from './actions'
 
 let initialState = {
@@ -74,6 +75,12 @@ let initialState = {
   iconsActions: false,
   pageForTheSlideWindow: null,
   customizationAside: false,
+  customizationColumnsNumber: localStorage.getItem('customization') ?
+    JSON.parse(localStorage.getItem('customization'))['rowNumber']
+    : 4,
+  customizationSiteColor: (localStorage.getItem('customization')
+    && JSON.parse(localStorage.getItem('customization'))['siteColor'])
+    || '#282c34',
   juventusStuffObject: null,
   juventusStuffIsLoaded: false,
   juventusStuffError: null,
@@ -83,6 +90,9 @@ let initialState = {
   modalWindowVision: false,
 }
 // localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
+console.log(initialState);
+document.querySelector(':root').style.setProperty('--columns-number', initialState.customizationColumnsNumber);
+document.querySelector(':root').style.setProperty('--main-color', initialState.customizationSiteColor);
 
 export default function reducerCalendar(state = initialState, action) {
   switch (action.type) {
@@ -128,6 +138,10 @@ export default function reducerCalendar(state = initialState, action) {
     case GET_CHROME_LOCAL_STORAGE:
       return Object.assign({}, state, {
         linksArray: action.action.linksArray,
+      })
+    case SET_CUSTOMIZATION:
+      return Object.assign({}, state, {
+        customizationColumnsNumber: action.action.customizationColumnsNumber,
       })
     default:
       return state

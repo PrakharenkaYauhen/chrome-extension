@@ -5,6 +5,8 @@ import weather from '../images/weather.png';
 import wrench from '../images/wrench.png';
 import cross from '../images/cross.png';
 import HeaderIconCNT from '../containers/HeaderIconCNT';
+// import styles from '../styles/Header.scss';
+import '../styles/Header.scss';
 
 function Header(props) {
   const listOfIcons = [['cup', cup], ['weather', weather], ['wrench', wrench]];

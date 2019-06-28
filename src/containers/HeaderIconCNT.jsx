@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import HeaderIcon from '../components/HeaderIcon';
-import { toggleIconsActions } from '../actions';
-import { toggleAsideCustomiztion } from '../actions';
+import { toggleIconsActions, toggleAsideCustomiztion } from '../actions';
 
 const mapStateToProps = (state, props) => {
   const {
@@ -19,28 +18,28 @@ const mapStateToProps = (state, props) => {
     pageForTheSlideWindow,
     image,
     icon,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleIcons: (iconsActions, icon, pageForTheSlideWindow) => {
-      if(iconsActions && icon !== 'cross') return;
-      let action = {
+    toggleIcons: (iconsActions, icon) => {
+      if (iconsActions && icon !== 'cross') return;
+      const action = {
         iconsActions: !iconsActions,
         pageForTheSlideWindow: icon,
-      }
+      };
       dispatch(toggleIconsActions(action));
     },
 
     toggleCustomization: () => {
-      let action = {
+      const action = {
         customizationAside: true,
-      }
+      };
       dispatch(toggleAsideCustomiztion(action));
-    }
-  }
-}
+    },
+  };
+};
 
 const HeaderIconCNT = connect(mapStateToProps, mapDispatchToProps)(HeaderIcon);
 
