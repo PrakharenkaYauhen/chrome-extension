@@ -5,11 +5,11 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
 import logger from 'redux-logger';
 import App from './components/App';
-import reducerCalendar from './reducers'
+import reducerExtension from './reducers'
 
 import './styles/index.scss';
 
-const store = createStore(reducerCalendar, applyMiddleware(thunk, logger));
+const store = createStore(reducerExtension, applyMiddleware(thunk, logger));
 
 render(
   <Provider store={store}>

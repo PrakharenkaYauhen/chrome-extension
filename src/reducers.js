@@ -104,7 +104,7 @@ document.querySelector(':root').style.setProperty('--columns-number', initialSta
 document.querySelector(':root').style.setProperty('--link-size', initialState.customizationLinkSize);
 document.querySelector(':root').style.setProperty('--main-color', initialState.customizationSiteColor);
 
-export default function reducerCalendar(state = initialState, action) {
+export default function reducerExtension(state = initialState, action) {
   switch (action.type) {
     case ICONS_ACTIONS_TOGGLE:
       return Object.assign({}, state, {

@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import cup from '../images/cup.png';
 import weather from '../images/weather.png';
 import wrench from '../images/wrench.png';
+import magnifier from '../images/magnifier.png';
 import cross from '../images/cross.png';
 import HeaderIconCNT from '../containers/HeaderIconCNT';
 // import styles from '../styles/Header.scss';
 import '../styles/Header.scss';
 
 function Header(props) {
-  const listOfIcons = [['cup', cup], ['weather', weather], ['wrench', wrench]];
+  const listOfIcons = [['cup', cup], ['weather', weather], ['magnifier', magnifier], ['wrench', wrench]];
 
   const currentlistOfIcons = listOfIcons.map((item) => {
     if (item[0] === props.pageForTheSlideWindow) {

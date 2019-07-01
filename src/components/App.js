@@ -15,15 +15,6 @@ function App() {
       <CustomizationCNT />
       <SlidingWindowForIconsCNT />
       <ModalWindowCNT />
-
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Chrome extension</p>
-
-        <TableOfVisitedSitesCNT />
-
-      </header> */}
-
     </div>
   );
 }

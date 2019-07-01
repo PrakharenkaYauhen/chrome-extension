@@ -17,13 +17,13 @@ function Customization({
   changeLinkSize,
   changeColor,
 }) {
-  console.log(customizationColumnsNumber);
-  console.log(customizationLinkSize);
-  console.log(customizationSiteColor);
+  // console.log(customizationColumnsNumber);
+  // console.log(customizationLinkSize);
+  // console.log(customizationSiteColor);
   // console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--columns-number'));
   return (
-    // <aside className={!customizationAside ? 'customization' : 'customization customization-hide'}>
-    <aside className="customization customization-hide">
+    <aside className={!customizationAside ? 'customization' : 'customization customization-hide'}>
+      {/* <aside className="customization customization-hide"> */}
       <h2>Extansions settings:</h2>
       <hr />
       <h3>Number of columns:</h3>
@@ -31,7 +31,7 @@ function Customization({
         name="columnsNumber"
         id="columnsNumber"
         tabIndex="51"
-        onChange={(e) => { changeColumns(e) }}
+        onChange={(e) => { changeColumns(e); }}
         value={customizationColumnsNumber}
       >
         <option value={1}>1</option>
@@ -44,12 +44,12 @@ function Customization({
         name="linkSize"
         id="linkSize"
         tabIndex="52"
-        onChange={(e) => { changeLinkSize(e) }}
+        onChange={(e) => { changeLinkSize(e); }}
         value={customizationLinkSize}
       >
-        <option value={'150px'}>150px</option>
-        <option value={'200px'}>200px</option>
-        <option value={'250px'}>250px</option>
+        <option value="150px">small</option>
+        <option value="200px">medium</option>
+        <option value="250px">large</option>
       </select>
       <h3>Color of the page:</h3>
       <input
@@ -57,7 +57,7 @@ function Customization({
         type="color"
         name=""
         value={customizationSiteColor}
-        onChange={(e) => { changeColor(e) }}
+        onChange={(e) => { changeColor(e); }}
       />
       <h3>Drop the page to default settings:</h3>
       <button
@@ -110,7 +110,13 @@ function Customization({
 
 Customization.propTypes = {
   customizationAside: PropTypes.bool.isRequired,
+  customizationColumnsNumber: PropTypes.number.isRequired,
+  customizationLinkSize: PropTypes.string.isRequired,
+  customizationSiteColor: PropTypes.string.isRequired,
   toggleCustomization: PropTypes.func.isRequired,
+  changeColumns: PropTypes.func.isRequired,
+  changeLinkSize: PropTypes.func.isRequired,
+  changeColor: PropTypes.func.isRequired,
 };
 
 export default Customization;

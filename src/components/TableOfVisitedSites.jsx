@@ -1,7 +1,8 @@
 // Component tableOfVisitedSites
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import '../styles/TableOfVisitedSites.scss';
 // import gifPreloader from '../images/free-loader-gif-3.gif';
 
 class TableOfVisitedSites extends React.Component {
@@ -29,8 +30,17 @@ class TableOfVisitedSites extends React.Component {
         <tbody>
           {arrayOfVisitedSites}
         </tbody>
-      </table>); 
+      </table>);
   }
 }
+
+TableOfVisitedSites.defaultProps = {
+  arrayOfVisitedSites: [],
+};
+
+TableOfVisitedSites.propTypes = {
+  arrayOfVisitedSites: PropTypes.instanceOf(Array),
+  getListOfVisitedSites: PropTypes.func.isRequired,
+};
 
 export default TableOfVisitedSites;

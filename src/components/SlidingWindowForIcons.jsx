@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FootballCNT from '../containers/FootballCNT';
 import WeatherCNT from '../containers/WeatherCNT';
+import TableOfVisitedSitesCNT from '../containers/TableOfVisitedSitesCNT';
 // import styles from '../styles/SlidingWindowForIcons.scss';
 import '../styles/SlidingWindowForIcons.scss';
 
@@ -19,6 +20,8 @@ function SlidingWindowForIcons(props) {
     content = <FootballCNT />;
   } else if (pageForTheSlideWindow === 'weather') {
     content = <WeatherCNT />;
+  } else if (pageForTheSlideWindow === 'magnifier') {
+    content = <TableOfVisitedSitesCNT />;
   } else if (pageForTheSlideWindow === 'cross') {
     content = previousContent;
   }
