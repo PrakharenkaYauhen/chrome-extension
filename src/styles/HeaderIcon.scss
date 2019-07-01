@@ -8,7 +8,8 @@
     bottom: 0;
     radius: 5px;
   };
-  background: var(--main-color);
+  // background: var(--main-color);
+  background: transparent;
 
   &:last-child {
     position: absolute;

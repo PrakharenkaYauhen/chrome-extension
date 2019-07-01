@@ -21,6 +21,7 @@ import {
   SET_CUSTOMIZATION_COLUMN_NUMBER,
   SET_CUSTOMIZATION_LINK_SIZE,
   SET_CUSTOMIZATION_SITE_COLOR,
+  SET_CUSTOMIZATION_BACKGROUND_PHOTO,
 } from './actions'
 
 const defaultNumberOfColumns = 4;
@@ -90,6 +91,7 @@ let initialState = {
   customizationSiteColor: (localStorage.getItem('customization')
     && JSON.parse(localStorage.getItem('customization'))['siteColor'])
     || defaultBackgroundColor,
+  customizationSiteBackgroundPhoto: null,
   juventusStuffObject: null,
   juventusStuffIsLoaded: false,
   juventusStuffError: null,
@@ -160,6 +162,10 @@ export default function reducerExtension(state = initialState, action) {
     case SET_CUSTOMIZATION_SITE_COLOR:
       return Object.assign({}, state, {
         customizationSiteColor: action.action.customizationSiteColor,
+      })
+    case SET_CUSTOMIZATION_BACKGROUND_PHOTO:
+      return Object.assign({}, state, {
+        customizationSiteBackgroundPhoto: action.action.customizationSiteBackgroundPhoto,
       })
     default:
       return state

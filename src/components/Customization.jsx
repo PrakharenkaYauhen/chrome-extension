@@ -1,5 +1,3 @@
-/* global chrome */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import penguinBack from '../images/penguin-back.png';
@@ -12,19 +10,18 @@ function Customization({
   customizationColumnsNumber,
   customizationLinkSize,
   customizationSiteColor,
+  buttonDefaultNewTabChrome,
   toggleCustomization,
   changeColumns,
   changeLinkSize,
   changeColor,
+  changePhotoBackground,
 }) {
-  // console.log(customizationColumnsNumber);
-  // console.log(customizationLinkSize);
-  // console.log(customizationSiteColor);
   // console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--columns-number'));
   return (
     <aside className={!customizationAside ? 'customization' : 'customization customization-hide'}>
       {/* <aside className="customization customization-hide"> */}
-      <h2>Extansions settings:</h2>
+      <h2>Extansion&apos;s settings:</h2>
       <hr />
       <h3>Number of columns:</h3>
       <select
@@ -59,18 +56,28 @@ function Customization({
         value={customizationSiteColor}
         onChange={(e) => { changeColor(e); }}
       />
+      <h3>You can use your image for the background:</h3>
+      <form
+        method="post"
+        encType="multipart/form-data"
+        action="..\upload">
+        <input
+          type="file"
+          name="inputBG"
+          id="inputBG"
+          onChange={(e) => { changePhotoBackground(e); }}
+        />
+        <div>
+          <input type="submit" value="send file" />
+        </div>
+      </form>
+      <img src="" alt="" id='yourImgTag'/>
       <h3>Drop the page to default settings:</h3>
       <button
         tabIndex="54"
         className="button-default-new-tab-chrome"
         type="button"
-        onClick={() => {
-          chrome.tabs.getCurrent((tab) => {
-            chrome.tabs.update(tab.id, {
-              url: 'chrome-search://local-ntp/local-ntp.html',
-            });
-          });
-        }}
+        onClick={buttonDefaultNewTabChrome}
       >
         <img src={penguinBack} alt="" />
         {'Default new tab'}
@@ -89,7 +96,6 @@ function Customization({
             cx="22"
             cy="22"
             r="22"
-            stroke="black"
             strokeWidth="1"
             fillOpacity="0"
           />
@@ -98,7 +104,6 @@ function Customization({
             cx="22"
             cy="22"
             r="20"
-            stroke="black"
             strokeWidth="1"
             fillOpacity="0"
           />
@@ -113,10 +118,12 @@ Customization.propTypes = {
   customizationColumnsNumber: PropTypes.number.isRequired,
   customizationLinkSize: PropTypes.string.isRequired,
   customizationSiteColor: PropTypes.string.isRequired,
+  buttonDefaultNewTabChrome: PropTypes.func.isRequired,
   toggleCustomization: PropTypes.func.isRequired,
   changeColumns: PropTypes.func.isRequired,
   changeLinkSize: PropTypes.func.isRequired,
   changeColor: PropTypes.func.isRequired,
+  changePhotoBackground: PropTypes.func.isRequired,
 };
 
 export default Customization;

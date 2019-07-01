@@ -1,11 +1,14 @@
+/* global chrome */
+
 import { connect } from 'react-redux';
 import Customization from '../components/Customization';
-import { 
+import {
   toggleAsideCustomiztion,
   actionSetCustomizationColumnNumber,
   actionSetCustomizationLinkSize,
   actionSetCustomizationSiteColor,
- } from '../actions';
+  actionSetCustomizationSiteBackground,
+} from '../actions';
 import setCustomizationLocalStorage from '../helpers/localStorageCustomization';
 
 const mapStateToProps = (state) => {
@@ -26,6 +29,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    buttonDefaultNewTabChrome: () => {
+      chrome.tabs.getCurrent((tab) => {
+        chrome.tabs.update(tab.id, {
+          url: 'chrome-search://local-ntp/local-ntp.html',
+        });
+      });
+    },
+
     toggleCustomization: () => {
       const action = {
         customizationAside: false,
@@ -58,6 +69,32 @@ const mapDispatchToProps = (dispatch) => {
         customizationSiteColor: value,
       };
       dispatch(actionSetCustomizationSiteColor(action));
+    },
+
+    changePhotoBackground: (e) => {
+      let value = e.target.value;
+      console.log(e);
+      console.log(e.target.files);
+      var input = document.getElementById("inputBG");
+      var fReader = new FileReader();
+      fReader.readAsDataURL(input.files[0]);
+      console.log(input);
+      fReader.onloadend = function (event) {
+        console.log(event);
+        // var img = document.getElementById("yourImgTag");
+        // img.src = event.target.result;
+        setCustomizationLocalStorage(`url(${event.target.result})`, 'backgroundPhoto', '--background-photo');
+        const action = {
+          customizationSiteBackgroundPhoto: event.target.result,
+        };
+        dispatch(actionSetCustomizationSiteBackground(action));
+      }
+
+      // setCustomizationLocalStorage(value, 'backgroundPhoto', '--background-photo');
+      // const action = {
+      //   customizationSiteBackgroundPhoto: value,
+      // };
+      // dispatch(actionSetCustomizationSiteBackground(action));
     },
   };
 };
