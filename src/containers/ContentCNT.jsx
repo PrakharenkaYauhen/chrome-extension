@@ -5,7 +5,7 @@ import Content from '../components/Content';
 import { actionModalWindow, actionGetChromeLocalStorage } from '../actions';
 
 const mapStateToProps = (state) => {
-  // console.log(state);
+  console.log(state);
   const {
     linksArray,
     newLink,

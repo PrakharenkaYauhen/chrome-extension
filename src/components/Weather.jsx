@@ -42,6 +42,7 @@ class Weather extends React.Component {
     }
 
     const currentDayWeatherData = weatherObject[0];
+    const forecastForFiveDaysWeatherData = weatherObject[1];
     const currentDay = new Date().getDay();
     const daysOfWeek = ['SUN', 'MON', 'TUES', 'WED', 'THURS', 'FRI', 'SAT'];
     const quantityDaysForForecast = Array.from(new Array(5), (x, i) => i);
@@ -53,9 +54,10 @@ class Weather extends React.Component {
         dayName={i + currentDay < 7
           ? daysOfWeek[i + currentDay]
           : daysOfWeek[i + currentDay - 7]}
-        degree={weatherObject[1].list[i * 8].main.temp}
-        icon={weatherObject[1].list[i * 8].weather[0].icon}
+        degree={forecastForFiveDaysWeatherData.list[i * 8].main.temp}
+        icon={forecastForFiveDaysWeatherData.list[i * 8].weather[0].icon}
       />));
+    // '01d' is a number of default icon, comming from the Weather API
     const compareIcons = {
       '01d': 'sun',
       '02d': 'clear',

@@ -1,23 +1,28 @@
 import { connect } from 'react-redux';
 import Customization from '../components/Customization';
-import { toggleAsideCustomiztion } from '../actions';
-import { actionSetCustomization } from '../actions';
+import { 
+  toggleAsideCustomiztion,
+  actionSetCustomizationColumnNumber,
+  actionSetCustomizationLinkSize,
+  actionSetCustomizationSiteColor,
+ } from '../actions';
+import setCustomizationLocalStorage from '../helpers/localStorageCustomization';
 
 const mapStateToProps = (state) => {
   const {
     customizationAside,
     customizationColumnsNumber,
+    customizationLinkSize,
     customizationSiteColor,
   } = state;
 
   return {
     customizationAside,
     customizationColumnsNumber,
+    customizationLinkSize,
     customizationSiteColor,
   };
 };
-
-const root = document.querySelector(':root');
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -29,26 +34,30 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     changeColumns: (e) => {
-      root.style.setProperty('--columns-number', +e.target.value);
-      let customizationObject = JSON.parse(localStorage.getItem('customization')) || {};
-      Object.assign(customizationObject, { 'rowNumber': +e.target.value });
-      localStorage.setItem('customization', JSON.stringify(customizationObject));
+      let value = +e.target.value;
+      setCustomizationLocalStorage(value, 'rowNumber', '--columns-number');
       const action = {
-        customizationColumnsNumber: +e.target.value,
+        customizationColumnsNumber: value,
       };
-      dispatch(actionSetCustomization(action));
+      dispatch(actionSetCustomizationColumnNumber(action));
+    },
+
+    changeLinkSize: (e) => {
+      let value = e.target.value;
+      setCustomizationLocalStorage(value, 'linkSize', '--link-size');
+      const action = {
+        customizationLinkSize: value,
+      };
+      dispatch(actionSetCustomizationLinkSize(action));
     },
 
     changeColor: (e) => {
-      root.style.setProperty('--main-color', e.target.value);
-      console.log()
-      let customizationObject = JSON.parse(localStorage.getItem('customization')) || {};
-      Object.assign(customizationObject, { 'siteColor': e.target.value });
-      localStorage.setItem('customization', JSON.stringify(customizationObject));
+      let value = e.target.value;
+      setCustomizationLocalStorage(value, 'siteColor', '--main-color');
       const action = {
-        customizationColumnsNumber: e.target.value,
+        customizationSiteColor: value,
       };
-      dispatch(actionSetCustomization(action));
+      dispatch(actionSetCustomizationSiteColor(action));
     },
   };
 };

@@ -4,8 +4,8 @@ a {
   background: #dddddd;
 
   div {
-    width: 150px;
-    height: 150px;
+    width: var(--link-size);
+    height: var(--link-size);
     text-align: center;
     border: 1px solid #c0c0c0;
 

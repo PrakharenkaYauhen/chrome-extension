@@ -18,8 +18,14 @@ import {
   FORM_NEW_LINK,
   ADD_NEW_LINK,
   GET_CHROME_LOCAL_STORAGE,
-  SET_CUSTOMIZATION,
+  SET_CUSTOMIZATION_COLUMN_NUMBER,
+  SET_CUSTOMIZATION_LINK_SIZE,
+  SET_CUSTOMIZATION_SITE_COLOR,
 } from './actions'
+
+const defaultNumberOfColumns = 4;
+const defaultBackgroundColor = '#282c34';
+const defaultLinkSize = '150px';
 
 let initialState = {
   // linksArray: [
@@ -77,10 +83,13 @@ let initialState = {
   customizationAside: false,
   customizationColumnsNumber: localStorage.getItem('customization') ?
     JSON.parse(localStorage.getItem('customization'))['rowNumber']
-    : 4,
+    : defaultNumberOfColumns,
+  customizationLinkSize: (localStorage.getItem('customization')
+    && JSON.parse(localStorage.getItem('customization'))['linkSize'])
+    || defaultLinkSize,
   customizationSiteColor: (localStorage.getItem('customization')
     && JSON.parse(localStorage.getItem('customization'))['siteColor'])
-    || '#282c34',
+    || defaultBackgroundColor,
   juventusStuffObject: null,
   juventusStuffIsLoaded: false,
   juventusStuffError: null,
@@ -92,6 +101,7 @@ let initialState = {
 // localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
 console.log(initialState);
 document.querySelector(':root').style.setProperty('--columns-number', initialState.customizationColumnsNumber);
+document.querySelector(':root').style.setProperty('--link-size', initialState.customizationLinkSize);
 document.querySelector(':root').style.setProperty('--main-color', initialState.customizationSiteColor);
 
 export default function reducerCalendar(state = initialState, action) {
@@ -139,9 +149,17 @@ export default function reducerCalendar(state = initialState, action) {
       return Object.assign({}, state, {
         linksArray: action.action.linksArray,
       })
-    case SET_CUSTOMIZATION:
+    case SET_CUSTOMIZATION_COLUMN_NUMBER:
       return Object.assign({}, state, {
         customizationColumnsNumber: action.action.customizationColumnsNumber,
+      })
+    case SET_CUSTOMIZATION_LINK_SIZE:
+      return Object.assign({}, state, {
+        customizationLinkSize: action.action.customizationLinkSize,
+      })
+    case SET_CUSTOMIZATION_SITE_COLOR:
+      return Object.assign({}, state, {
+        customizationSiteColor: action.action.customizationSiteColor,
       })
     default:
       return state

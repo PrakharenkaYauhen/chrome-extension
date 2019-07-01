@@ -7,7 +7,9 @@ export const MODAL_WINDOW = 'MODAL_WINDOW'
 export const FORM_NEW_LINK = 'FORM_NEW_LINK'
 export const ADD_NEW_LINK = 'ADD_NEW_LINK'
 export const GET_CHROME_LOCAL_STORAGE = 'GET_CHROME_LOCAL_STORAGE'
-export const SET_CUSTOMIZATION = 'SET_CUSTOMIZATION'
+export const SET_CUSTOMIZATION_COLUMN_NUMBER = 'SET_CUSTOMIZATION_COLUMN_NUMBER'
+export const SET_CUSTOMIZATION_LINK_SIZE = 'SET_CUSTOMIZATION_LINK_SIZE'
+export const SET_CUSTOMIZATION_SITE_COLOR = 'SET_CUSTOMIZATION_SITE_COLOR'
 
 export function toggleIconsActions(action) {
   return { type: ICONS_ACTIONS_TOGGLE, action }
@@ -50,7 +52,17 @@ export function actionGetChromeLocalStorage(action) {
   return { type: GET_CHROME_LOCAL_STORAGE, action }
 }
 
-export function actionSetCustomization(action) {
+export function actionSetCustomizationColumnNumber(action) {
   // console.log(action);
-  return { type: SET_CUSTOMIZATION, action }
+  return { type: SET_CUSTOMIZATION_COLUMN_NUMBER, action }
+}
+
+export function actionSetCustomizationLinkSize(action) {
+  // console.log(action);
+  return { type: SET_CUSTOMIZATION_LINK_SIZE, action }
+}
+
+export function actionSetCustomizationSiteColor(action) {
+  // console.log(action);
+  return { type: SET_CUSTOMIZATION_SITE_COLOR, action }
 }

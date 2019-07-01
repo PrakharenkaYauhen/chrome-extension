@@ -10,19 +10,23 @@ import '../styles/Customization.scss';
 function Customization({
   customizationAside,
   customizationColumnsNumber,
+  customizationLinkSize,
   customizationSiteColor,
   toggleCustomization,
   changeColumns,
+  changeLinkSize,
   changeColor,
 }) {
   console.log(customizationColumnsNumber);
+  console.log(customizationLinkSize);
+  console.log(customizationSiteColor);
   // console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--columns-number'));
   return (
     // <aside className={!customizationAside ? 'customization' : 'customization customization-hide'}>
     <aside className="customization customization-hide">
       <h2>Extansions settings:</h2>
       <hr />
-      <h3>Columns of links:</h3>
+      <h3>Number of columns:</h3>
       <select
         name="columnsNumber"
         id="columnsNumber"
@@ -35,9 +39,21 @@ function Customization({
         <option value={3}>3</option>
         <option value={4}>4</option>
       </select>
+      <h3>Links size:</h3>
+      <select
+        name="linkSize"
+        id="linkSize"
+        tabIndex="52"
+        onChange={(e) => { changeLinkSize(e) }}
+        value={customizationLinkSize}
+      >
+        <option value={'150px'}>150px</option>
+        <option value={'200px'}>200px</option>
+        <option value={'250px'}>250px</option>
+      </select>
       <h3>Color of the page:</h3>
       <input
-        tabIndex="52"
+        tabIndex="53"
         type="color"
         name=""
         value={customizationSiteColor}
@@ -45,7 +61,7 @@ function Customization({
       />
       <h3>Drop the page to default settings:</h3>
       <button
-        tabIndex="53"
+        tabIndex="54"
         className="button-default-new-tab-chrome"
         type="button"
         onClick={() => {
@@ -61,7 +77,7 @@ function Customization({
       </button>
 
       <button
-        tabIndex="54"
+        tabIndex="55"
         className="button-customization-exit"
         type="button"
         onClick={toggleCustomization}
