@@ -19,7 +19,7 @@ class TableOfVisitedSites extends React.Component {
     } = this.props;
     return (
       <table className="visited-sites-table">
-        <caption>Last 10 visited sites</caption>
+        <caption>Last 20 visited sites</caption>
         <thead>
           <tr>
             <th>№</th>

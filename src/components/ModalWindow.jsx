@@ -11,13 +11,13 @@ function ModalWindow({
   onChange,
   onClickAddLink,
 }) {
-  const textariaInput = React.createRef();
-  const keyButtonEnterNumber = 9;
+  const tabNameInput = React.createRef();
+  const keyButtonTabNumber = 9;
 
   function handleClick(e) {
-    if (e.keyCode === keyButtonEnterNumber) {
+    if (e.keyCode === keyButtonTabNumber) {
       e.preventDefault();
-      textariaInput.current.focus();
+      tabNameInput.current.focus();
     }
   }
 
@@ -34,7 +34,7 @@ function ModalWindow({
             tabIndex="41"
             onChange={onChange}
             autoFocus
-            ref={textariaInput}
+            ref={tabNameInput}
           />
         </div>
         <div>

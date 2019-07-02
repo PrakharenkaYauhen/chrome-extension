@@ -8,7 +8,7 @@ function HeaderIcon({
   icon,
   toggleCustomization,
   toggleIcons,
-  iconsActions,
+  sliderWindowVision,
 }) {
   return (
     <button
@@ -17,12 +17,12 @@ function HeaderIcon({
       onClick={
         icon === 'wrench'
           ? toggleCustomization
-          : () => toggleIcons(iconsActions, icon)
+          : () => toggleIcons(sliderWindowVision, icon)
       }
     >
       <img
         src={image}
-        alt={image}
+        alt={icon}
       />
     </button>
   );
@@ -33,7 +33,7 @@ HeaderIcon.propTypes = {
   icon: PropTypes.string.isRequired,
   toggleCustomization: PropTypes.func.isRequired,
   toggleIcons: PropTypes.func.isRequired,
-  iconsActions: PropTypes.bool.isRequired,
+  sliderWindowVision: PropTypes.bool.isRequired,
 };
 
 export default HeaderIcon;

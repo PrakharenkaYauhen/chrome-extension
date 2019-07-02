@@ -3,12 +3,12 @@ import SlidingWindowForIcons from '../components/SlidingWindowForIcons';
 
 const mapStateToProps = (state) => {
   const {
-    iconsActions,
+    sliderWindowVision,
     pageForTheSlideWindow,
   } = state;
 
   return {
-    iconsActions,
+    sliderWindowVision,
     pageForTheSlideWindow,
   };
 };

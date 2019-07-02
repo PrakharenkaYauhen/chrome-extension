@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const weatherDatesPromise = new Promise((resolve, reject) => {
+const locationPromise = new Promise((resolve, reject) => {
   navigator.geolocation.getCurrentPosition((position) => {
     if (position) {
       resolve(position.coords);
@@ -29,7 +29,7 @@ const weatherDatesPromise = new Promise((resolve, reject) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: () => {
-      weatherDatesPromise.then((coords) => {
+      locationPromise.then((coords) => {
         const city = (coords) ? 'lat=' + coords.latitude.toFixed(6) + '&lon='
           + coords.longitude.toFixed(6) : 'q=Minsk';
         return Promise.all([

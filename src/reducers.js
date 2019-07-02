@@ -7,6 +7,7 @@
 // import javascript from './images/javascript.png';
 // import react from './images/react.png';
 // import redux from './images/redux.png';
+import setCssVariables from './helpers/setCssVariables';
 
 import {
   ICONS_ACTIONS_TOGGLE,
@@ -80,7 +81,7 @@ let initialState = {
   linksArray: JSON.parse(localStorage.getItem('linksArray')) || [],
   newLink: {},
   arrayOfVisitedSites: [],
-  iconsActions: false,
+  sliderWindowVision: false,
   pageForTheSlideWindow: null,
   customizationAside: false,
   customizationColumnsNumber: localStorage.getItem('customization') ?
@@ -104,17 +105,17 @@ let initialState = {
   modalWindowVision: false,
 }
 // localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
-console.log(initialState);
-document.querySelector(':root').style.setProperty('--columns-number', initialState.customizationColumnsNumber);
-document.querySelector(':root').style.setProperty('--link-size', initialState.customizationLinkSize);
-document.querySelector(':root').style.setProperty('--main-color', initialState.customizationSiteColor);
-document.querySelector(':root').style.setProperty('--background-photo', initialState.customizationSiteBackgroundPhoto);
+// console.log(initialState);
+setCssVariables('--columns-number', initialState.customizationColumnsNumber);
+setCssVariables('--link-size', initialState.customizationLinkSize);
+setCssVariables('--main-color', initialState.customizationSiteColor);
+setCssVariables('--background-photo', initialState.customizationSiteBackgroundPhoto);
 
 export default function reducerExtension(state = initialState, action) {
   switch (action.type) {
     case ICONS_ACTIONS_TOGGLE:
       return Object.assign({}, state, {
-        iconsActions: action.action.iconsActions,
+        sliderWindowVision: action.action.sliderWindowVision,
         pageForTheSlideWindow: action.action.pageForTheSlideWindow,
       })
     case CUSTOMIZATION_ASIDE_TOGGLE:

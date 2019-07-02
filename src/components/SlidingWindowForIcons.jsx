@@ -10,7 +10,7 @@ let previousContent;
 
 function SlidingWindowForIcons(props) {
   const {
-    iconsActions,
+    sliderWindowVision,
     pageForTheSlideWindow,
   } = props;
 
@@ -29,7 +29,7 @@ function SlidingWindowForIcons(props) {
   previousContent = content;
 
   return (
-    <div className={!iconsActions ? 'sliding-window' : 'sliding-window sliding-window-hide'}>
+    <div className={!sliderWindowVision ? 'sliding-window' : 'sliding-window sliding-window-hide'}>
       {content}
     </div>
   );
@@ -40,7 +40,7 @@ SlidingWindowForIcons.defaultProps = {
 };
 
 SlidingWindowForIcons.propTypes = {
-  iconsActions: PropTypes.bool.isRequired,
+  sliderWindowVision: PropTypes.bool.isRequired,
   pageForTheSlideWindow: PropTypes.string,
 };
 

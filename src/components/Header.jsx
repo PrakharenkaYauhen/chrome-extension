@@ -10,7 +10,12 @@ import HeaderIconCNT from '../containers/HeaderIconCNT';
 import '../styles/Header.scss';
 
 function Header(props) {
-  const listOfIcons = [['cup', cup], ['weather', weather], ['magnifier', magnifier], ['wrench', wrench]];
+  const listOfIcons = [
+    ['cup', cup],
+    ['weather', weather],
+    ['magnifier', magnifier],
+    ['wrench', wrench]
+  ];
 
   const currentlistOfIcons = listOfIcons.map((item) => {
     if (item[0] === props.pageForTheSlideWindow) {

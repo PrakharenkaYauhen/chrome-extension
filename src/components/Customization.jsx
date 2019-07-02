@@ -18,7 +18,16 @@ function Customization({
   changePhotoBackground,
   removePhotoBackground,
 }) {
-  // console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--columns-number'));
+  const selectButton = React.createRef();
+  const keyButtonTabNumber = 9;
+
+  function handleTabClick(e) {
+    if (e.keyCode === keyButtonTabNumber) {
+      e.preventDefault();
+      selectButton.current.focus();
+    }
+  }
+
   return (
     <aside className={!customizationAside ? 'customization' : 'customization customization-hide'}>
       {/* <aside className="customization customization-hide"> */}
@@ -31,12 +40,14 @@ function Customization({
         tabIndex="51"
         onChange={(e) => { changeColumns(e); }}
         value={customizationColumnsNumber}
+        ref={selectButton}
       >
         <option value={1}>1</option>
         <option value={2}>2</option>
         <option value={3}>3</option>
         <option value={4}>4</option>
       </select>
+
       <h3>Links size:</h3>
       <select
         name="linkSize"
@@ -49,6 +60,7 @@ function Customization({
         <option value="200px">medium</option>
         <option value="250px">large</option>
       </select>
+
       <h3>Color of the page:</h3>
       <input
         tabIndex="53"
@@ -57,24 +69,27 @@ function Customization({
         value={customizationSiteColor}
         onChange={(e) => { changeColor(e); }}
       />
+
       <h3>You can use your image for the background:</h3>
       <input
+        tabIndex="54"
         type="file"
         name="inputBG"
         id="inputBG"
         onChange={(e) => { changePhotoBackground(e); }}
       />
       <button
-        tabIndex="54"
+        tabIndex="55"
         className="button-default-new-tab-chrome"
         type="button"
         onClick={removePhotoBackground}
       >
         {'remove picture'}
       </button>
+
       <h3>Drop the page to default settings:</h3>
       <button
-        tabIndex="54"
+        tabIndex="56"
         className="button-default-new-tab-chrome"
         type="button"
         onClick={buttonDefaultNewTabChrome}
@@ -84,10 +99,11 @@ function Customization({
       </button>
 
       <button
-        tabIndex="55"
+        tabIndex="57"
         className="button-customization-exit"
         type="button"
         onClick={toggleCustomization}
+        onKeyDown={e => handleTabClick(e)}
       >
         <img src={cross} alt="" />
         <svg height="44" width="44">

@@ -4,7 +4,7 @@ import { toggleIconsActions, toggleAsideCustomiztion } from '../actions';
 
 const mapStateToProps = (state, props) => {
   const {
-    iconsActions,
+    sliderWindowVision,
     pageForTheSlideWindow,
   } = state;
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state, props) => {
   } = props;
 
   return {
-    iconsActions,
+    sliderWindowVision,
     pageForTheSlideWindow,
     image,
     icon,
@@ -23,10 +23,10 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleIcons: (iconsActions, icon) => {
-      if (iconsActions && icon !== 'cross') return;
+    toggleIcons: (sliderWindowVision, icon) => {
+      if (sliderWindowVision && icon !== 'cross') return;
       const action = {
-        iconsActions: !iconsActions,
+        sliderWindowVision: !sliderWindowVision,
         pageForTheSlideWindow: icon,
       };
       dispatch(toggleIconsActions(action));

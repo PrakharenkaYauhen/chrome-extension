@@ -21,10 +21,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: (fetchLogo) => {
+      const requestString = 'https://www.thesportsdb.com/api/v1/json/1/';
       Promise.all([
-        fetch('https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=Juventus'),
-        fetch('https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=133676'),
-        fetch('https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=133676'),
+        fetch(`${requestString}searchteams.php?t=Juventus`),
+        fetch(`${requestString}eventsnext.php?id=133676`),
+        fetch(`${requestString}eventslast.php?id=133676`),
       ])
         .then(res => res.map(juventusObject => juventusObject.json()))
         .then((res) => {
@@ -39,38 +40,31 @@ const mapDispatchToProps = (dispatch) => {
 
     fetchLogo: (result) => {
       const requestString = 'https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=';
-      const eventsObject = result[1].events;
+      const newGamesObject = result[1].events;
       const lastGamesObject = result[2].results;
       const juventusIdNumberInObjectAPI = '133676';
+      const setRequestString = (teamNumber, eventObject) => (
+        `${requestString}${eventObject[teamNumber].idAwayTeam === juventusIdNumberInObjectAPI
+          ? eventObject[teamNumber].idHomeTeam
+          : eventObject[teamNumber].idAwayTeam}`
+      );
 
       Promise.all([
-        fetch(`${requestString}${eventsObject[0].idAwayTeam === juventusIdNumberInObjectAPI
-          ? eventsObject[0].idHomeTeam
-          : eventsObject[0].idAwayTeam}`),
-        fetch(`${requestString}${eventsObject[1].idAwayTeam === juventusIdNumberInObjectAPI
-          ? eventsObject[1].idHomeTeam
-          : eventsObject[1].idAwayTeam}`),
-        fetch(`${requestString}${eventsObject[2].idAwayTeam === juventusIdNumberInObjectAPI
-          ? eventsObject[2].idHomeTeam
-          : eventsObject[2].idAwayTeam}`),
-        fetch(`${requestString}${lastGamesObject[0].idAwayTeam === juventusIdNumberInObjectAPI
-          ? lastGamesObject[0].idHomeTeam
-          : lastGamesObject[0].idAwayTeam}`),
-        fetch(`${requestString}${lastGamesObject[1].idAwayTeam === juventusIdNumberInObjectAPI
-          ? lastGamesObject[1].idHomeTeam
-          : lastGamesObject[1].idAwayTeam}`),
-        fetch(`${requestString}${lastGamesObject[2].idAwayTeam === juventusIdNumberInObjectAPI
-          ? lastGamesObject[2].idHomeTeam
-          : lastGamesObject[2].idAwayTeam}`),
+        fetch(setRequestString(0, newGamesObject)),
+        fetch(setRequestString(1, newGamesObject)),
+        fetch(setRequestString(2, newGamesObject)),
+        fetch(setRequestString(0, lastGamesObject)),
+        fetch(setRequestString(1, lastGamesObject)),
+        fetch(setRequestString(2, lastGamesObject)),
       ])
         .then(res => res.map(juventusObject => juventusObject.json()))
         .then((res) => {
           Promise.all(res)
             .then(
-              (resulttt) => {
-                const nextOpponent = resulttt.splice(0, 3);
+              (opponentsObjects) => {
+                const nextOpponent = opponentsObjects.splice(0, 3);
                 const action = {
-                  juventusObject: [...result, resulttt, nextOpponent],
+                  juventusObject: [...result, opponentsObjects, nextOpponent],
                   juventusIsLoaded: true,
                   juventusError: null,
                 };

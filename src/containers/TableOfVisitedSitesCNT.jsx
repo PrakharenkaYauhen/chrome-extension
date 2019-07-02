@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         chrome.history.search({
           'text': '',
-          'maxResults': 10,
+          'maxResults': 20,
         }, (array) => {
           // console.log(array);
           const visitedSitesList = array.map((item, i) => (

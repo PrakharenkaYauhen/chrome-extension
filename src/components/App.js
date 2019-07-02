@@ -1,5 +1,4 @@
 import React from 'react';
-// import logo from '../images/Penguin_2.ico';
 
 import HeaderCNT from '../containers/HeaderCNT';
 import ContentCNT from '../containers/ContentCNT';

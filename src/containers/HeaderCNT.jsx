@@ -3,12 +3,12 @@ import Header from '../components/Header';
 
 const mapStateToProps = (state) => {
   const {
-    iconsActions,
+    sliderWindowVision,
     pageForTheSlideWindow,
   } = state;
 
   return {
-    iconsActions,
+    sliderWindowVision,
     pageForTheSlideWindow,
   };
 };

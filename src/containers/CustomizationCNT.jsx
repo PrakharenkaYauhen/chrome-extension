@@ -10,6 +10,7 @@ import {
   actionSetCustomizationSiteBackground,
 } from '../actions';
 import setCustomizationLocalStorage from '../helpers/localStorageCustomization';
+import setCssVariables from '../helpers/setCssVariables';
 
 const mapStateToProps = (state) => {
   const {
@@ -29,14 +30,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    buttonDefaultNewTabChrome: () => {
-      chrome.tabs.getCurrent((tab) => {
-        chrome.tabs.update(tab.id, {
-          url: 'chrome-search://local-ntp/local-ntp.html',
-        });
-      });
-    },
-
     toggleCustomization: () => {
       const action = {
         customizationAside: false,
@@ -46,7 +39,8 @@ const mapDispatchToProps = (dispatch) => {
 
     changeColumns: (e) => {
       let value = +e.target.value;
-      setCustomizationLocalStorage(value, 'rowNumber', '--columns-number');
+      setCssVariables('--columns-number', value);
+      setCustomizationLocalStorage(value, 'rowNumber');
       const action = {
         customizationColumnsNumber: value,
       };
@@ -55,7 +49,8 @@ const mapDispatchToProps = (dispatch) => {
 
     changeLinkSize: (e) => {
       let value = e.target.value;
-      setCustomizationLocalStorage(value, 'linkSize', '--link-size');
+      setCssVariables('--link-size', value);
+      setCustomizationLocalStorage(value, 'linkSize');
       const action = {
         customizationLinkSize: value,
       };
@@ -64,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
 
     changeColor: (e) => {
       let value = e.target.value;
-      setCustomizationLocalStorage(value, 'siteColor', '--main-color');
+      setCssVariables('--main-color', value);
+      setCustomizationLocalStorage(value, 'siteColor');
       const action = {
         customizationSiteColor: value,
       };
@@ -72,27 +68,23 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     changePhotoBackground: (e) => {
-      // let value = e.target.value;
-      console.log(e);
-      console.log(e.target);
-      console.log(e.target.value);
       if (e.target.files.length === 0) {
-        setCustomizationLocalStorage(null, 'backgroundPhoto', '--background-photo');
+        setCssVariables('--background-photo', null);
+        setCustomizationLocalStorage(null, 'backgroundPhoto');
         const action = {
           customizationSiteBackgroundPhoto: null,
         };
         dispatch(actionSetCustomizationSiteBackground(action));
         return;
       }
-      var input = document.getElementById("inputBG");
-      var fReader = new FileReader();
+      const input = e.target;
+      const fReader = new FileReader();
       fReader.readAsDataURL(input.files[0]);
-      console.log(input);
       fReader.onloadend = function (event) {
-        console.log(event);
         // var img = document.getElementById("yourImgTag");
         // img.src = event.target.result;
-        setCustomizationLocalStorage(`url(${event.target.result})`, 'backgroundPhoto', '--background-photo');
+        setCssVariables('--background-photo', `url(${event.target.result}`);
+        setCustomizationLocalStorage(`url(${event.target.result})`, 'backgroundPhoto');
         const action = {
           customizationSiteBackgroundPhoto: event.target.result,
         };
@@ -101,11 +93,20 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     removePhotoBackground: () => {
-      setCustomizationLocalStorage(null, 'backgroundPhoto', '--background-photo');
+      setCssVariables('--background-photo', null);
+      setCustomizationLocalStorage(null, 'backgroundPhoto');
       const action = {
         customizationSiteBackgroundPhoto: null,
       };
       dispatch(actionSetCustomizationSiteBackground(action));
+    },
+
+    buttonDefaultNewTabChrome: () => {
+      chrome.tabs.getCurrent((tab) => {
+        chrome.tabs.update(tab.id, {
+          url: 'chrome-search://local-ntp/local-ntp.html',
+        });
+      });
     },
   };
 };
