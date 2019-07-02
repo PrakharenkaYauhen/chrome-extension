@@ -27,6 +27,7 @@ import {
 const defaultNumberOfColumns = 4;
 const defaultBackgroundColor = '#282c34';
 const defaultLinkSize = '150px';
+const defaultBackgroundPhoto = null;
 
 let initialState = {
   // linksArray: [
@@ -91,7 +92,9 @@ let initialState = {
   customizationSiteColor: (localStorage.getItem('customization')
     && JSON.parse(localStorage.getItem('customization'))['siteColor'])
     || defaultBackgroundColor,
-  customizationSiteBackgroundPhoto: null,
+  customizationSiteBackgroundPhoto: (localStorage.getItem('customization')
+    && JSON.parse(localStorage.getItem('customization'))['backgroundPhoto'])
+    || defaultBackgroundPhoto,
   juventusStuffObject: null,
   juventusStuffIsLoaded: false,
   juventusStuffError: null,
@@ -105,6 +108,7 @@ console.log(initialState);
 document.querySelector(':root').style.setProperty('--columns-number', initialState.customizationColumnsNumber);
 document.querySelector(':root').style.setProperty('--link-size', initialState.customizationLinkSize);
 document.querySelector(':root').style.setProperty('--main-color', initialState.customizationSiteColor);
+document.querySelector(':root').style.setProperty('--background-photo', initialState.customizationSiteBackgroundPhoto);
 
 export default function reducerExtension(state = initialState, action) {
   switch (action.type) {

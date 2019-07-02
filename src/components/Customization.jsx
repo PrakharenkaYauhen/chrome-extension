@@ -16,6 +16,7 @@ function Customization({
   changeLinkSize,
   changeColor,
   changePhotoBackground,
+  removePhotoBackground,
 }) {
   // console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--columns-number'));
   return (
@@ -57,21 +58,20 @@ function Customization({
         onChange={(e) => { changeColor(e); }}
       />
       <h3>You can use your image for the background:</h3>
-      <form
-        method="post"
-        encType="multipart/form-data"
-        action="..\upload">
-        <input
-          type="file"
-          name="inputBG"
-          id="inputBG"
-          onChange={(e) => { changePhotoBackground(e); }}
-        />
-        <div>
-          <input type="submit" value="send file" />
-        </div>
-      </form>
-      <img src="" alt="" id='yourImgTag'/>
+      <input
+        type="file"
+        name="inputBG"
+        id="inputBG"
+        onChange={(e) => { changePhotoBackground(e); }}
+      />
+      <button
+        tabIndex="54"
+        className="button-default-new-tab-chrome"
+        type="button"
+        onClick={removePhotoBackground}
+      >
+        {'remove picture'}
+      </button>
       <h3>Drop the page to default settings:</h3>
       <button
         tabIndex="54"
@@ -124,6 +124,7 @@ Customization.propTypes = {
   changeLinkSize: PropTypes.func.isRequired,
   changeColor: PropTypes.func.isRequired,
   changePhotoBackground: PropTypes.func.isRequired,
+  removePhotoBackground: PropTypes.func.isRequired,
 };
 
 export default Customization;

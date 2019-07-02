@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
 import logger from 'redux-logger';
-import App from './components/App';
+import AppCNT from './containers/AppCNT';
 import reducerExtension from './reducers'
 
 import './styles/index.scss';
@@ -13,7 +13,7 @@ const store = createStore(reducerExtension, applyMiddleware(thunk, logger));
 
 render(
   <Provider store={store}>
-    <App />
+    <AppCNT/>
   </Provider>,
   document.getElementById('root')
 );

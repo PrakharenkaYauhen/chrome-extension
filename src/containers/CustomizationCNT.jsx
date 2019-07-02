@@ -72,9 +72,18 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     changePhotoBackground: (e) => {
-      let value = e.target.value;
+      // let value = e.target.value;
       console.log(e);
-      console.log(e.target.files);
+      console.log(e.target);
+      console.log(e.target.value);
+      if (e.target.files.length === 0) {
+        setCustomizationLocalStorage(null, 'backgroundPhoto', '--background-photo');
+        const action = {
+          customizationSiteBackgroundPhoto: null,
+        };
+        dispatch(actionSetCustomizationSiteBackground(action));
+        return;
+      }
       var input = document.getElementById("inputBG");
       var fReader = new FileReader();
       fReader.readAsDataURL(input.files[0]);
@@ -89,12 +98,14 @@ const mapDispatchToProps = (dispatch) => {
         };
         dispatch(actionSetCustomizationSiteBackground(action));
       }
+    },
 
-      // setCustomizationLocalStorage(value, 'backgroundPhoto', '--background-photo');
-      // const action = {
-      //   customizationSiteBackgroundPhoto: value,
-      // };
-      // dispatch(actionSetCustomizationSiteBackground(action));
+    removePhotoBackground: () => {
+      setCustomizationLocalStorage(null, 'backgroundPhoto', '--background-photo');
+      const action = {
+        customizationSiteBackgroundPhoto: null,
+      };
+      dispatch(actionSetCustomizationSiteBackground(action));
     },
   };
 };

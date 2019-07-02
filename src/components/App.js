@@ -7,9 +7,9 @@ import CustomizationCNT from '../containers/CustomizationCNT';
 import SlidingWindowForIconsCNT from '../containers/SlidingWindowForIconsCNT';
 import ModalWindowCNT from '../containers/ModalWindowCNT';
 
-function App() {
+function App({customizationSiteBackgroundPhoto}) {
   return (
-    <div className="App">
+    <div className={!customizationSiteBackgroundPhoto ? "App" : "App-photo"}>
       <HeaderCNT />
       <ContentCNT />
       <CustomizationCNT />
