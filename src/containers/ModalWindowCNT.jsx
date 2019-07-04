@@ -54,12 +54,14 @@ const mapDispatchToProps = (dispatch) => {
 
     onClickAddLink: (linksArray, newLink) => {
       if (!newLink || !newLink.image || !newLink.text || !newLink.link) return;
+      if (linksArray.some(item => (item.text === newLink.text) || (item.link === newLink.link))) return;
       linksArray.push(newLink);
       if (linksArray.length >= 12) {
         linksArray.shift();
       }
       localStorageSets(linksArray, dispatch);
       const action = {
+        linksArray: linksArray,
         modalWindowVision: false,
         newLink: {},
       };

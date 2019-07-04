@@ -148,7 +148,7 @@ export default function reducerExtension(state = initialState, action) {
       })
     case ADD_NEW_LINK:
       return Object.assign({}, state, {
-        // linksArray: action.action.linksArray,
+        linksArray: action.action.linksArray,
         modalWindowVision: action.action.modalWindowVision,
         newLink: action.action.newLink,
       })

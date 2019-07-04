@@ -1,21 +1,37 @@
-a {
+.link {
+  position: relative;
   margin: 10px auto;
-  text-decoration: none;
-  background: #dddddd;
-
-  div {
+  
+  a {
     width: var(--link-size);
     height: var(--link-size);
-    text-align: center;
     border: 1px solid #c0c0c0;
-
-    img {
-      margin: 10px;
-      width: 60%
+    display: block;
+    text-decoration: none;
+    background: #dddddd;
+  
+    div {
+      text-align: center;
+  
+      img {
+        margin: 10px;
+        width: 60%
+      }
+  
+      p {
+        margin: 5px;
+      }
     }
-
-    p {
-      margin: 5px;
-    }
-  }    
+  }
+  
+  button {
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 15px;
+    line-height: 5px;
+    padding: 0;
+  }
 }

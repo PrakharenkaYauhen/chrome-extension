@@ -22,10 +22,18 @@ class Content extends React.Component {
     const {
       linksArray,
       onClickOpenModal,
+      deleteLink,
     } = this.props;
 
     const content = linksArray.map(item => (
-      <ContentLink key={item.text} image={item.image} text={item.text} link={item.link} />
+      <ContentLink
+        key={item.text}
+        image={item.image}
+        text={item.text}
+        link={item.link}
+        deleteLink={deleteLink}
+        linksArray={linksArray}
+      />
     ));
     return (
       <div className="content">

@@ -58,6 +58,7 @@ function ModalWindow({
           />
         </div>
         <p>*if amount of links are more then 11 it will replace the 1-st one in your list</p>
+        <p>*you cant add a link with the same adress or link like someone in your current list</p>
 
         <button
           tabIndex="44"

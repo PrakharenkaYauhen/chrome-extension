@@ -11,6 +11,7 @@ function FootballGame({
   numberOfObject,
   gameNumber,
 }) {
+  console.log(juventusObject);
   const juventusIdNumberInObjectAPI = '133676';
   const gameObject = gamesObject[gameNumber];
   const opposingTeamObject = juventusObject[numberOfObject][gameNumber].teams[0];
