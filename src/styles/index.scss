@@ -5,6 +5,8 @@
   --link-size: ;
 }
 
+@import 'book';
+
 body {
   margin: 0;
   font-family: 'Times New Roman', Times, serif;
@@ -17,4 +19,17 @@ body {
 
 .App-photo {
   background: var(--background-photo) no-repeat center;
+}
+
+
+
+.book {
+  h1 {
+    margin: 10px auto;
+  }
+  iframe {
+    width: 90%;
+    height: 80vh;
+    border: 1px solid whitesmoke;
+  }
 }

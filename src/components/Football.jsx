@@ -20,6 +20,8 @@ class Football extends React.Component {
     } = this.props;
 
     const numberOfGames = Array.from(new Array(3), (x, i) => i);
+    // numberOfObject is a number of object in the list of juventusObject objects. Number 4 is a
+    // list for the next games object. Number 3 is a list for the last games object.
     const nextGamesArray = numberOfGames.map(item => (
       <FootballGameCNT nextGame numberOfObject={4} key={item} gameNumber={item} />
     ));

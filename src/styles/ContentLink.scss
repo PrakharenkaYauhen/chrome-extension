@@ -1,16 +1,18 @@
 .link {
   position: relative;
   margin: 10px auto;
+  width: fit-content;
   
   a {
     width: var(--link-size);
     height: var(--link-size);
     border: 1px solid #c0c0c0;
-    display: block;
+    display: inline-block;
     text-decoration: none;
     background: #dddddd;
+    position: relative;
   
-    div {
+    div { 
       text-align: center;
   
       img {
@@ -22,16 +24,16 @@
         margin: 5px;
       }
     }
-  }
-  
-  button {
-    position: absolute;
-    box-sizing: border-box;
-    top: 0;
-    right: 0;
-    width: 30px;
-    height: 15px;
-    line-height: 5px;
-    padding: 0;
+
+    button {
+      position: absolute;
+      box-sizing: border-box;
+      top: -1px;
+      right: -1px;
+      width: 25px;
+      height: 15px;
+      line-height: 5px;
+      padding: 0;
+    }
   }
 }

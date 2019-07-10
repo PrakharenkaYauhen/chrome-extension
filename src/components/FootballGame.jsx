@@ -11,37 +11,25 @@ function FootballGame({
   numberOfObject,
   gameNumber,
 }) {
-  console.log(juventusObject);
   const juventusIdNumberInObjectAPI = '133676';
   const gameObject = gamesObject[gameNumber];
   const opposingTeamObject = juventusObject[numberOfObject][gameNumber].teams[0];
 
-  function getCorrectDate(dateOfTheGame, timeOfTheGame) {
-    const dateOfTheGameMilliseconds = Date.parse(dateOfTheGame);
-    const hours = timeOfTheGame.split(':')[0];
-    const minutes = timeOfTheGame.split(':')[1];
-    const timeOfTheGameMilliseconds = Date.parse(new Date(1970, 0, 1, hours, minutes));
-
-    return dateOfTheGameMilliseconds + timeOfTheGameMilliseconds;
-  }
-
   function getDateString(dateOfTheGame, timeOfTheGame) {
-    const exactTime = getCorrectDate(dateOfTheGame, timeOfTheGame);
     const stringOption = {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
     };
-    return new Date(exactTime).toLocaleString('en-US', stringOption);
+    return new Date(`${dateOfTheGame} ${timeOfTheGame}`).toLocaleString('en-US', stringOption);
   }
 
   function getTimeString(dateOfTheGame, timeOfTheGame) {
-    const exactTime = getCorrectDate(dateOfTheGame, timeOfTheGame);
     const stringOption = {
       hour: 'numeric',
       minute: 'numeric',
     };
-    return new Date(exactTime).toLocaleString('en-US', stringOption);
+    return new Date(`${dateOfTheGame} ${timeOfTheGame}`).toLocaleString('en-US', stringOption);
   }
 
   return (

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FootballCNT from '../containers/FootballCNT';
 import WeatherCNT from '../containers/WeatherCNT';
 import TableOfVisitedSitesCNT from '../containers/TableOfVisitedSitesCNT';
+import BookCNT from '../containers/BookCNT';
 // import styles from '../styles/SlidingWindowForIcons.scss';
 import '../styles/SlidingWindowForIcons.scss';
 
@@ -19,12 +20,15 @@ function SlidingWindowForIcons(props) {
   if (pageForTheSlideWindow === 'cup') {
     content = <FootballCNT />;
   } else if (pageForTheSlideWindow === 'weather') {
-    content = <WeatherCNT />;
+    // content = <WeatherCNT />;
   } else if (pageForTheSlideWindow === 'magnifier') {
     content = <TableOfVisitedSitesCNT />;
+  } else if (pageForTheSlideWindow === 'book') {
+    content = <BookCNT />;
   } else if (pageForTheSlideWindow === 'cross') {
     content = previousContent;
   }
+
 
   previousContent = content;
 

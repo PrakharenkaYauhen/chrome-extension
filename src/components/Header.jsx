@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cup from '../images/cup.png';
 import weather from '../images/weather.png';
 import wrench from '../images/wrench.png';
+import book from '../images/book.png';
 import magnifier from '../images/magnifier.png';
 import cross from '../images/cross.png';
 import HeaderIconCNT from '../containers/HeaderIconCNT';
@@ -14,6 +15,7 @@ function Header(props) {
     ['cup', cup],
     ['weather', weather],
     ['magnifier', magnifier],
+    ['book', book],
     ['wrench', wrench]
   ];
 

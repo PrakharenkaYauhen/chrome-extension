@@ -1,12 +1,14 @@
 .content {
   min-height: calc(100vh - 40px);
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 
   &>div {
     width: 80%;
     display: grid;
     grid-template-columns: repeat(var(--columns-number), 1fr);
+    margin: auto;
   }
 }
