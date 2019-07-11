@@ -11,17 +11,21 @@
     text-decoration: none;
     background: #dddddd;
     position: relative;
+    // transform: none;
   
     div { 
       text-align: center;
+      pointer-events: none;
   
       img {
         margin: 10px;
-        width: 60%
+        width: 60%;
+        pointer-events: none;
       }
   
       p {
         margin: 5px;
+        pointer-events: none;
       }
     }    
   }

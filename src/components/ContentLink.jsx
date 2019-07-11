@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from '../styles/ContentLink.scss';
 // import '../styles/ContentLink.scss';
 import Penguin from '../images/Penguin.ico';
-// import { Draggable } from 'react-beautiful-dnd';
 
 class ContentLink extends React.Component {
   render() {
@@ -24,37 +23,22 @@ class ContentLink extends React.Component {
     } = this.props;
 
     return (
-      // <Draggable draggableId={index + ''} index={index}>
-      //   {(provided) => {
-      // return (
-      <div
-        className="link"
-      // draggable="true"
-      // id={index}
-      // onDragStart={dragItemStart}
-      // onDragOver={dragItemOver}
-      // onDragEnter={dragItemEnter}
-      // onDrop={dragItemDrop}
-      >
+      <div className="link" >
         <a
           href={link}
           className={styles.a}
           onClick={!text ? e => onClickOpenModal(e) : null}
-          // ref={provided.innerRef}
-          // {...provided.draggableProps}
-          // {...provided.dragHandleProps}   
           draggable="true"
           id={index}
-          onDragStart={dragItemStart}
+          onDragStart={e => dragItemStart(e, index)}
           onDragOver={dragItemOver}
-          onDragEnter={dragItemEnter}
-          onDragLeave={dragItemLeave}
+          onDragEnter={e => dragItemEnter(e, index)}
+          onDragLeave={e => dragItemLeave(e, index)}
           onDragEnd={dragItemEnd}
-          onDrop={e => dragItemDrop(e, linksArray)}
+          onDrop={e => dragItemDrop(e, linksArray, index)}
         >
           <div>
             <img src={image} alt="logo" draggable="false" onError={e => {
-              // console.log(e.target);
               return e.target.src = Penguin
             }
             }
@@ -68,9 +52,6 @@ class ContentLink extends React.Component {
           </button>
           : null}
       </div>
-      // )
-      //   }}
-      // </Draggable>
     );
   }
 }

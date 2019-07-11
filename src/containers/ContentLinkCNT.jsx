@@ -15,6 +15,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  let currentDraggableID;
+
   return {
     onClickOpenModal: (e) => {
       e.preventDefault();
@@ -34,41 +36,43 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionGetChromeLocalStorage(action));
     },
 
-    dragItemStart: e => {
-      let target = e.target;
-      // if(target.getAttribute('id') === null) return;
-      console.log(target.getAttribute('id'));
-      e.dataTransfer.setData("text/plain", target.getAttribute('id'));
-      // console.log(e.dataTransfer.getData("text/plain"));
-      target.parentElement.style.opacity = .01;
+    dragItemStart: (e, id) => {
+      currentDraggableID = id;
+      e.dataTransfer.setData("text/plain", id);
+      e.target.parentElement.style.opacity = .01;
     },
 
     dragItemOver: e => {
       e.preventDefault();
     },
 
-    dragItemEnter: e => {
-      e.currentTarget.parentElement.style.transform = 'translate(0, -35px)';
-      console.log(e.screenY);
+    dragItemEnter: (e, id) => {
+      if (currentDraggableID === id) return;
+      const styledEl = e.currentTarget.parentElement.style;
+      styledEl.transform = 'translate(5px, -5px)';
+      styledEl.opacity = 0.7;
     },
 
-    dragItemLeave: e => {
-      e.currentTarget.parentElement.style.transform = null;
-      console.log(e.screenY);
+    dragItemLeave: (e, id) => {
+      if (currentDraggableID === id) return;
+      const styledEl = e.currentTarget.parentElement.style;
+      styledEl.transform = null;
+      styledEl.opacity = 1;
     },
 
     dragItemEnd: e => {
       e.target.parentElement.style.opacity = 1;
     },
 
-    dragItemDrop: (e, linksArray) => {
-      let currentElementID = e.currentTarget.getAttribute('id');
-      let previousElementID = e.dataTransfer.getData("text/plain");
-      if (previousElementID < 0) return;
-      let el = document.getElementById(previousElementID);
-      el.parentElement.style.opacity = 1;
-      let previousElement = linksArray.splice(previousElementID, 1)[0];
-      linksArray.splice(currentElementID, 0, previousElement);
+    dragItemDrop: (e, linksArray, id) => {
+      const currentElemID = id;
+      const previousElemeID = e.dataTransfer.getData("text/plain");
+      const styledEl = e.currentTarget.parentElement.style;
+      if (previousElemeID < 0) return;
+      styledEl.transform = null;
+      styledEl.opacity = 1;
+      [linksArray[currentElemID], linksArray[previousElemeID]] =
+        [linksArray[previousElemeID], linksArray[currentElemID]];
       localStorageSets(linksArray);
       const action = {
         linksArray: linksArray,

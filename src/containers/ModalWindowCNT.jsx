@@ -62,6 +62,7 @@ const mapDispatchToProps = (dispatch) => {
       localStorageSets(linksArray, dispatch);
       const action = {
         linksArray: linksArray,
+        linksArrayString: JSON.stringify(linksArray),
         modalWindowVision: false,
         newLink: {},
       };
