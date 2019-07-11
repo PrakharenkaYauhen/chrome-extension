@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import styles from '../styles/HeaderIcon.scss';
-import '../styles/HeaderIcon.scss';
+// import '../styles/HeaderIcon.scss';
 
-function Book({
-}) {
+function Book() {
   return (
     <h1>Books</h1>
   );

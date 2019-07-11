@@ -6,20 +6,13 @@ import { actionGetChromeLocalStorage } from '../actions';
 
 const mapStateToProps = (state, props) => {
   const {
-    linksArray,    
+    linksArray,
+    linksArrayString,
   } = state;
-
-  const {
-    innerRef,
-    provided,
-  } = props;
-
-  // console.log(props);
 
   return {
     linksArray,
-    innerRef,
-    provided,
+    linksArrayString,
   };
 };
 

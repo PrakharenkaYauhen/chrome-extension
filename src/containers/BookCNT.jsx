@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import Book from '../components/Book';
 
-const mapStateToProps = (state) => {
-  const {
-    // sliderWindowVision,
-    // pageForTheSlideWindow,
-  } = state;
+// const mapStateToProps = (state) => {
+//   const {
+//     // sliderWindowVision,
+//     // pageForTheSlideWindow,
+//   } = state;
 
-  return {
-    // sliderWindowVision,
-    // pageForTheSlideWindow,
-  };
-};
+//   return {
+//     // sliderWindowVision,
+//     // pageForTheSlideWindow,
+//   };
+// };
 
-const BookCNT = connect(mapStateToProps)(Book);
+const BookCNT = connect()(Book);
 
 export default BookCNT;

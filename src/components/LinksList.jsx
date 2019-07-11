@@ -19,15 +19,10 @@ class LinksList extends React.Component {
   render() {
     const {
       linksArray,
-      provided,
-      innerRef,
+      linksArrayString,
     } = this.props;
 
-    let array = linksArray;
-
-    console.log(array);
-
-    const content = array.map((item, i) => (
+    const content = linksArray.map((item, i) => (
       <ContentLinkCNT
         key={item.text}
         image={item.image}
@@ -38,13 +33,9 @@ class LinksList extends React.Component {
     ));
 
     return (
-      <div
-        {...provided.droppableProps}
-        ref={innerRef}
-      >
-        {provided.placeholder}
+      <div>
         {content}
-        {/* <ContentLinkCNT image={plus} index={1000}/> */}
+        <ContentLinkCNT image={plus} index={-1} />
       </div>
     )
   }

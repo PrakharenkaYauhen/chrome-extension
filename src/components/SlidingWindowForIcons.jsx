@@ -20,7 +20,7 @@ function SlidingWindowForIcons(props) {
   if (pageForTheSlideWindow === 'cup') {
     content = <FootballCNT />;
   } else if (pageForTheSlideWindow === 'weather') {
-    // content = <WeatherCNT />;
+    content = <WeatherCNT />;
   } else if (pageForTheSlideWindow === 'magnifier') {
     content = <TableOfVisitedSitesCNT />;
   } else if (pageForTheSlideWindow === 'book') {

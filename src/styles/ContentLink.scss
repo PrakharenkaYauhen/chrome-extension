@@ -23,17 +23,17 @@
       p {
         margin: 5px;
       }
-    }
+    }    
+  }
 
-    button {
-      position: absolute;
-      box-sizing: border-box;
-      top: -1px;
-      right: -1px;
-      width: 25px;
-      height: 15px;
-      line-height: 5px;
-      padding: 0;
-    }
+  button {
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 15px;
+    line-height: 5px;
+    padding: 0;
   }
 }

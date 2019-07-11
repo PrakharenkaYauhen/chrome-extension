@@ -79,6 +79,7 @@ let initialState = {
   //   },
   // ],
   linksArray: JSON.parse(localStorage.getItem('linksArray')) || [],
+  linksArrayString: '',
   newLink: {},
   arrayOfVisitedSites: [],
   sliderWindowVision: false,
@@ -155,6 +156,7 @@ export default function reducerExtension(state = initialState, action) {
     case GET_CHROME_LOCAL_STORAGE:
       return Object.assign({}, state, {
         linksArray: action.action.linksArray,
+        linksArrayString: action.action.linksArrayString,
       })
     case SET_CUSTOMIZATION_COLUMN_NUMBER:
       return Object.assign({}, state, {
