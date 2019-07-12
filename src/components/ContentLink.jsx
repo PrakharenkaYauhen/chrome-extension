@@ -23,7 +23,7 @@ class ContentLink extends React.Component {
     } = this.props;
 
     return (
-      <div className="link" >
+      <div className="link">
         <a
           href={link}
           className={styles.a}
@@ -38,18 +38,25 @@ class ContentLink extends React.Component {
           onDrop={e => dragItemDrop(e, linksArray, index)}
         >
           <div>
-            <img src={image} alt="logo" draggable="false" onError={e => {
-              return e.target.src = Penguin
-            }
-            }
+            <img
+              src={image}
+              alt="logo"
+              draggable="false"
+              onError={(e) => {
+                e.target.src = Penguin;
+                return e.target.src;
+              }
+              }
             />
             <p>{text || 'add a new link'}</p>
           </div>
         </a>
         {text
-          ? <button onClick={e => deleteLink(e, linksArray)}>
-            {'-'}
-          </button>
+          ? (
+            <button type="button" onClick={e => deleteLink(e, linksArray)}>
+              {'-'}
+            </button>
+          )
           : null}
       </div>
     );
@@ -66,8 +73,16 @@ ContentLink.propTypes = {
   link: PropTypes.string,
   image: PropTypes.string.isRequired,
   text: PropTypes.string,
+  index: PropTypes.number.isRequired,
+  linksArray: PropTypes.instanceOf(Array).isRequired,
   onClickOpenModal: PropTypes.func,
   deleteLink: PropTypes.func.isRequired,
+  dragItemStart: PropTypes.func.isRequired,
+  dragItemOver: PropTypes.func.isRequired,
+  dragItemEnter: PropTypes.func.isRequired,
+  dragItemLeave: PropTypes.func.isRequired,
+  dragItemEnd: PropTypes.func.isRequired,
+  dragItemDrop: PropTypes.func.isRequired,
 };
 
 export default ContentLink;

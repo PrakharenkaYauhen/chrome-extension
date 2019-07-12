@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import Content from '../components/Content';
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   const {
-    linksArray,    
+    linksArray,
   } = state;
 
   return {

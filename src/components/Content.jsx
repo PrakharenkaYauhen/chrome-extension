@@ -4,12 +4,11 @@ import LinksListCNT from '../containers/LinksListCNT';
 import '../styles/Content.scss';
 
 function Content() {
-
   return (
     <div className="content">
       <LinksListCNT />
-    </div >
+    </div>
   );
-};
+}
 
 export default Content;

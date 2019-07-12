@@ -1,7 +1,7 @@
 /* global chrome */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import plus from '../images/plus.png';
 import ContentLinkCNT from '../containers/ContentLinkCNT';
 
@@ -14,7 +14,7 @@ class LinksList extends React.Component {
     if (chrome.storage) {
       getChromeLocalStorage();
     }
-  };
+  }
 
   render() {
     const {
@@ -37,8 +37,18 @@ class LinksList extends React.Component {
         {content}
         <ContentLinkCNT image={plus} index={-1} />
       </div>
-    )
+    );
   }
 }
+
+LinksList.defaultProps = {
+  linksArrayString: '',
+};
+
+LinksList.propTypes = {
+  linksArray: PropTypes.instanceOf(Array).isRequired,
+  linksArrayString: PropTypes.string,
+  getChromeLocalStorage: PropTypes.func.isRequired,
+};
 
 export default LinksList;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LinksList from '../components/LinksList';
 import { actionGetChromeLocalStorage } from '../actions';
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   const {
     linksArray,
     linksArrayString,

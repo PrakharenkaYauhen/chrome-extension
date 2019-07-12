@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 
     deleteLink: (e, linksArray) => {
       const value = e.target.previousElementSibling.lastElementChild.textContent;
-      const newLinksArray = linksArray.filter((item) => item.text !== value);
+      const newLinksArray = linksArray.filter(item => item.text !== value);
       localStorageSets(newLinksArray);
       const action = {
         linksArray: newLinksArray,
@@ -38,11 +38,11 @@ const mapDispatchToProps = (dispatch) => {
 
     dragItemStart: (e, id) => {
       currentDraggableID = id;
-      e.dataTransfer.setData("text/plain", id);
-      e.target.parentElement.style.opacity = .01;
+      e.dataTransfer.setData('text/plain', id);
+      e.target.parentElement.style.opacity = 0.01;
     },
 
-    dragItemOver: e => {
+    dragItemOver: (e) => {
       e.preventDefault();
     },
 
@@ -60,22 +60,21 @@ const mapDispatchToProps = (dispatch) => {
       styledEl.opacity = 1;
     },
 
-    dragItemEnd: e => {
+    dragItemEnd: (e) => {
       e.target.parentElement.style.opacity = 1;
     },
 
     dragItemDrop: (e, linksArray, id) => {
-      const currentElemID = id;
-      const previousElemeID = e.dataTransfer.getData("text/plain");
+      const currElemID = id;
+      const prevElemeID = e.dataTransfer.getData('text/plain');
       const styledEl = e.currentTarget.parentElement.style;
-      if (previousElemeID < 0) return;
+      if (prevElemeID < 0) return;
       styledEl.transform = null;
       styledEl.opacity = 1;
-      [linksArray[currentElemID], linksArray[previousElemeID]] =
-        [linksArray[previousElemeID], linksArray[currentElemID]];
+      [linksArray[currElemID], linksArray[prevElemeID]] = [linksArray[prevElemeID], linksArray[currElemID]];
       localStorageSets(linksArray);
       const action = {
-        linksArray: linksArray,
+        linksArray,
         linksArrayString: JSON.stringify(linksArray),
       };
       dispatch(actionGetChromeLocalStorage(action));
