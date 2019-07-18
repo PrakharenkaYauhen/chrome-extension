@@ -1,12 +1,12 @@
-import github from './images/github.png';
-import gmailLogo from './images/gmail-logo.png';
-import leverx from './images/leverx.webp';
-import googleCalendar from './images/google-calendar.png';
-import googleDocs from './images/google-docs.png';
-import youtube from './images/youtube.png';
-import javascript from './images/javascript.png';
-import react from './images/react.png';
-import redux from './images/redux.png';
+// import github from './images/github.png';
+// import gmailLogo from './images/gmail-logo.png';
+// import leverx from './images/leverx.webp';
+// import googleCalendar from './images/google-calendar.png';
+// import googleDocs from './images/google-docs.png';
+// import youtube from './images/youtube.png';
+// import javascript from './images/javascript.png';
+// import react from './images/react.png';
+// import redux from './images/redux.png';
 import setCssVariables from './helpers/setCssVariables';
 
 import {
@@ -31,55 +31,55 @@ const defaultLinkSize = '150px';
 const defaultBackgroundPhoto = null;
 
 let initialState = {
-  linksArray: [
-    {
-      image: gmailLogo,
-      text: 'Google mail',
-      link: 'https://mail.google.com/mail',
-    },
-    {
-      image: leverx,
-      text: 'Leverxeu dashboard',
-      link: 'https://leverxeu.atlassian.net/secure/Dashboard.jspa',
-    },
-    {
-      image: googleCalendar,
-      text: 'Google calendar',
-      link: 'https://calendar.google.com/calendar/r',
-    },
-    {
-      image: googleDocs,
-      text: 'Google docs',
-      link: 'https://docs.google.com/document/u/0/?tgif=d',
-    },
-    {
-      image: youtube,
-      text: 'Youtube',
-      link: 'https://www.youtube.com/',
-    },
-    {
-      image: javascript,
-      text: 'Учебник Javascript',
-      link: 'https://learn.javascript.ru/',
-    },
-    {
-      image: github,
-      text: 'Github',
-      link: 'https://github.com/',
-    },
-    {
-      image: react,
-      text: 'React',
-      link: 'https://reactjs.org/',
-    },
-    {
-      image: redux,
-      text: 'Redux',
-      link: 'https://redux.js.org/',
-    },
-  ],
-  // linksArray: JSON.parse(localStorage.getItem('linksArray')) || [],
-  linksArrayString: '',
+  // linksArray: [
+  //   {
+  //     image: gmailLogo,
+  //     text: 'Google mail',
+  //     link: 'https://mail.google.com/mail',
+  //   },
+  //   {
+  //     image: leverx,
+  //     text: 'Leverxeu dashboard',
+  //     link: 'https://leverxeu.atlassian.net/secure/Dashboard.jspa',
+  //   },
+  //   {
+  //     image: googleCalendar,
+  //     text: 'Google calendar',
+  //     link: 'https://calendar.google.com/calendar/r',
+  //   },
+  //   {
+  //     image: googleDocs,
+  //     text: 'Google docs',
+  //     link: 'https://docs.google.com/document/u/0/?tgif=d',
+  //   },
+  //   {
+  //     image: youtube,
+  //     text: 'Youtube',
+  //     link: 'https://www.youtube.com/',
+  //   },
+  //   {
+  //     image: javascript,
+  //     text: 'Учебник Javascript',
+  //     link: 'https://learn.javascript.ru/',
+  //   },
+  //   {
+  //     image: github,
+  //     text: 'Github',
+  //     link: 'https://github.com/',
+  //   },
+  //   {
+  //     image: react,
+  //     text: 'React',
+  //     link: 'https://reactjs.org/',
+  //   },
+  //   {
+  //     image: redux,
+  //     text: 'Redux',
+  //     link: 'https://redux.js.org/',
+  //   },
+  // ],
+  linksArray: JSON.parse(localStorage.getItem('linksArray')) || [],
+  linksArrayString: localStorage.getItem('linksArray'),
   newLink: {},
   arrayOfVisitedSites: [],
   sliderWindowVision: false,
@@ -105,7 +105,7 @@ let initialState = {
   weatherError: null,
   modalWindowVision: false,
 }
-localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
+// localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
 // console.log(initialState);
 setCssVariables('--columns-number', initialState.customizationColumnsNumber);
 setCssVariables('--link-size', initialState.customizationLinkSize);

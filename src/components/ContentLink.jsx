@@ -5,6 +5,7 @@ import styles from '../styles/ContentLink.scss';
 import Penguin from '../images/Penguin.ico';
 
 class ContentLink extends React.Component {
+
   render() {
     const {
       link,
@@ -14,6 +15,8 @@ class ContentLink extends React.Component {
       linksArray,
       onClickOpenModal,
       deleteLink,
+      changeState,
+
       dragItemStart,
       dragItemOver,
       dragItemEnter,
@@ -22,20 +25,22 @@ class ContentLink extends React.Component {
       dragItemDrop,
     } = this.props;
 
+    // console.log(this);
+
     return (
       <div className="link">
         <a
           href={link}
           className={styles.a}
           onClick={!text ? e => onClickOpenModal(e) : null}
-          draggable="true"
+          draggable={index >= 0 ? "true" : false}
           id={index}
           onDragStart={e => dragItemStart(e, index)}
-          onDragOver={dragItemOver}
+          onDragOver={e => dragItemOver(e, index)}
           onDragEnter={e => dragItemEnter(e, index)}
           onDragLeave={e => dragItemLeave(e, index)}
-          onDragEnd={dragItemEnd}
-          onDrop={e => dragItemDrop(e, linksArray, index)}
+          onDragEnd={e => dragItemEnd(e, index)}
+          onDrop={e => dragItemDrop(e, index, linksArray, changeState)}
         >
           <div>
             <img
@@ -62,6 +67,8 @@ class ContentLink extends React.Component {
     );
   }
 }
+
+// ContentLink.contextType = ExampleContext;
 
 ContentLink.defaultProps = {
   link: '',

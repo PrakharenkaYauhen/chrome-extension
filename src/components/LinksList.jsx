@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import plus from '../images/plus.png';
 import ContentLinkCNT from '../containers/ContentLinkCNT';
+import { ExampleContext } from '../helpers/dragAndDrop';
 
 class LinksList extends React.Component {
   componentDidMount() {
@@ -18,25 +19,40 @@ class LinksList extends React.Component {
 
   render() {
     const {
-      linksArray,
       linksArrayString,
+      pageForTheSlideWindow,
     } = this.props;
 
+    const linksArray = JSON.parse(linksArrayString);
+
     const content = linksArray.map((item, i) => (
-      <ContentLinkCNT
-        key={item.text}
-        image={item.image}
-        text={item.text}
-        link={item.link}
-        index={i}
-      />
+      <ExampleContext.Consumer key={item.text}>
+        {dragContext => (
+          <ContentLinkCNT
+            image={item.image}
+            text={item.text}
+            link={item.link}
+            index={i}
+            {...dragContext}
+          />
+        )}
+      </ExampleContext.Consumer>
     ));
 
     return (
-      <div>
-        {content}
-        <ContentLinkCNT image={plus} index={-1} />
-      </div>
+      <ExampleContext.Consumer>
+        {dragContext => (
+          <div
+            style={pageForTheSlideWindow === null || pageForTheSlideWindow === 'cross'
+              ? null
+              : { display: 'none' }}
+          // {...dragContext}
+          >
+            {content}
+            <ContentLinkCNT image={plus} index={-1} {...dragContext} />
+          </div>
+        )}
+      </ExampleContext.Consumer>
     );
   }
 }
@@ -46,7 +62,6 @@ LinksList.defaultProps = {
 };
 
 LinksList.propTypes = {
-  linksArray: PropTypes.instanceOf(Array).isRequired,
   linksArrayString: PropTypes.string,
   getChromeLocalStorage: PropTypes.func.isRequired,
 };

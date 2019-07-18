@@ -3,11 +3,13 @@ import App from '../components/App';
 
 const mapStateToProps = (state) => {
   const {
-    customizationSiteBackgroundPhoto
+    customizationSiteBackgroundPhoto,
+    pageForTheSlideWindow,
   } = state;
 
   return {
-    customizationSiteBackgroundPhoto
+    customizationSiteBackgroundPhoto,
+    pageForTheSlideWindow,
   };
 };
 

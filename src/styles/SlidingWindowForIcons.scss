@@ -9,6 +9,8 @@
   text-align: center;
   transition: transform 1.5s;
   transform: translateY(-100%) translateZ(0);
+  border-bottom: 1px solid #c0c0c0;
+  box-sizing: border-box;
 
   &-hide {
     transform: translateX(0);
