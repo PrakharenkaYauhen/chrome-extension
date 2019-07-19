@@ -36,15 +36,106 @@ body {
 }
 
 .bookmarks {
-  ul {
-    text-align-last: left;
+  // width: 90%;
+  margin: 0 auto;
 
-    li {
-      img {
-        height: 14px;
-        margin-right: 10px;
-        vertical-align: middle;
+  h1 {
+    height: calc(100vh - 89px);
+    line-height: calc(100vh - 89px);
+    font-size: 48px;
+    margin: 0;
+  }
+
+  .links-list {
+    position: relative;
+    margin: 5px 0;
+    padding: 0;
+    text-align: left;
+
+    &>li {
+      position: relative;
+      margin: 5px;
+      padding: 5px;
+      display: inline-block;
+      border: 0.5px solid whitesmoke {
+        right: none;
+        left: none;
+        radius: 5px 
+      }
+      a {
+        color: #fff;
+        cursor: default;
+        text-decoration: none;
+
+        img {
+          height: 14px;
+          margin: 0 5px;
+          vertical-align: middle;
+        }
+      }
+
+      .links-list-inside {
+        display: none;
+        position: absolute;
+        width: auto;
+        border: 0.5px solid whitesmoke {
+          radius: 5px 
+        }
+        top: 28px;
+        left: 0;
+        background: var(--main-color);
+        z-index: 1;
+        padding: 0;
+      
+        &>li {
+          display: block;
+          border: none {
+            bottom: 0.5px solid whitesmoke;
+            radius: 0;
+          };
+          color: #fff;
+          padding: 5px;
+          position: relative;
+
+          &:last-child {
+            border: none;
+          }
+
+          a {
+            color: #fff;
+            word-wrap: normal;
+            text-decoration: none;
+          }
+        }
       }
     }
+
+    li .tooltiptext {
+      visibility: hidden;
+      max-width: 150px;
+      font-size: 12px;
+      background: var(--main-color);
+      border: 0.5px solid whitesmoke;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      // overflow: hidden;
+      word-wrap: break-word;
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 2;
+      top: 30px;
+      left: 15px;
+    }
+    
+    li:hover>a>.tooltiptext {
+      visibility: visible;
+    }
   }
+}
+
+.links-list>li:hover>.links-list-inside {
+  display: block;
 }
