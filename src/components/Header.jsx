@@ -5,38 +5,49 @@ import weather from '../images/weather.png';
 import wrench from '../images/wrench.png';
 import book from '../images/book.png';
 import magnifier from '../images/magnifier.png';
+import bookmarks from '../images/bookmarks.png';
 import cross from '../images/cross.png';
 import HeaderIconCNT from '../containers/HeaderIconCNT';
 // import styles from '../styles/Header.scss';
 import '../styles/Header.scss';
 
 function Header(props) {
-  const listOfIcons = [
+  const arrayOfWorkingIcons = [
     ['cup', cup],
     ['weather', weather],
-    ['magnifier', magnifier],
     ['book', book],
-    ['wrench', wrench]
   ];
 
-  const currentlistOfIcons = listOfIcons.map((item) => {
-    if (item[0] === props.pageForTheSlideWindow) {
-      const newItem = ['cross', cross];
-      return newItem;
-    }
-    return item;
-  });
+  const arrayOfSettingsIcons = [
+    ['magnifier', magnifier],
+    ['bookmarks', bookmarks],
+    ['wrench', wrench],
+  ];
 
-  const content = currentlistOfIcons.map(item => (
-    <HeaderIconCNT
-      key={item[0]}
-      image={item[1]}
-      icon={item[0]}
-    />));
+  let makeList = (arrayOfIcons) => {
+    const correctedArrayOfIcons = arrayOfIcons.map((item) => {
+      if (item[0] === props.pageForTheSlideWindow) {
+        const newItem = ['cross', cross];
+        return newItem;
+      }
+      return item;
+    });
+
+    return correctedArrayOfIcons.map(item => (
+      <HeaderIconCNT
+        key={item[0]}
+        image={item[1]}
+        icon={item[0]}
+      />));
+  }
+
+  const contentOfWorkingIcons = makeList(arrayOfWorkingIcons);
+  const contentOfSettingsIcons = makeList(arrayOfSettingsIcons);
 
   return (
     <div className="header">
-      {content}
+      <div>{contentOfWorkingIcons}</div>
+      <div>{contentOfSettingsIcons}</div>
     </div>
   );
 }

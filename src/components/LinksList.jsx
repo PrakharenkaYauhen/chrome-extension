@@ -19,11 +19,12 @@ class LinksList extends React.Component {
 
   render() {
     const {
+      linksArray,
       linksArrayString,
       pageForTheSlideWindow,
     } = this.props;
 
-    const linksArray = JSON.parse(linksArrayString);
+    // const linksArray = JSON.parse(linksArrayString);
 
     const content = linksArray.map((item, i) => (
       <ExampleContext.Consumer key={item.text}>
@@ -40,19 +41,18 @@ class LinksList extends React.Component {
     ));
 
     return (
-      <ExampleContext.Consumer>
-        {dragContext => (
-          <div
-            style={pageForTheSlideWindow === null || pageForTheSlideWindow === 'cross'
-              ? null
-              : { display: 'none' }}
-          // {...dragContext}
-          >
-            {content}
+      <div
+        style={pageForTheSlideWindow === null || pageForTheSlideWindow === 'cross'
+          ? null
+          : { display: 'none' }}
+      >
+        {content}
+        <ExampleContext.Consumer>
+          {dragContext => (
             <ContentLinkCNT image={plus} index={-1} {...dragContext} />
-          </div>
-        )}
-      </ExampleContext.Consumer>
+          )}
+        </ExampleContext.Consumer>
+      </div>
     );
   }
 }

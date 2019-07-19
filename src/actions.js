@@ -6,6 +6,7 @@ export const FILL_WEATHER = 'FILL_WEATHER'
 export const MODAL_WINDOW = 'MODAL_WINDOW'
 export const FORM_NEW_LINK = 'FORM_NEW_LINK'
 export const ADD_NEW_LINK = 'ADD_NEW_LINK'
+export const SET_CHROME_BOOKMARKS = 'SET_CHROME_BOOKMARKS'
 export const GET_CHROME_LOCAL_STORAGE = 'GET_CHROME_LOCAL_STORAGE'
 export const SET_CUSTOMIZATION_COLUMN_NUMBER = 'SET_CUSTOMIZATION_COLUMN_NUMBER'
 export const SET_CUSTOMIZATION_LINK_SIZE = 'SET_CUSTOMIZATION_LINK_SIZE'
@@ -46,6 +47,11 @@ export function actionFormNewLink(action) {
 export function actionAddNewLink(action) {
   // console.log(action);
   return { type: ADD_NEW_LINK, action }
+}
+
+export function actionSetChromeBookmarks(action) {
+  // console.log(action);
+  return { type: SET_CHROME_BOOKMARKS, action }
 }
 
 export function actionGetChromeLocalStorage(action) {

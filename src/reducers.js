@@ -18,6 +18,7 @@ import {
   MODAL_WINDOW,
   FORM_NEW_LINK,
   ADD_NEW_LINK,
+  SET_CHROME_BOOKMARKS,
   GET_CHROME_LOCAL_STORAGE,
   SET_CUSTOMIZATION_COLUMN_NUMBER,
   SET_CUSTOMIZATION_LINK_SIZE,
@@ -79,11 +80,15 @@ let initialState = {
   //   },
   // ],
   linksArray: JSON.parse(localStorage.getItem('linksArray')) || [],
-  linksArrayString: localStorage.getItem('linksArray'),
+  // linksArrayString: localStorage.getItem('linksArray') || '',
+  linksArrayString: '',
   newLink: {},
   arrayOfVisitedSites: [],
-  sliderWindowVision: false,
-  pageForTheSlideWindow: null,
+  chromeBookmarks: [{title:1}, {title:2}, {title:3}],
+  // sliderWindowVision: false,
+  sliderWindowVision: true,
+  pageForTheSlideWindow: 'bookmarks',
+  // pageForTheSlideWindow: null,
   customizationAside: false,
   customizationColumnsNumber: localStorage.getItem('customization') ?
     JSON.parse(localStorage.getItem('customization'))['rowNumber']
@@ -158,6 +163,10 @@ export default function reducerExtension(state = initialState, action) {
       return Object.assign({}, state, {
         linksArray: action.action.linksArray,
         linksArrayString: action.action.linksArrayString,
+      })
+    case SET_CHROME_BOOKMARKS:
+      return Object.assign({}, state, {
+        chromeBookmarks: action.action.chromeBookmarks,
       })
     case SET_CUSTOMIZATION_COLUMN_NUMBER:
       return Object.assign({}, state, {

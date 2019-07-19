@@ -4,12 +4,10 @@ import { actionModalWindow, actionGetChromeLocalStorage } from '../actions';
 import localStorageSets from '../helpers/localStorageSets';
 
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   const {
     linksArray,
   } = state;
-
-  // console.log(props);
 
   return {
     linksArray,

@@ -6,11 +6,13 @@ import { actionGetChromeLocalStorage } from '../actions';
 
 const mapStateToProps = (state) => {
   const {
+    linksArray,
     linksArrayString,
     pageForTheSlideWindow,
   } = state;
 
   return {
+    linksArray,
     linksArrayString,
     pageForTheSlideWindow,
   };

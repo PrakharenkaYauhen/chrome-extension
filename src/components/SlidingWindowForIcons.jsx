@@ -4,6 +4,7 @@ import FootballCNT from '../containers/FootballCNT';
 import WeatherCNT from '../containers/WeatherCNT';
 import TableOfVisitedSitesCNT from '../containers/TableOfVisitedSitesCNT';
 import BookCNT from '../containers/BookCNT';
+import BookmarksCNT from '../containers/BookmarksCNT';
 // import styles from '../styles/SlidingWindowForIcons.scss';
 import '../styles/SlidingWindowForIcons.scss';
 
@@ -25,6 +26,8 @@ function SlidingWindowForIcons(props) {
     content = <TableOfVisitedSitesCNT />;
   } else if (pageForTheSlideWindow === 'book') {
     content = <BookCNT />;
+  } else if (pageForTheSlideWindow === 'bookmarks') {
+    content = <BookmarksCNT />;
   } else if (pageForTheSlideWindow === 'cross') {
     content = previousContent;
   }

@@ -25,8 +25,6 @@ class ContentLink extends React.Component {
       dragItemDrop,
     } = this.props;
 
-    // console.log(this);
-
     return (
       <div className="link">
         <a
@@ -67,8 +65,6 @@ class ContentLink extends React.Component {
     );
   }
 }
-
-// ContentLink.contextType = ExampleContext;
 
 ContentLink.defaultProps = {
   link: '',

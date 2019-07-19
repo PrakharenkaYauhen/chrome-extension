@@ -34,3 +34,17 @@ body {
     border: 1px solid whitesmoke;
   }
 }
+
+.bookmarks {
+  ul {
+    text-align-last: left;
+
+    li {
+      img {
+        height: 14px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
+}

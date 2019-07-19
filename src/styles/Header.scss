@@ -5,4 +5,13 @@
   border: {
     bottom: 2px double #c0c0c0;
   }
+
+  div {
+    display: inline-block;
+  }
+
+  div:last-child {
+    position: absolute;
+    right: 0;
+  }
 }
