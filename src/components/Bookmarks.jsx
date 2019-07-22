@@ -1,6 +1,7 @@
 /* global chrome */
 
 import React from 'react';
+import RightClickModalCNT from '../containers/RightClickModalCNT';
 // import PropTypes from 'prop-types';
 // import styles from '../styles/HeaderIcon.scss';
 import folder from '../images/folder.png';
@@ -31,13 +32,19 @@ class Bookmarks extends React.Component {
       chromeBookmarks,
       newBookmark,
       getTreeBookmarks,
+      rightClickBookmarksModal,
       onChange,
       setNewLink,
+      onRightClickLink,
+      onClick,
+      onRightClick,
     } = this.props;
 
-    const itemLink = (url, title) => {
+    const itemLink = (url, title, id) => {
       return (
-        <a href={url}>
+        <a href={url} id={id}
+          onContextMenuCapture={e => onRightClickLink(e)}
+        >
           <img
             src={`http://s2.googleusercontent.com/s2/favicons?domain_url=${url}`}
             alt=""
@@ -52,7 +59,7 @@ class Bookmarks extends React.Component {
       return array.map((item) => {
         return (
           <li key={item.dateAdded}>
-            {itemLink(item.url, item.title)}
+            {itemLink(item.url, item.title, item.id)}
           </li>
         )
       })
@@ -74,7 +81,7 @@ class Bookmarks extends React.Component {
               </>
             )
             : (
-              itemLink(item.url, item.title)
+              itemLink(item.url, item.title, item.id)
             )
           }
         </li >
@@ -82,11 +89,15 @@ class Bookmarks extends React.Component {
     })
 
     return (
-      <div className="bookmarks" >
+      <div
+        className="bookmarks"
+        onContextMenuCapture={e => onRightClick(e)}
+        onClick={e => onClick(e)}
+      >
         <ul className="links-list">
           {content}
         </ul>
-        <div>
+        <div className="bookmarks-add-link">
           <h1>Bookmarks</h1>
           <div>
             <label htmlFor="formOfLink">Check if you want to make a folder insted of link: </label>
@@ -94,9 +105,7 @@ class Bookmarks extends React.Component {
               type="checkbox"
               name="formOfLink"
               id="formOfLink"
-              // value={true}
               onChange={onChange}
-              // checked={newBookmark.title}
               checked={null}
             />
           </div>
@@ -113,7 +122,6 @@ class Bookmarks extends React.Component {
           <div>
             <label htmlFor="linkAdress">Link's adress: </label>
             <input
-              // disabled={newBookmark.check ? null : "disabled"}
               disabled={newBookmark.check ? "disabled" : null}
               type="text"
               name="linkAdress"
@@ -128,6 +136,7 @@ class Bookmarks extends React.Component {
             {'add link or folder'}
           </button>
         </div>
+        {rightClickBookmarksModal ? <RightClickModalCNT /> : null}
       </div>
     );
   }

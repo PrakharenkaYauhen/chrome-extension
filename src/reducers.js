@@ -18,6 +18,7 @@ import {
   MODAL_WINDOW,
   FORM_NEW_LINK,
   NEW_BOOKMARK,
+  BOOKMARK_MODAL,
   ADD_NEW_LINK,
   SET_CHROME_BOOKMARKS,
   GET_CHROME_LOCAL_STORAGE,
@@ -84,13 +85,17 @@ let initialState = {
   // linksArrayString: localStorage.getItem('linksArray') || '',
   linksArrayString: '',
   newLink: {},
-  newBookmark: {check: false},
+  newBookmark: { check: false },
   arrayOfVisitedSites: [],
   chromeBookmarks: [{ title: 1, dateAdded: 1 }, { title: 2, dateAdded: 2 }, { title: 3, dateAdded: 3 }],
   // sliderWindowVision: false,
   sliderWindowVision: true,
   pageForTheSlideWindow: 'bookmarks',
   // pageForTheSlideWindow: null,
+  rightClickBookmarksModal: false,
+  rightClickBookmarksId: null,
+  rightClickBookmarksModalTop: 0,
+  rightClickBookmarksModalLeft: 0,
   customizationAside: false,
   customizationColumnsNumber: localStorage.getItem('customization') ?
     JSON.parse(localStorage.getItem('customization'))['rowNumber']
@@ -157,6 +162,13 @@ export default function reducerExtension(state = initialState, action) {
     case NEW_BOOKMARK:
       return Object.assign({}, state, {
         newBookmark: action.action.newBookmark,
+      })
+    case BOOKMARK_MODAL:
+      return Object.assign({}, state, {
+        rightClickBookmarksModal: action.action.rightClickBookmarksModal,
+        rightClickBookmarksId: action.action.rightClickBookmarksId,
+        rightClickBookmarksModalTop: action.action.rightClickBookmarksModalTop,
+        rightClickBookmarksModalLeft: action.action.rightClickBookmarksModalLeft,
       })
     case ADD_NEW_LINK:
       return Object.assign({}, state, {

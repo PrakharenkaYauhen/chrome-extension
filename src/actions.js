@@ -7,6 +7,7 @@ export const MODAL_WINDOW = 'MODAL_WINDOW'
 export const FORM_NEW_LINK = 'FORM_NEW_LINK'
 export const ADD_NEW_LINK = 'ADD_NEW_LINK'
 export const NEW_BOOKMARK = 'NEW_BOOKMARK'
+export const BOOKMARK_MODAL = 'BOOKMARK_MODAL'
 export const SET_CHROME_BOOKMARKS = 'SET_CHROME_BOOKMARKS'
 export const GET_CHROME_LOCAL_STORAGE = 'GET_CHROME_LOCAL_STORAGE'
 export const SET_CUSTOMIZATION_COLUMN_NUMBER = 'SET_CUSTOMIZATION_COLUMN_NUMBER'
@@ -53,6 +54,11 @@ export function actionAddNewLink(action) {
 export function actionAddNewBookmark(action) {
   // console.log(action);
   return { type: NEW_BOOKMARK, action }
+}
+
+export function actionBookmarksModal(action) {
+  // console.log(action);
+  return { type: BOOKMARK_MODAL, action }
 }
 
 export function actionSetChromeBookmarks(action) {

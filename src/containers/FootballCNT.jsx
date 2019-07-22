@@ -43,6 +43,7 @@ const mapDispatchToProps = (dispatch) => {
       const newGamesObject = result[1].events;
       const lastGamesObject = result[2].results;
       const juventusIdNumberInObjectAPI = '133676';
+      console.log(result);
       const setRequestString = (teamNumber, eventObject) => (
         `${requestString}${eventObject[teamNumber].idAwayTeam === juventusIdNumberInObjectAPI
           ? eventObject[teamNumber].idHomeTeam
@@ -68,6 +69,7 @@ const mapDispatchToProps = (dispatch) => {
                   juventusIsLoaded: true,
                   juventusError: null,
                 };
+                console.log(action.juventusObject);
                 dispatch(actionFillJuventus(action));
               },
               (error) => {

@@ -2,17 +2,23 @@
 
 import { connect } from 'react-redux';
 import Bookmarks from '../components/Bookmarks';
-import { actionSetChromeBookmarks, actionAddNewBookmark } from '../actions';
+import {
+  actionSetChromeBookmarks,
+  actionAddNewBookmark,
+  actionBookmarksModal,
+} from '../actions';
 
 const mapStateToProps = (state) => {
   const {
     chromeBookmarks,
     newBookmark,
+    rightClickBookmarksModal,
   } = state;
 
   return {
     chromeBookmarks,
     newBookmark,
+    rightClickBookmarksModal,
   };
 };
 
@@ -43,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
       } else if (e.target.name === 'linkAdress') {
         linkAdressInputValue = e.target.value;
       } else if (e.target.name === 'formOfLink') {
-        linkFormCheck = e.target.checked === false ? false: true;
+        linkFormCheck = e.target.checked === false ? false : true;
       }
 
       const newBookmark = {
@@ -77,6 +83,41 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionAddNewBookmark(action));
 
       getTreeBookmarks();
+    },
+
+    onRightClickLink: e => {
+      e.preventDefault();
+      console.log(e.currentTarget.id);
+      console.log(e.clientX);
+      console.log(e.clientY);
+      const action = {
+        rightClickBookmarksModal: true,
+        rightClickBookmarksId: e.currentTarget.id,
+        rightClickBookmarksModalTop: e.clientY - 37 + 'px',
+        rightClickBookmarksModalLeft: e.clientX + 1 + 'px',
+      };
+      dispatch(actionBookmarksModal(action));
+    },
+
+    onClick: e => {
+      const action = {
+        rightClickBookmarksModal: false,
+        rightClickBookmarksId: null,
+        rightClickBookmarksModalTop: 0,
+        rightClickBookmarksModalLeft: 0,
+      };
+      dispatch(actionBookmarksModal(action));
+    },
+
+    onRightClick: e => {
+      // e.preventDefault();
+      const action = {
+        rightClickBookmarksModal: false,
+        rightClickBookmarksId: null,
+        rightClickBookmarksModalTop: 0,
+        rightClickBookmarksModalLeft: 0,
+      };
+      dispatch(actionBookmarksModal(action));
     }
   };
 };

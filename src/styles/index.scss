@@ -39,7 +39,7 @@ body {
   height: 92vh;
   margin: 0 auto;
 
-  &>div {
+  .bookmarks-add-link {
     margin: 100px;
 
     h1 {
@@ -68,19 +68,24 @@ body {
       position: relative;
       box-sizing: border-box;
       margin: 5px;
-      padding: 5px;
       display: inline-block;
-      border: 0.5px solid whitesmoke {
-        top: none;
-        right: none;
-        left: none;
-        radius: 5px 
-      }
+      // border: 0.5px solid whitesmoke {
+      //   top: none;
+      //   right: none;
+      //   left: none;
+      //   radius: 5px 
+      // }
 
       button {
         color: #fff;
         background: transparent;
         border: none;
+        border: 0.5px solid whitesmoke {
+          top: none;
+          right: none;
+          left: none;
+          radius: 5px 
+        }
 
         img {
           height: 14px;
@@ -93,6 +98,13 @@ body {
         color: #fff;
         cursor: default;
         text-decoration: none;
+        padding: 5px;
+        border: 0.5px solid whitesmoke {
+          top: none;
+          right: none;
+          left: none;
+          radius: 5px 
+        }
 
         img {
           height: 14px;
@@ -172,4 +184,29 @@ body {
 
 .links-list>li:hover>.links-list-inside {
   display: block;
+}
+
+
+.right-click-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    text-align-last: left;
+    border: 0.5px solid whitesmoke;
+    background: var(--main-color);
+
+    li {
+      list-style-type: none;
+      padding: 2px;
+
+      &:hover {
+        background: #4d4d4d;
+        cursor: default;
+      }
+    }
+  }
 }
