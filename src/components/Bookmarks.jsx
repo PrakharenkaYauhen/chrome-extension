@@ -16,23 +16,43 @@ class Bookmarks extends React.Component {
     }
   }
 
+  // componentDidUpdate(prevProps) {
+  //   const {
+  //     chromeBookmarks,
+  //     getTreeBookmarks,
+  //   } = this.props;
+  //   if (JSON.stringify(prevProps.chromeBookmarks) !== JSON.stringify(chromeBookmarks)) {
+  //     getTreeBookmarks();
+  //   }
+  // }
+
   render() {
     const {
       chromeBookmarks,
+      newBookmark,
+      getTreeBookmarks,
+      onChange,
+      setNewLink,
     } = this.props;
+
+    const itemLink = (url, title) => {
+      return (
+        <a href={url}>
+          <img
+            src={`http://s2.googleusercontent.com/s2/favicons?domain_url=${url}`}
+            alt=""
+          />
+          <span>{title}</span>
+          {<span className="tooltiptext">{url}</span>}
+        </a>
+      )
+    }
 
     const makeList = array => {
       return array.map((item) => {
         return (
-          <li key={item.title}>
-            <a href={item.url}>
-              <img
-                src={`http://s2.googleusercontent.com/s2/favicons?domain_url=${item.url}`}
-              />
-              <span>{item.title}</span>
-              {/* {item.children[0].title} */}
-              {<span className="tooltiptext">{item.url}</span>}
-            </a>
+          <li key={item.dateAdded}>
+            {itemLink(item.url, item.title)}
           </li>
         )
       })
@@ -41,30 +61,73 @@ class Bookmarks extends React.Component {
     const content = chromeBookmarks.map((item) => {
       return (
         <li key={item.dateAdded}>
-          <a href={item.children ? null : item.url}>
-            <img
-              src={item.children
-                ? folder
-                : `http://s2.googleusercontent.com/s2/favicons?domain_url=${item.url}`}
-            />
-            <span>{item.title}</span>
-            {item.url ? <span className="tooltiptext">{item.url}</span> : null}
-          </a>
           {item.children
-            ? <ol className="links-list-inside">
-              {makeList(item.children)}
-            </ol>
-            : null}
-        </li>
+            ? (
+              <>
+                <button>
+                  <img src={folder} alt="" />
+                  <span>{item.title}</span>
+                </button>
+                <ol className="links-list-inside">
+                  {makeList(item.children)}
+                </ol>
+              </>
+            )
+            : (
+              itemLink(item.url, item.title)
+            )
+          }
+        </li >
       )
     })
 
     return (
-      <div className="bookmarks">
+      <div className="bookmarks" >
         <ul className="links-list">
           {content}
         </ul>
-        <h1>Bookmarks</h1>
+        <div>
+          <h1>Bookmarks</h1>
+          <div>
+            <label htmlFor="formOfLink">Check if you want to make a folder insted of link: </label>
+            <input
+              type="checkbox"
+              name="formOfLink"
+              id="formOfLink"
+              // value={true}
+              onChange={onChange}
+              // checked={newBookmark.title}
+              checked={null}
+            />
+          </div>
+          <div>
+            <label htmlFor="linkTitle">Link's or folder's title: </label>
+            <input
+              type="text"
+              name="linkTitle"
+              id="linkTitle"
+              value={newBookmark.title}
+              onChange={onChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="linkAdress">Link's adress: </label>
+            <input
+              // disabled={newBookmark.check ? null : "disabled"}
+              disabled={newBookmark.check ? "disabled" : null}
+              type="text"
+              name="linkAdress"
+              id="linkAdress"
+              value={newBookmark.link}
+              onChange={onChange}
+            />
+          </div>
+          <button
+            onClick={() => setNewLink(newBookmark, getTreeBookmarks)}
+          >
+            {'add link or folder'}
+          </button>
+        </div>
       </div>
     );
   }
@@ -79,16 +142,3 @@ class Bookmarks extends React.Component {
 // };
 
 export default Bookmarks;
-
-
-
-{/* <li key={item.children[0].title}> */ }
-  // <a href={item.children[0].url}>
-    // <img
-      // src={`http://s2.googleusercontent.com/s2/favicons?domain_url=${item.children[0].url}`}
-    // />
-    // <span>{item.children[0].title}</span>
-    // {/* {item.children[0].title} */}
-    // {<span className="tooltiptext">{item.children[0].url}</span>}
-  // </a>
-// </li>

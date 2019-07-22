@@ -36,14 +36,26 @@ body {
 }
 
 .bookmarks {
-  // width: 90%;
+  height: 92vh;
   margin: 0 auto;
 
-  h1 {
-    height: calc(100vh - 89px);
-    line-height: calc(100vh - 89px);
-    font-size: 48px;
-    margin: 0;
+  &>div {
+    margin: 100px;
+
+    h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    div {
+      width: 350px;
+      margin: 10px auto;
+      text-align: right;
+    }
+
+    button {
+      margin: 10px;
+    }
   }
 
   .links-list {
@@ -54,14 +66,29 @@ body {
 
     &>li {
       position: relative;
+      box-sizing: border-box;
       margin: 5px;
       padding: 5px;
       display: inline-block;
       border: 0.5px solid whitesmoke {
+        top: none;
         right: none;
         left: none;
         radius: 5px 
       }
+
+      button {
+        color: #fff;
+        background: transparent;
+        border: none;
+
+        img {
+          height: 14px;
+          margin: 0 5px;
+          vertical-align: middle;
+        }
+      }
+
       a {
         color: #fff;
         cursor: default;
@@ -103,11 +130,14 @@ body {
 
           a {
             color: #fff;
-            word-wrap: normal;
             text-decoration: none;
           }
-        }
+        }        
       }
+    }
+
+    &>li:hover {
+      background: #4d4d4d;
     }
 
     li .tooltiptext {
@@ -128,6 +158,10 @@ body {
       z-index: 2;
       top: 30px;
       left: 15px;
+    }
+
+    li:hover {
+      background: #4d4d4d;
     }
     
     li:hover>a>.tooltiptext {
