@@ -38,6 +38,62 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
 
+    changeContextMenu: () => {
+      chrome.contextMenus.removeAll();
+
+      let editBookmark = chrome.contextMenus.create({
+        "title": 'edit bookmark',
+        "id": 'editBookmark',
+        "contexts":["link"],
+        "documentUrlPatterns": ['chrome-extension://cghmlfkcljlgbpbiclianmkjcmmgkmjb/index.html'],
+      });
+
+      let deleteBookmark = chrome.contextMenus.create({
+        "title": 'delete bookmark',
+        "id": 'deleteBookmark',
+        "contexts":["link"],
+        "documentUrlPatterns": ['chrome-extension://cghmlfkcljlgbpbiclianmkjcmmgkmjb/index.html'],
+        // "onclick": (info, tab) => {
+        //   console.log(info);
+        //   // console.log(info.linkUrl);
+        //   console.log(tab);
+        //   chrome.bookmarks.getTree(array => {
+        //     let linksArray = array[0].children[0].children;
+        //     // console.log(linksArray);
+        //     // console.log(linksArray[12].url);
+        //     let deletedObject = linksArray.filter(item => item.url === info.linkUrl);
+        //     // if(info.linkUrl === linksArray[12].url) {
+        //     //   console.log(22222);
+        //     // }
+        //     console.log(deletedObject[0].id);
+        //   });
+        // }
+      });
+
+      chrome.contextMenus.onClicked.addListener(clickData => {
+        if(clickData.menuItemId === "editBookmark") {
+          console.log(clickData);
+          chrome.bookmarks.search(clickData.linkUrl, item => {
+            console.log(item);
+          })
+        } else if (clickData.menuItemId === "deleteBookmark") {
+          console.log(clickData);
+        }
+      })
+
+      // let child1 = chrome.contextMenus.create({
+      //   "title": 'edit bookmark',
+      //   "id": 'edit bookmark',
+      //   "parentId": parent,
+      // });
+
+      // let child2 = chrome.contextMenus.create({
+      //   "title": 'delete bookmark',
+      //   "id": 'delete bookmark',
+      //   "parentId": parent,
+      // });
+    },
+
     // getElemLength: e => {
     //   console.log(e.target.getBoundingClientRect().width);
     // },
@@ -81,6 +137,13 @@ const mapDispatchToProps = (dispatch) => {
         newBookmark,
       };
       dispatch(actionAddNewBookmark(action));
+
+      getTreeBookmarks();
+    },
+
+    deleteBookmarkLink: (e, id, getTreeBookmarks) => {
+      console.log(id);
+      chrome.bookmarks.remove(id);
 
       getTreeBookmarks();
     },

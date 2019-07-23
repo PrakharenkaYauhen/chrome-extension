@@ -80,6 +80,7 @@ body {
         color: #fff;
         background: transparent;
         border: none;
+        padding: 5px;
         border: 0.5px solid whitesmoke {
           top: none;
           right: none;
@@ -118,9 +119,10 @@ body {
         position: absolute;
         width: auto;
         border: 0.5px solid whitesmoke {
-          radius: 5px 
+          radius: 5px;
+          top: none;
         }
-        top: 28px;
+        top: 27px;
         left: 0;
         background: var(--main-color);
         z-index: 1;
@@ -143,8 +145,13 @@ body {
           a {
             color: #fff;
             text-decoration: none;
+            border: none;
           }
-        }        
+        }
+        
+        &>li:hover {
+          border: 0.5px solid whitesmoke
+        }
       }
     }
 
@@ -182,7 +189,7 @@ body {
   }
 }
 
-.links-list>li:hover>.links-list-inside {
+.links-list>li:hover>a>.links-list-inside {
   display: block;
 }
 

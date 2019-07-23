@@ -10,10 +10,12 @@ class Bookmarks extends React.Component {
   componentDidMount() {
     const {
       getTreeBookmarks,
+      changeContextMenu,
     } = this.props;
 
     if (chrome.storage) {
       getTreeBookmarks();
+      changeContextMenu();
     }
   }
 
@@ -43,7 +45,7 @@ class Bookmarks extends React.Component {
     const itemLink = (url, title, id) => {
       return (
         <a href={url} id={id}
-          onContextMenuCapture={e => onRightClickLink(e)}
+        // onContextMenuCapture={e => onRightClickLink(e)}
         >
           <img
             src={`http://s2.googleusercontent.com/s2/favicons?domain_url=${url}`}
@@ -70,7 +72,7 @@ class Bookmarks extends React.Component {
         <li key={item.dateAdded}>
           {item.children
             ? (
-              <>
+              <a href='#0' id={item.id}>
                 <button>
                   <img src={folder} alt="" />
                   <span>{item.title}</span>
@@ -78,7 +80,7 @@ class Bookmarks extends React.Component {
                 <ol className="links-list-inside">
                   {makeList(item.children)}
                 </ol>
-              </>
+              </a>
             )
             : (
               itemLink(item.url, item.title, item.id)
@@ -91,8 +93,8 @@ class Bookmarks extends React.Component {
     return (
       <div
         className="bookmarks"
-        onContextMenuCapture={e => onRightClick(e)}
-        onClick={e => onClick(e)}
+      // onContextMenuCapture={e => onRightClick(e)}
+      // onClick={e => onClick(e)}
       >
         <ul className="links-list">
           {content}
