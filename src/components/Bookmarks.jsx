@@ -1,7 +1,7 @@
 /* global chrome */
 
 import React from 'react';
-import RightClickModalCNT from '../containers/RightClickModalCNT';
+import ModalWindowBookmarkCNT from '../containers/ModalWindowBookmarkCNT';
 // import PropTypes from 'prop-types';
 // import styles from '../styles/HeaderIcon.scss';
 import folder from '../images/folder.png';
@@ -19,33 +19,19 @@ class Bookmarks extends React.Component {
     }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const {
-  //     chromeBookmarks,
-  //     getTreeBookmarks,
-  //   } = this.props;
-  //   if (JSON.stringify(prevProps.chromeBookmarks) !== JSON.stringify(chromeBookmarks)) {
-  //     getTreeBookmarks();
-  //   }
-  // }
-
   render() {
     const {
       chromeBookmarks,
-      newBookmark,
       getTreeBookmarks,
-      rightClickBookmarksModal,
-      onChange,
-      setNewLink,
       onRightClickLink,
-      onClick,
-      onRightClick,
     } = this.props;
 
     const itemLink = (url, title, id) => {
       return (
-        <a href={url} id={id}
-        // onContextMenuCapture={e => onRightClickLink(e)}
+        <a
+          href={url}
+          id={id}
+          onContextMenuCapture={e => onRightClickLink(e, getTreeBookmarks)}
         >
           <img
             src={`http://s2.googleusercontent.com/s2/favicons?domain_url=${url}`}
@@ -72,7 +58,11 @@ class Bookmarks extends React.Component {
         <li key={item.dateAdded}>
           {item.children
             ? (
-              <a href='#0' id={item.id}>
+              <a
+                href='#0'
+                id={item.id}
+                onContextMenuCapture={e => onRightClickLink(e, getTreeBookmarks)}
+              >
                 <button>
                   <img src={folder} alt="" />
                   <span>{item.title}</span>
@@ -91,54 +81,14 @@ class Bookmarks extends React.Component {
     })
 
     return (
-      <div
-        className="bookmarks"
-      // onContextMenuCapture={e => onRightClick(e)}
-      // onClick={e => onClick(e)}
-      >
+      <div className="bookmarks">
         <ul className="links-list">
           {content}
         </ul>
         <div className="bookmarks-add-link">
           <h1>Bookmarks</h1>
-          <div>
-            <label htmlFor="formOfLink">Check if you want to make a folder insted of link: </label>
-            <input
-              type="checkbox"
-              name="formOfLink"
-              id="formOfLink"
-              onChange={onChange}
-              checked={null}
-            />
-          </div>
-          <div>
-            <label htmlFor="linkTitle">Link's or folder's title: </label>
-            <input
-              type="text"
-              name="linkTitle"
-              id="linkTitle"
-              value={newBookmark.title}
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="linkAdress">Link's adress: </label>
-            <input
-              disabled={newBookmark.check ? "disabled" : null}
-              type="text"
-              name="linkAdress"
-              id="linkAdress"
-              value={newBookmark.link}
-              onChange={onChange}
-            />
-          </div>
-          <button
-            onClick={() => setNewLink(newBookmark, getTreeBookmarks)}
-          >
-            {'add link or folder'}
-          </button>
         </div>
-        {rightClickBookmarksModal ? <RightClickModalCNT /> : null}
+        <ModalWindowBookmarkCNT />
       </div>
     );
   }

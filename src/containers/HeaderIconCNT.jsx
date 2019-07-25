@@ -30,15 +30,15 @@ const mapDispatchToProps = (dispatch) => {
       if (icon === 'cross') {
         chrome.contextMenus.removeAll();
       } else if (icon === 'bookmarks') {
-        let editBookmark = chrome.contextMenus.create({
+        chrome.contextMenus.create({
           "title": 'edit bookmark',
           "id": 'editBookmark',
           "contexts": ["link"],
-          "documentUrlPatterns": ['chrome-extension://cghmlfkcljlgbpbiclianmkjcmmgkmjb/index.html'], 
+          "documentUrlPatterns": ['chrome-extension://cghmlfkcljlgbpbiclianmkjcmmgkmjb/index.html'],
         });
-        console.log(window.location.href );
+        console.log(window.location.href);
 
-        let deleteBookmark = chrome.contextMenus.create({
+        chrome.contextMenus.create({
           "title": 'delete bookmark',
           "id": 'deleteBookmark',
           "contexts": ["link"],

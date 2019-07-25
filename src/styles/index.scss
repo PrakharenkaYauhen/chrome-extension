@@ -194,26 +194,19 @@ body {
 }
 
 
-.right-click-modal {
+.modal-bookmark {
+  width: 370px;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: calc(50% - 185px);
+  top: calc(50% - 100px);
+  border: 0.5px solid whitesmoke;
+  background: var(--main-color);
 
-  ul {
+  .bookmarks-add-link {
     margin: 0;
-    padding: 0;
-    text-align-last: left;
-    border: 0.5px solid whitesmoke;
-    background: var(--main-color);
 
-    li {
-      list-style-type: none;
-      padding: 2px;
-
-      &:hover {
-        background: #4d4d4d;
-        cursor: default;
-      }
-    }
+    // div {
+    //   margin: 0;
+    // }
   }
 }
