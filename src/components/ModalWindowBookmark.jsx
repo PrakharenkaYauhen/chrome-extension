@@ -1,7 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import styles from '../styles/ModalWindow.scss';
-import '../styles/ModalWindow.scss';
+import PropTypes from 'prop-types';
+import '../styles/ModalWindowBookmark.scss';
 
 function ModalWindowBookmark({
   modalWindowBookmarkVision,
@@ -25,32 +24,34 @@ function ModalWindowBookmark({
           />
         </div>
         <div>
-          <label htmlFor="linkTitle">Link's or folder's title: </label>
+          <label htmlFor="linkTitle">Link&apos;s or folder&apos;s title: </label>
           <input
             type="text"
             name="linkTitle"
             id="linkTitle"
-          value={newBookmark.title}
-          onChange={onChange}
+            value={newBookmark.title}
+            onChange={onChange}
           />
         </div>
         <div>
-          <label htmlFor="linkAdress">Link's adress: </label>
+          <label htmlFor="linkAdress">Link&apos;s adress: </label>
           <input
-            disabled={newBookmark.check ? "disabled" : null}
+            disabled={newBookmark.check ? 'disabled' : null}
             type="text"
             name="linkAdress"
             id="linkAdress"
-          value={newBookmark.link}
-          onChange={onChange}
+            value={newBookmark.link}
+            onChange={onChange}
           />
         </div>
         <button
+          type="button"
           onClick={e => setNewLink(e, newBookmark, getTreeBookmarks, modalWindowBookmarkId)}
         >
           {'add link or folder'}
         </button>
         <button
+          type="button"
           onClick={e => setNewLink(e)}
         >
           {'cancel'}
@@ -59,13 +60,13 @@ function ModalWindowBookmark({
     </div>);
 }
 
-// ModalWindow.propTypes = {
-//   linksArray: PropTypes.instanceOf(Array).isRequired,
-//   modalWindowVision: PropTypes.bool,
-//   newLink: PropTypes.instanceOf(Object).isRequired,
-//   onClickExit: PropTypes.func.isRequired,
-//   onChange: PropTypes.func.isRequired,
-//   onClickAddLink: PropTypes.func.isRequired,
-// };
+ModalWindowBookmark.propTypes = {
+  modalWindowBookmarkVision: PropTypes.bool.isRequired,
+  newBookmark: PropTypes.instanceOf(Object).isRequired,
+  modalWindowBookmarkId: PropTypes.string.isRequired,
+  getTreeBookmarks: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  setNewLink: PropTypes.func.isRequired,
+};
 
 export default ModalWindowBookmark;

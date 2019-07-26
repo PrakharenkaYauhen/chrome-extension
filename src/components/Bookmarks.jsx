@@ -1,10 +1,13 @@
 /* global chrome */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ModalWindowBookmarkCNT from '../containers/ModalWindowBookmarkCNT';
-// import PropTypes from 'prop-types';
-// import styles from '../styles/HeaderIcon.scss';
+import '../styles/Bookmarks.scss';
 import folder from '../images/folder.png';
+// import {
+//   getTreeBookmarks,
+// } from '../helpers/chromeAPI';
 
 class Bookmarks extends React.Component {
   componentDidMount() {
@@ -40,18 +43,18 @@ class Bookmarks extends React.Component {
           <span>{title}</span>
           {<span className="tooltiptext">{url}</span>}
         </a>
-      )
-    }
+      );
+    };
 
-    const makeList = array => {
+    const makeList = (array) => {
       return array.map((item) => {
         return (
           <li key={item.dateAdded}>
             {itemLink(item.url, item.title, item.id)}
           </li>
-        )
-      })
-    }
+        );
+      });
+    };
 
     const content = chromeBookmarks.map((item) => {
       return (
@@ -59,11 +62,11 @@ class Bookmarks extends React.Component {
           {item.children
             ? (
               <a
-                href='#0'
+                href="#0"
                 id={item.id}
                 onContextMenuCapture={e => onRightClickLink(e, getTreeBookmarks)}
               >
-                <button>
+                <button type="button">
                   <img src={folder} alt="" />
                   <span>{item.title}</span>
                 </button>
@@ -76,9 +79,9 @@ class Bookmarks extends React.Component {
               itemLink(item.url, item.title, item.id)
             )
           }
-        </li >
-      )
-    })
+        </li>
+      );
+    });
 
     return (
       <div className="bookmarks">
@@ -94,12 +97,11 @@ class Bookmarks extends React.Component {
   }
 }
 
-// HeaderIcon.propTypes = {
-//   image: PropTypes.string.isRequired,
-//   icon: PropTypes.string.isRequired,
-//   toggleCustomization: PropTypes.func.isRequired,
-//   toggleIcons: PropTypes.func.isRequired,
-//   sliderWindowVision: PropTypes.bool.isRequired,
-// };
+Bookmarks.propTypes = {
+  chromeBookmarks: PropTypes.instanceOf(Object).isRequired,
+  getTreeBookmarks: PropTypes.bool.isRequired,
+  changeContextMenu: PropTypes.bool.isRequired,
+  onRightClickLink: PropTypes.bool.isRequired,
+};
 
 export default Bookmarks;

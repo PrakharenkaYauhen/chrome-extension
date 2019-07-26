@@ -7,6 +7,10 @@ import {
   actionModalWindowBookmark,
   actionAddNewBookmark,
 } from '../actions';
+import {
+  deleteAllCromeContexItems,
+  makeCromeContexItem,
+} from '../helpers/chromeAPI';
 
 const mapStateToProps = (state) => {
   const {
@@ -23,7 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTreeBookmarks: () => {
-      chrome.bookmarks.getTree(array => {
+      chrome.bookmarks.getTree((array) => {
         console.log(array);
         const action = {
           chromeBookmarks: array[0].children[0].children,
@@ -33,83 +37,52 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     changeContextMenu: () => {
-      chrome.contextMenus.removeAll();
+      deleteAllCromeContexItems();
 
-      chrome.contextMenus.create({
-        "title": 'add bookmark',
-        "id": 'addBookmark',
-        "contexts": ["page"],
-        "documentUrlPatterns": ['chrome-extension://cghmlfkcljlgbpbiclianmkjcmmgkmjb/index.html'],
-      });
-
-
-      chrome.contextMenus.create({
-        "title": 'edit bookmark',
-        "id": 'editBookmark',
-        "contexts": ["link"],
-        "documentUrlPatterns": ['chrome-extension://cghmlfkcljlgbpbiclianmkjcmmgkmjb/index.html'],
-      });
-
-      chrome.contextMenus.create({
-        "title": 'delete bookmark',
-        "id": 'deleteBookmark',
-        "contexts": ["link"],
-        "documentUrlPatterns": ['chrome-extension://cghmlfkcljlgbpbiclianmkjcmmgkmjb/index.html'],
-      });
+      makeCromeContexItem('add bookmark', 'addBookmark', ['page']);
+      makeCromeContexItem('edit bookmark', 'editBookmark', ['link']);
+      makeCromeContexItem('delete bookmark', 'deleteBookmark', ['link']);
 
       chrome.contextMenus.onClicked.addListener((clickData) => {
-        if (clickData.menuItemId === "addBookmark") {
+        if (clickData.menuItemId === 'addBookmark') {
           const action = {
             modalWindowBookmarkVision: true,
             modalWindowBookmarkId: null,
           };
           dispatch(actionModalWindowBookmark(action));
-          console.log(2);
         }
-      })
+      });
     },
 
     onRightClickLink: (e, getTreeBookmarks) => {
-      let id = e.currentTarget.id;
-      console.log(1);
+      const id = e.currentTarget.id;
 
       chrome.contextMenus.onClicked.addListener((clickData) => {
-        if (clickData.menuItemId === "editBookmark") {
-          // console.log(clickData);
-          // console.log(modalWindowBookmarkId);
-          chrome.bookmarks.get(id, result => {
-            console.log(result);
-            let newBookmark = {
+        if (clickData.menuItemId === 'editBookmark') {
+          chrome.bookmarks.get(id, (result) => {
+            const newBookmark = {
               check: false,
               title: result[0].title,
               link: result[0].url,
             };
-      
+
             const action = {
               newBookmark,
             };
             dispatch(actionAddNewBookmark(action));
 
-            const action1 = {
+            const actionWindow = {
               modalWindowBookmarkVision: true,
               modalWindowBookmarkId: id,
             };
-            dispatch(actionModalWindowBookmark(action1));
-          })
-          // chrome.bookmarks.search(clickData.linkUrl, item => {
-          //   console.log(item);
-          // })
-        } else if (clickData.menuItemId === "deleteBookmark") {
-          console.log(clickData);
-          console.log(id);
-          // chrome.bookmarks.search(clickData.linkUrl, item => {
-          //   console.log(item);
-          // })
+            dispatch(actionModalWindowBookmark(actionWindow));
+          });
+        } else if (clickData.menuItemId === 'deleteBookmark') {
           chrome.bookmarks.remove(id);
 
           getTreeBookmarks();
         }
-      })
+      });
     },
   };
 };

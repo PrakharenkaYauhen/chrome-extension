@@ -1,0 +1,126 @@
+.bookmarks {
+  height: 92vh;
+  margin: 0 auto;
+
+  .links-list {
+    position: relative;
+    margin: 5px 0;
+    padding: 0;
+    text-align: left;
+
+    &>li {
+      position: relative;
+      box-sizing: border-box;
+      margin: 5px;
+      display: inline-block;
+
+      button {
+        color: #fff;
+        background: transparent;
+        border: none;
+        padding: 5px;
+
+        img {
+          height: 14px;
+          margin: 0 5px;
+          vertical-align: middle;
+        }
+      }
+
+      a {
+        color: #fff;
+        cursor: default;
+        text-decoration: none;
+        padding: 5px;
+        border: 0.5px solid whitesmoke {
+          top: none;
+          right: none;
+          left: none;
+          radius: 5px 
+        }
+
+        img {
+          height: 14px;
+          margin: 0 5px;
+          vertical-align: middle;
+        }
+      }
+
+      .links-list-inside {
+        display: none;
+        position: absolute;
+        width: auto;
+        border: 0.5px solid whitesmoke {
+          radius: 5px;
+          top: none;
+        }
+        top: 26px;
+        left: 0;
+        background: var(--main-color);
+        z-index: 1;
+        padding: 0;
+      
+        &>li {
+          display: block;
+          border: none {
+            bottom: 0.5px solid whitesmoke;
+            radius: 0;
+          };
+          color: #fff;
+          padding: 5px;
+          position: relative;
+
+          &:last-child {
+            border: none;
+          }
+
+          a {
+            color: #fff;
+            text-decoration: none;
+            border: none;
+          }
+        }
+        
+        &>li:hover {
+          border: 0.5px solid whitesmoke
+        }
+      }
+    }
+
+    &>li:hover>a {
+      background: #4d4d4d;
+    }
+
+    li .tooltiptext {
+      visibility: hidden;
+      max-width: 150px;
+      font-size: 12px;
+      background: var(--main-color);
+      border: 0.5px solid whitesmoke;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      // overflow: hidden;
+      word-wrap: break-word;
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 2;
+      top: 29px;
+      left: 30px;
+    }
+
+    li:hover {
+      background: #4d4d4d;
+    }
+    
+    li:hover>a>.tooltiptext {
+      visibility: visible;
+    }
+  }
+}
+
+.links-list>li:hover>a>.links-list-inside {
+  display: block;
+}

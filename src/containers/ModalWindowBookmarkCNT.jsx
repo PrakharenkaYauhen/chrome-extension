@@ -5,7 +5,7 @@ import ModalWindowBookmark from '../components/ModalWindowBookmark';
 import {
   actionSetChromeBookmarks,
   actionAddNewBookmark,
-  actionModalWindowBookmark
+  actionModalWindowBookmark,
 } from '../actions';
 
 const mapStateToProps = (state) => {
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
     getTreeBookmarks: () => {
-      chrome.bookmarks.getTree(array => {
+      chrome.bookmarks.getTree((array) => {
         console.log(array);
         const action = {
           chromeBookmarks: array[0].children[0].children,
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
       } else if (e.target.name === 'linkAdress') {
         linkAdressInputValue = e.target.value;
       } else if (e.target.name === 'formOfLink') {
-        linkFormCheck = e.target.checked === false ? false : true;
+        linkFormCheck = !e.target.checked ? false : true;
       }
 
       const newBookmark = {
@@ -62,14 +62,14 @@ const mapDispatchToProps = (dispatch) => {
       if (e.target.textContent !== 'cancel') {
         if (modalWindowBookmarkId) {
           chrome.bookmarks.update(modalWindowBookmarkId, {
-            'title': newBookmark.title,
-            'url': newBookmark.link
+            title: newBookmark.title,
+            url: newBookmark.link,
           });
         } else {
           chrome.bookmarks.create({
-            'parentId': "1",
-            'title': newBookmark.title,
-            'url': newBookmark.link
+            parentId: '1',
+            title: newBookmark.title,
+            url: newBookmark.link,
           });
         }
       }
@@ -78,14 +78,14 @@ const mapDispatchToProps = (dispatch) => {
       linkNameInputValue = '';
       linkAdressInputValue = '';
 
-      newBookmark = {
+      const clearBookmark = {
         check: false,
         title: '',
         link: '',
       };
 
       const action = {
-        newBookmark,
+        newBookmark: clearBookmark,
       };
       dispatch(actionAddNewBookmark(action));
 

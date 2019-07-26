@@ -1,0 +1,27 @@
+.modal-bookmark {
+  width: 370px;
+  position: fixed;
+  left: calc(50% - 185px);
+  top: calc(50% - 100px);
+  border: 0.5px solid whitesmoke;
+  background: var(--main-color);
+
+  .bookmarks-add-link {
+    margin: 0;
+
+    h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    div {
+      width: 350px;
+      margin: 10px auto;
+      text-align: right;
+    }
+
+    button {
+      margin: 10px;
+    }
+  }
+}
