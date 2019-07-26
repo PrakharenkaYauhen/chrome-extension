@@ -5,6 +5,7 @@ import Bookmarks from '../components/Bookmarks';
 import {
   actionSetChromeBookmarks,
   actionModalWindowBookmark,
+  actionAddNewBookmark,
 } from '../actions';
 
 const mapStateToProps = (state) => {
@@ -74,13 +75,27 @@ const mapDispatchToProps = (dispatch) => {
 
       chrome.contextMenus.onClicked.addListener((clickData) => {
         if (clickData.menuItemId === "editBookmark") {
-          console.log(clickData);
-          console.log(id);
-          const action = {
-            modalWindowBookmarkVision: true,
-            modalWindowBookmarkId: id,
-          };
-          dispatch(actionModalWindowBookmark(action));
+          // console.log(clickData);
+          // console.log(modalWindowBookmarkId);
+          chrome.bookmarks.get(id, result => {
+            console.log(result);
+            let newBookmark = {
+              check: false,
+              title: result[0].title,
+              link: result[0].url,
+            };
+      
+            const action = {
+              newBookmark,
+            };
+            dispatch(actionAddNewBookmark(action));
+
+            const action1 = {
+              modalWindowBookmarkVision: true,
+              modalWindowBookmarkId: id,
+            };
+            dispatch(actionModalWindowBookmark(action1));
+          })
           // chrome.bookmarks.search(clickData.linkUrl, item => {
           //   console.log(item);
           // })

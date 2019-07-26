@@ -7,7 +7,6 @@ import {
   actionAddNewBookmark,
   actionModalWindowBookmark
 } from '../actions';
-// import localStorageSets from '../helpers/localStorageSets';
 
 const mapStateToProps = (state) => {
   const {
@@ -40,7 +39,6 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     onChange: (e) => {
-      console.log(e.target.value);
       if (e.target.name === 'linkTitle') {
         linkNameInputValue = e.target.value;
       } else if (e.target.name === 'linkAdress') {
@@ -85,6 +83,7 @@ const mapDispatchToProps = (dispatch) => {
         title: '',
         link: '',
       };
+
       const action = {
         newBookmark,
       };
