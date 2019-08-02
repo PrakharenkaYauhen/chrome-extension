@@ -5,6 +5,7 @@ import ContentCNT from '../containers/ContentCNT';
 import CustomizationCNT from '../containers/CustomizationCNT';
 import SlidingWindowForIconsCNT from '../containers/SlidingWindowForIconsCNT';
 import ModalWindowCNT from '../containers/ModalWindowCNT';
+import AuthenticationWindowCNT from '../containers/AuthenticationWindowCNT';
 
 function App({ customizationSiteBackgroundPhoto, pageForTheSlideWindow }) {
   return (
@@ -15,6 +16,7 @@ function App({ customizationSiteBackgroundPhoto, pageForTheSlideWindow }) {
       <CustomizationCNT />
       <SlidingWindowForIconsCNT />
       <ModalWindowCNT />
+      <AuthenticationWindowCNT />
     </div>
   );
 }

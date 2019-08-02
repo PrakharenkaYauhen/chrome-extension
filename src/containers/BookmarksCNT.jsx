@@ -8,8 +8,9 @@ import {
   actionAddNewBookmark,
 } from '../actions';
 import {
-  deleteAllCromeContexItems,
-  makeCromeContexItem,
+  deleteAllChromeContexItems,
+  makeChromeContexItem,
+  getChromeTreeBookmarks,
 } from '../helpers/chromeAPI';
 
 const mapStateToProps = (state) => {
@@ -27,21 +28,15 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTreeBookmarks: () => {
-      chrome.bookmarks.getTree((array) => {
-        console.log(array);
-        const action = {
-          chromeBookmarks: array[0].children[0].children,
-        };
-        dispatch(actionSetChromeBookmarks(action));
-      });
+      getChromeTreeBookmarks(dispatch, actionSetChromeBookmarks)
     },
 
     changeContextMenu: () => {
-      deleteAllCromeContexItems();
+      deleteAllChromeContexItems();
 
-      makeCromeContexItem('add bookmark', 'addBookmark', ['page']);
-      makeCromeContexItem('edit bookmark', 'editBookmark', ['link']);
-      makeCromeContexItem('delete bookmark', 'deleteBookmark', ['link']);
+      makeChromeContexItem('add bookmark', 'addBookmark', ['page']);
+      makeChromeContexItem('edit bookmark', 'editBookmark', ['link']);
+      makeChromeContexItem('delete bookmark', 'deleteBookmark', ['link']);
 
       chrome.contextMenus.onClicked.addListener((clickData) => {
         if (clickData.menuItemId === 'addBookmark') {

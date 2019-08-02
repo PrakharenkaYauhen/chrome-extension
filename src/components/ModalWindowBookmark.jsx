@@ -6,7 +6,6 @@ function ModalWindowBookmark({
   modalWindowBookmarkVision,
   newBookmark,
   modalWindowBookmarkId,
-  getTreeBookmarks,
   onChange,
   setNewLink,
 }) {
@@ -46,7 +45,7 @@ function ModalWindowBookmark({
         </div>
         <button
           type="button"
-          onClick={e => setNewLink(e, newBookmark, getTreeBookmarks, modalWindowBookmarkId)}
+          onClick={e => setNewLink(e, newBookmark, modalWindowBookmarkId)}
         >
           {'add link or folder'}
         </button>
@@ -64,7 +63,6 @@ ModalWindowBookmark.propTypes = {
   modalWindowBookmarkVision: PropTypes.bool.isRequired,
   newBookmark: PropTypes.instanceOf(Object).isRequired,
   modalWindowBookmarkId: PropTypes.string.isRequired,
-  getTreeBookmarks: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   setNewLink: PropTypes.func.isRequired,
 };

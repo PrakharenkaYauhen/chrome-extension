@@ -7,6 +7,9 @@ import {
   actionAddNewBookmark,
   actionModalWindowBookmark,
 } from '../actions';
+import {
+  getChromeTreeBookmarks,
+} from '../helpers/chromeAPI';
 
 const mapStateToProps = (state) => {
   const {
@@ -28,16 +31,6 @@ const mapDispatchToProps = (dispatch) => {
   let linkAdressInputValue;
 
   return {
-    getTreeBookmarks: () => {
-      chrome.bookmarks.getTree((array) => {
-        console.log(array);
-        const action = {
-          chromeBookmarks: array[0].children[0].children,
-        };
-        dispatch(actionSetChromeBookmarks(action));
-      });
-    },
-
     onChange: (e) => {
       if (e.target.name === 'linkTitle') {
         linkNameInputValue = e.target.value;
@@ -58,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionAddNewBookmark(action));
     },
 
-    setNewLink: (e, newBookmark, getTreeBookmarks, modalWindowBookmarkId) => {
+    setNewLink: (e, newBookmark, modalWindowBookmarkId) => {
       if (e.target.textContent !== 'cancel') {
         if (modalWindowBookmarkId) {
           chrome.bookmarks.update(modalWindowBookmarkId, {
@@ -96,7 +89,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actionModalWindowBookmark(actionWindow));
 
       if (e.target.textContent === 'cancel') return;
-      getTreeBookmarks();
+      getChromeTreeBookmarks(dispatch, actionSetChromeBookmarks)
     },
   };
 };
