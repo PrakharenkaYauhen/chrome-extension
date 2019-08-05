@@ -1,10 +1,11 @@
+const checkPassword = require("../middleware/checkPassword");
 const auth = require("../middleware/auth");
 const bcrypt = require("bcrypt");
 const { User, validate } = require("../models/user-model");
 const express = require("express");
 const router = express.Router();
 
-router.get("/current", auth, async (req, res) => {
+router.get("/current", checkPassword, auth, async (req, res) => {
   // console.log(req);
   const user = await User.findById(req.user._id).select("-password");
   console.log(user);
@@ -14,7 +15,6 @@ router.get("/current", auth, async (req, res) => {
 router.post("/", async (req, res) => {
   // validate the request body first
   const { error } = validate(req.body);
-  // console.log(error);
   if (error) return res.status(400).send(error.details[0].message);
 
   //find an existing user

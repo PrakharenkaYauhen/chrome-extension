@@ -4,12 +4,10 @@ import App from '../components/App';
 const mapStateToProps = (state) => {
   const {
     customizationSiteBackgroundPhoto,
-    pageForTheSlideWindow,
   } = state;
 
   return {
     customizationSiteBackgroundPhoto,
-    pageForTheSlideWindow,
   };
 };
 

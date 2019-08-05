@@ -15,81 +15,83 @@ function AuthenticationWindow({
 }) {
 
   return (
-    <div className="modal-enter">
-      <h2>Authentication</h2>
-      <div>
-        <label htmlFor="tabName">Name:</label>
-        <input
-          type="text"
-          name="tabName"
-          id="tabName"
-          tabIndex="41"
-        // onChange={onChange}
-        // autoFocus
-        // ref={tabNameInput}
-        />
-      </div>
-      <div>
-        <label htmlFor="tabAdress">Password:</label>
-        <input
-          type="text"
-          name="tabAdress"
-          id="tabAdress"
-          tabIndex="42"
-        // onChange={onChange}
-        />
-      </div>
+    <div className="modal__cover">
+      <div className="modal-enter">
+        <h2>Authentication</h2>
+        <div>
+          <label htmlFor="tabName">Name:</label>
+          <input
+            type="text"
+            name="tabName"
+            id="tabName"
+            tabIndex="41"
+          // onChange={onChange}
+          // autoFocus
+          // ref={tabNameInput}
+          />
+        </div>
+        <div>
+          <label htmlFor="tabAdress">Password:</label>
+          <input
+            type="text"
+            name="tabAdress"
+            id="tabAdress"
+            tabIndex="42"
+          // onChange={onChange}
+          />
+        </div>
 
-      <button
-        tabIndex="43"
-        type="button"
-        className="modal__button_enter"
-        onClick={() => onEnterClick()}
-      >
-        {'Log in'}
-      </button>
+        <button
+          tabIndex="43"
+          type="button"
+          className="modal__button_enter"
+          onClick={() => onEnterClick()}
+        >
+          {'Log in'}
+        </button>
 
-      <div>
-        <label htmlFor="tabName">Name:</label>
-        <input
-          type="text"
-          name="tabName"
-          id="tabName"
-          tabIndex="44"
-        // onChange={onChange}
-        // autoFocus
-        // ref={tabNameInput}
-        />
-      </div>
-      <div>
-        <label htmlFor="tabAdress">E-mail:</label>
-        <input
-          type="text"
-          name="tabAdress"
-          id="tabAdress"
-          tabIndex="45"
-        // onChange={onChange}
-        />
-      </div>
-      <div>
-        <label htmlFor="tabAdress">Password:</label>
-        <input
-          type="text"
-          name="tabAdress"
-          id="tabAdress"
+        <div>
+          <label htmlFor="tabName">Name:</label>
+          <input
+            type="text"
+            name="tabName"
+            id="tabName"
+            tabIndex="44"
+          // onChange={onChange}
+          // autoFocus
+          // ref={tabNameInput}
+          />
+        </div>
+        <div>
+          <label htmlFor="tabAdress">E-mail:</label>
+          <input
+            type="text"
+            name="tabAdress"
+            id="tabAdress"
+            tabIndex="45"
+          // onChange={onChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="tabAdress">Password:</label>
+          <input
+            type="text"
+            name="tabAdress"
+            id="tabAdress"
+            tabIndex="46"
+          // onChange={onChange}
+          />
+        </div>
+
+        <button
           tabIndex="46"
-        // onChange={onChange}
-        />
+          type="button"
+          className="modal__button_enter"
+          onClick={() => onCreateClick()}
+        >
+          {'Create account'}
+        </button>
       </div>
-
-      <button
-        tabIndex="46"
-        type="button"
-        className="modal__button_enter"
-        onClick={() => onCreateClick()}
-      >
-        {'Create account'}
-      </button>
     </div>
   );
 }

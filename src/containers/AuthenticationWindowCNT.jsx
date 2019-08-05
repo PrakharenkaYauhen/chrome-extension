@@ -18,41 +18,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onClick: () => {
-//       let xhr = new XMLHttpRequest();
-
-//       let json = JSON.stringify({
-//         name: "Вася",
-//         // surname: "Петров"
-//         age: 30
-//       });
-
-//       xhr.open("POST", 'http://localhost:3001');
-//       xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-
-//       xhr.send(json);
-
-//       console.log('check');
-
-//       // $.ajax({
-//       //   url: "api/users",
-//       //   contentType: "application/json",
-//       //   method: "POST",
-//       //   data: JSON.stringify({
-//       //     name: userName,
-//       //     age: userAge
-//       //   }),
-//       //   success: function (user) {
-//       //     reset();
-//       //     $("table tbody").append(row(user));
-//       //   }
-//       // })
-//     }
-//   };
-// };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onEnterClick: () => {
@@ -64,12 +29,18 @@ const mapDispatchToProps = (dispatch) => {
         password: "11111"
       }
 
-      xhr.open("GET", 'http://localhost:3002/current' + `?${sessionStorage.getItem(user.name + 'auth')}`);
+      xhr.open("GET", 'http://localhost:3002/current' +
+        `?token=${sessionStorage.getItem(user.name + 'auth')}&name=${user.name}&password=${user.password}`);
       xhr.send();
 
-      xhr.onload = function(res) {
-        let object = JSON.parse(res.target.response)
-        console.log(object);
+      xhr.onload = function (res) {
+        if (xhr.status !== 200) {
+          let responseText = `status: ${xhr.status}, ${xhr.response}`;
+          console.log(responseText)
+        } else {
+          let object = JSON.parse(res.target.response)
+          console.log(object);
+        }
       }
 
       console.log('check1');
@@ -91,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
 
       xhr.send(json);
 
-      xhr.onload = function(res) {
+      xhr.onload = function (res) {
         let token = JSON.parse(res.target.response).token;
         sessionStorage.setItem(user.name + 'auth', token);
       }
