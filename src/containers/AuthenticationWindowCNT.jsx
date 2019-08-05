@@ -18,37 +18,85 @@ const mapStateToProps = (state) => {
   };
 };
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onClick: () => {
+//       let xhr = new XMLHttpRequest();
+
+//       let json = JSON.stringify({
+//         name: "Вася",
+//         // surname: "Петров"
+//         age: 30
+//       });
+
+//       xhr.open("POST", 'http://localhost:3001');
+//       xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+//       xhr.send(json);
+
+//       console.log('check');
+
+//       // $.ajax({
+//       //   url: "api/users",
+//       //   contentType: "application/json",
+//       //   method: "POST",
+//       //   data: JSON.stringify({
+//       //     name: userName,
+//       //     age: userAge
+//       //   }),
+//       //   success: function (user) {
+//       //     reset();
+//       //     $("table tbody").append(row(user));
+//       //   }
+//       // })
+//     }
+//   };
+// };
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: () => {
+    onEnterClick: () => {
       let xhr = new XMLHttpRequest();
 
-      let json = JSON.stringify({
-        name: "Вася",
-        // surname: "Петров"
-        age: 30
-      });
+      let user = {
+        name: "Vasya",
+        email: "Prorok04@yandex.ru",
+        password: "11111"
+      }
 
-      xhr.open("POST", 'http://localhost:3001/api/users');
+      xhr.open("GET", 'http://localhost:3002/current' + `?${sessionStorage.getItem(user.name + 'auth')}`);
+      xhr.send();
+
+      xhr.onload = function(res) {
+        let object = JSON.parse(res.target.response)
+        console.log(object);
+      }
+
+      console.log('check1');
+    },
+
+    onCreateClick: () => {
+      let xhr = new XMLHttpRequest();
+
+      let user = {
+        name: "Vasya",
+        email: "Prorok04@yandex.ru",
+        password: "11111"
+      }
+
+      let json = JSON.stringify(user);
+
+      xhr.open("POST", 'http://localhost:3002');
       xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
       xhr.send(json);
 
-      console.log('check');
+      xhr.onload = function(res) {
+        let token = JSON.parse(res.target.response).token;
+        sessionStorage.setItem(user.name + 'auth', token);
+      }
 
-      // $.ajax({
-      //   url: "api/users",
-      //   contentType: "application/json",
-      //   method: "POST",
-      //   data: JSON.stringify({
-      //     name: userName,
-      //     age: userAge
-      //   }),
-      //   success: function (user) {
-      //     reset();
-      //     $("table tbody").append(row(user));
-      //   }
-      // })
+      console.log('check2');
     }
   };
 };

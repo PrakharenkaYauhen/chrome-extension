@@ -7,7 +7,9 @@ function AuthenticationWindow({
   // linksArray,
   // modalWindowVision,
   // newLink,
-  onClick
+  onClick,
+  onEnterClick,
+  onCreateClick,
   // onChange,
   // onClickAddLink,
 }) {
@@ -22,9 +24,9 @@ function AuthenticationWindow({
           name="tabName"
           id="tabName"
           tabIndex="41"
-          // onChange={onChange}
-          // autoFocus
-          // ref={tabNameInput}
+        // onChange={onChange}
+        // autoFocus
+        // ref={tabNameInput}
         />
       </div>
       <div>
@@ -34,26 +36,59 @@ function AuthenticationWindow({
           name="tabAdress"
           id="tabAdress"
           tabIndex="42"
-          // onChange={onChange}
+        // onChange={onChange}
         />
       </div>
 
       <button
-        tabIndex="44"
+        tabIndex="43"
         type="button"
         className="modal__button_enter"
-        onClick={() => onClick()}
+        onClick={() => onEnterClick()}
       >
-        {'Add'}
+        {'Log in'}
       </button>
+
+      <div>
+        <label htmlFor="tabName">Name:</label>
+        <input
+          type="text"
+          name="tabName"
+          id="tabName"
+          tabIndex="44"
+        // onChange={onChange}
+        // autoFocus
+        // ref={tabNameInput}
+        />
+      </div>
+      <div>
+        <label htmlFor="tabAdress">E-mail:</label>
+        <input
+          type="text"
+          name="tabAdress"
+          id="tabAdress"
+          tabIndex="45"
+        // onChange={onChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="tabAdress">Password:</label>
+        <input
+          type="text"
+          name="tabAdress"
+          id="tabAdress"
+          tabIndex="46"
+        // onChange={onChange}
+        />
+      </div>
+
       <button
-        tabIndex="45"
+        tabIndex="46"
         type="button"
-        className="modal__button_exit"
-        // onClick={onClickExit}
-        // onKeyDown={e => handleClick(e)}
+        className="modal__button_enter"
+        onClick={() => onCreateClick()}
       >
-        {'x'}
+        {'Create account'}
       </button>
     </div>
   );
