@@ -14,6 +14,7 @@ export const SET_CUSTOMIZATION_COLUMN_NUMBER = 'SET_CUSTOMIZATION_COLUMN_NUMBER'
 export const SET_CUSTOMIZATION_LINK_SIZE = 'SET_CUSTOMIZATION_LINK_SIZE'
 export const SET_CUSTOMIZATION_SITE_COLOR = 'SET_CUSTOMIZATION_SITE_COLOR'
 export const SET_CUSTOMIZATION_BACKGROUND_PHOTO = 'SET_CUSTOMIZATION_BACKGROUND_PHOTO'
+export const SET_AUTH_STATUS = 'SET_AUTH_STATUS'
 
 export function toggleIconsActions(action) {
   return { type: ICONS_ACTIONS_TOGGLE, action }
@@ -89,4 +90,9 @@ export function actionSetCustomizationSiteColor(action) {
 export function actionSetCustomizationSiteBackground(action) {
   // console.log(action);
   return { type: SET_CUSTOMIZATION_BACKGROUND_PHOTO, action }
+}
+
+export function actionAuthStatus(action) {
+  // console.log(action);
+  return { type: SET_AUTH_STATUS, action }
 }

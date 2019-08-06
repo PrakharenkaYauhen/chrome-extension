@@ -4,7 +4,7 @@ import React from 'react';
 // import '../styles/ModalWindow.scss';
 
 function AuthenticationWindow({
-  // linksArray,
+  authStatus,
   // modalWindowVision,
   // newLink,
   onClick,
@@ -91,6 +91,7 @@ function AuthenticationWindow({
         >
           {'Create account'}
         </button>
+        <p>{authStatus}</p>
       </div>
     </div>
   );

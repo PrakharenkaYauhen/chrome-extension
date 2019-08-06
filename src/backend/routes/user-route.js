@@ -5,7 +5,7 @@ const { User, validate } = require("../models/user-model");
 const express = require("express");
 const router = express.Router();
 
-router.get("/current", checkPassword, auth, async (req, res) => {
+router.get("/log", checkPassword, auth, async (req, res) => {
   // console.log(req);
   const user = await User.findById(req.user._id).select("-password");
   console.log(user);
