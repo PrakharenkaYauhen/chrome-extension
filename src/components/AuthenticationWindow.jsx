@@ -5,13 +5,11 @@ import React from 'react';
 
 function AuthenticationWindow({
   authStatus,
-  // modalWindowVision,
-  // newLink,
-  onClick,
+  enterLog,
+  newLog,
   onEnterClick,
   onCreateClick,
-  // onChange,
-  // onClickAddLink,
+  onChange,
 }) {
 
   return (
@@ -19,25 +17,25 @@ function AuthenticationWindow({
       <div className="modal-enter">
         <h2>Authentication</h2>
         <div>
-          <label htmlFor="tabName">Name:</label>
+          <label htmlFor="enterName">Name:</label>
           <input
             type="text"
-            name="tabName"
-            id="tabName"
+            name="enterName"
+            id="enterName"
             tabIndex="41"
-          // onChange={onChange}
+            onChange={onChange}
           // autoFocus
           // ref={tabNameInput}
           />
         </div>
         <div>
-          <label htmlFor="tabAdress">Password:</label>
+          <label htmlFor="enterPassword">Password:</label>
           <input
             type="text"
-            name="tabAdress"
-            id="tabAdress"
+            name="enterPassword"
+            id="enterPassword"
             tabIndex="42"
-          // onChange={onChange}
+            onChange={onChange}
           />
         </div>
 
@@ -45,41 +43,41 @@ function AuthenticationWindow({
           tabIndex="43"
           type="button"
           className="modal__button_enter"
-          onClick={() => onEnterClick()}
+          onClick={() => onEnterClick(enterLog)}
         >
           {'Log in'}
         </button>
 
         <div>
-          <label htmlFor="tabName">Name:</label>
+          <label htmlFor="logName">Name:</label>
           <input
             type="text"
-            name="tabName"
-            id="tabName"
+            name="logName"
+            id="logName"
             tabIndex="44"
-          // onChange={onChange}
+            onChange={onChange}
           // autoFocus
           // ref={tabNameInput}
           />
         </div>
         <div>
-          <label htmlFor="tabAdress">E-mail:</label>
+          <label htmlFor="logEmail">E-mail:</label>
           <input
             type="text"
-            name="tabAdress"
-            id="tabAdress"
+            name="logEmail"
+            id="logEmail"
             tabIndex="45"
-          // onChange={onChange}
+            onChange={onChange}
           />
         </div>
         <div>
-          <label htmlFor="tabAdress">Password:</label>
+          <label htmlFor="logPassword">Password:</label>
           <input
-            type="text"
-            name="tabAdress"
-            id="tabAdress"
+            type="email"
+            name="logPassword"
+            id="logPassword"
             tabIndex="46"
-          // onChange={onChange}
+            onChange={onChange}
           />
         </div>
 
@@ -87,7 +85,7 @@ function AuthenticationWindow({
           tabIndex="46"
           type="button"
           className="modal__button_enter"
-          onClick={() => onCreateClick()}
+          onClick={() => onCreateClick(newLog)}
         >
           {'Create account'}
         </button>

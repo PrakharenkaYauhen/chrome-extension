@@ -5,6 +5,7 @@ import LinksList from '../components/LinksList';
 import { actionGetChromeLocalStorage } from '../actions';
 
 const mapStateToProps = (state) => {
+  console.log(state);
   const {
     linksArray,
     linksArrayString,

@@ -27,6 +27,7 @@ import {
   SET_CUSTOMIZATION_SITE_COLOR,
   SET_CUSTOMIZATION_BACKGROUND_PHOTO,
   SET_AUTH_STATUS,
+  SET_LOGGING,
 } from './actions'
 
 const defaultNumberOfColumns = 4;
@@ -116,6 +117,9 @@ let initialState = {
   modalWindowBookmarkVision: false,
   modalWindowBookmarkId: null,
   authStatus: null,
+  authWindowVision: JSON.parse(sessionStorage.getItem('auth-allow')) || false,
+  enterLog: {},
+  newLog: {},
 }
 // localStorage.setItem('linksArray', JSON.stringify(initialState.linksArray));
 // console.log(initialState);
@@ -203,6 +207,12 @@ export default function reducerExtension(state = initialState, action) {
     case SET_AUTH_STATUS:
       return Object.assign({}, state, {
         authStatus: action.action.authStatus,
+        authWindowVision: action.action.authWindowVision,
+      })
+    case SET_LOGGING:
+      return Object.assign({}, state, {
+        enterLog: action.action.enterLog,
+        newLog: action.action.newLog,
       })
     default:
       return state

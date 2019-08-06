@@ -7,7 +7,10 @@ import SlidingWindowForIconsCNT from '../containers/SlidingWindowForIconsCNT';
 import ModalWindowCNT from '../containers/ModalWindowCNT';
 import AuthenticationWindowCNT from '../containers/AuthenticationWindowCNT';
 
-function App({ customizationSiteBackgroundPhoto }) {
+function App({
+  customizationSiteBackgroundPhoto,
+  authWindowVision
+}) {
   return (
     <div className={!customizationSiteBackgroundPhoto ? "App" : "App-photo"}>
       {/* {pageForTheSlideWindow === null || pageForTheSlideWindow === 'cross' ? <ContentCNT /> : null} */}
@@ -16,7 +19,7 @@ function App({ customizationSiteBackgroundPhoto }) {
       <CustomizationCNT />
       <SlidingWindowForIconsCNT />
       <ModalWindowCNT />
-      <AuthenticationWindowCNT />
+      {!authWindowVision && <AuthenticationWindowCNT />}
     </div>
   );
 }
