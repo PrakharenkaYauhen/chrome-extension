@@ -3,9 +3,31 @@ import Fingerprint from '@material-ui/icons/Fingerprint';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ContactMail from '@material-ui/icons/ContactMail';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 // import PropTypes from 'prop-types';
 // import styles from '../styles/ModalWindow.scss';
 import '../styles/AuthenticationWindow.scss';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: 'calc(100% - 150px)',
+
+    '& input': {
+      padding: theme.spacing(0.5, 1),
+    },
+  },
+  icon: {
+    margin: theme.spacing(0, 1),
+    fontSize: 18,
+    verticalAlign: 'top',
+  },
+  button: {
+    margin: theme.spacing(1),
+    fontSize: 12,
+    padding: 2,
+  },
+}));
 
 function AuthenticationWindow({
   authStatus,
@@ -15,26 +37,6 @@ function AuthenticationWindow({
   onCreateClick,
   onChange,
 }) {
-  const tabNameInput = React.createRef();
-  const keyButtonTabNumber = 9;
-
-  function handleClick(e) {
-    if (e.keyCode === keyButtonTabNumber) {
-      e.preventDefault();
-      tabNameInput.current.focus();
-    }
-  }
-
-  const useStyles = makeStyles(theme => ({
-    root: {
-      color: theme.palette.text.primary,
-    },
-    icon: {
-      margin: theme.spacing(0, 1),
-      fontSize: 18,
-      verticalAlign: 'top',
-    },
-  }));
   const classes = useStyles();
 
   return (
@@ -46,14 +48,16 @@ function AuthenticationWindow({
             <AccountCircle className={classes.icon} />
             Name:
           </label>
-          <input
+          <TextField
+            classes={{
+              root: classes.root,
+              input: classes.textField,
+            }}
+            variant="outlined"
             type="text"
             name="enterName"
             id="enterName"
-            tabIndex="41"
             onChange={onChange}
-            autoFocus
-            ref={tabNameInput}
           />
         </div>
         <div>
@@ -61,34 +65,42 @@ function AuthenticationWindow({
             <Fingerprint className={classes.icon} />
             Password:
             </label>
-          <input
-            type="text"
+          <TextField
+            classes={{
+              root: classes.root,
+              input: classes.textField,
+            }}
+            variant="outlined"
+            type="password"
             name="enterPassword"
             id="enterPassword"
-            tabIndex="42"
             onChange={onChange}
           />
         </div>
 
-        <button
-          tabIndex="43"
+        <Button
+          variant="contained"
+          className={classes.button}
           type="button"
-          className="modal__button_enter"
           onClick={() => onEnterClick(enterLog)}
         >
           {'Log in'}
-        </button>
+        </Button>
 
         <div>
           <label htmlFor="logName">
             <AccountCircle className={classes.icon} />
             Name:
           </label>
-          <input
+          <TextField
+            classes={{
+              root: classes.root,
+              input: classes.textField,
+            }}
+            variant="outlined"
             type="text"
             name="logName"
             id="logName"
-            tabIndex="44"
             onChange={onChange}
           />
         </div>
@@ -97,11 +109,15 @@ function AuthenticationWindow({
             <ContactMail className={classes.icon} />
             E-mail:
             </label>
-          <input
-            type="text"
+          <TextField
+            classes={{
+              root: classes.root,
+              input: classes.textField,
+            }}
+            variant="outlined"
+            type="email"
             name="logEmail"
             id="logEmail"
-            tabIndex="45"
             onChange={onChange}
           />
         </div>
@@ -110,24 +126,28 @@ function AuthenticationWindow({
             <Fingerprint className={classes.icon} />
             Password:
           </label>
-          <input
-            type="email"
+          <TextField
+            classes={{
+              root: classes.root,
+              input: classes.textField,
+            }}
+            variant="outlined"
+            type="password"
             name="logPassword"
             id="logPassword"
-            tabIndex="46"
             onChange={onChange}
           />
         </div>
 
-        <button
-          tabIndex="46"
+        <Button
+          variant="contained"
+          className={classes.button}
           type="button"
-          className="modal__button_enter"
           onClick={() => onCreateClick(newLog)}
-          onKeyDown={e => handleClick(e)}
         >
           {'Create account'}
-        </button>
+        </Button>
+
         <p>{authStatus}</p>
       </div>
     </div>

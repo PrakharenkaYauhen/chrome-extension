@@ -34,7 +34,7 @@
       z-index: 1;
       text-align: center;
   
-      div {
+      >div {
         margin: 10px;
   
         label {
@@ -42,10 +42,6 @@
           display: inline-block;
           width: 150px;
         }
-  
-        input {
-          width: calc(100% - 156px);
-        }      
       }
   
       p {

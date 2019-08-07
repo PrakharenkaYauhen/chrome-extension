@@ -22,7 +22,7 @@ module.exports = function (req, res, next) {
             const newToken = jwt.sign(
               { _id: user._id, isAdmin: user.isAdmin },
               config.get('myprivatekey'),
-              { expiresIn: '10000' });
+              { expiresIn: '3600000' });
               console.log(newToken);
             return res.send(newToken);
           } else {
