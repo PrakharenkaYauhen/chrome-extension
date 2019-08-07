@@ -1,5 +1,4 @@
 import React from 'react';
-import SvgIcon from '@material-ui/core/SvgIcon';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ContactMail from '@material-ui/icons/ContactMail';

@@ -4,7 +4,7 @@ import {
   actionAuthStatus,
   actionLogging,
 } from '../actions';
-// import localStorageSets from '../helpers/localStorageSets';
+import siteExpiry from '../helpers/siteExpiry';
 
 const mapStateToProps = (state) => {
   const {
@@ -104,6 +104,8 @@ const mapDispatchToProps = (dispatch) => {
             authWindowVision: true,
           };
           dispatch(actionAuthStatus(action));
+
+          siteExpiry(user.name, dispatch, actionAuthStatus);
         }
       }
     },
@@ -147,6 +149,12 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
+
+let getTocken = () => {
+  sessionStorage.removeItem('key');
+};
+
+setInterval(getTocken, 10000);
 
 const AuthenticationWindowCNT = connect(mapStateToProps, mapDispatchToProps)(AuthenticationWindow);
 

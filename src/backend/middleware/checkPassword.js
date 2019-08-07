@@ -19,7 +19,11 @@ module.exports = function (req, res, next) {
         } else {
           if (!resp) return res.status(400).send('wrong password');
           if (token === 'null') {
-            const newToken = jwt.sign({ _id: user._id, isAdmin: user.isAdmin }, config.get('myprivatekey'));
+            const newToken = jwt.sign(
+              { _id: user._id, isAdmin: user.isAdmin },
+              config.get('myprivatekey'),
+              { expiresIn: '10000' });
+              console.log(newToken);
             return res.send(newToken);
           } else {
             next();
